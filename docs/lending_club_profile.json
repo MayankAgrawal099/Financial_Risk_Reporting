@@ -1,0 +1,121 @@
+{
+  "input_file": "accepted_2007_to_2018q4.csv",
+  "years": [
+    2013,
+    2015
+  ],
+  "term_filter": 36,
+  "n_per_year": 60000,
+  "seed": 42,
+  "funnel": {
+    "rows_read": 2260701,
+    "valid_issue_date": 2260668,
+    "in_year_range": 546165,
+    "final_outcome": 546018
+  },
+  "sample_rows": 180000,
+  "sample_rows_by_year": {
+    "2013": 60000,
+    "2014": 60000,
+    "2015": 60000
+  },
+  "default_rate_by_year": {
+    "2013": 0.1216,
+    "2014": 0.1376,
+    "2015": 0.1483
+  },
+  "default_rate_overall": 0.1358,
+  "columns_requested_but_missing_in_file": [],
+  "null_rate_by_column": {
+    "id": 0.0,
+    "loan_status": 0.0,
+    "default": 0.0,
+    "issue_d": 0.0,
+    "issue_year": 0.0,
+    "term_months": 0.0,
+    "emp_length": 0.0584,
+    "home_ownership": 0.0,
+    "verification_status": 0.0,
+    "purpose": 0.0,
+    "addr_state": 0.0,
+    "initial_list_status": 0.0,
+    "application_type": 0.0,
+    "loan_amnt": 0.0,
+    "int_rate": 0.0,
+    "installment": 0.0,
+    "annual_inc": 0.0,
+    "dti": 0.0,
+    "delinq_2yrs": 0.0,
+    "fico_range_low": 0.0,
+    "fico_range_high": 0.0,
+    "inq_last_6mths": 0.0,
+    "mths_since_last_delinq": 0.5113,
+    "mths_since_last_record": 0.8323,
+    "open_acc": 0.0,
+    "pub_rec": 0.0,
+    "revol_bal": 0.0,
+    "revol_util": 0.0005,
+    "total_acc": 0.0,
+    "mort_acc": 0.0,
+    "pub_rec_bankruptcies": 0.0,
+    "tot_cur_bal": 0.0,
+    "total_rev_hi_lim": 0.0,
+    "bc_util": 0.0102,
+    "acc_open_past_24mths": 0.0,
+    "collections_12_mths_ex_med": 0.0,
+    "delinq_amnt": 0.0,
+    "tax_liens": 0.0,
+    "chargeoff_within_12_mths": 0.0,
+    "num_tl_90g_dpd_24m": 0.0,
+    "percent_bc_gt_75": 0.01,
+    "num_actv_bc_tl": 0.0,
+    "grade": 0.0,
+    "sub_grade": 0.0,
+    "earliest_cr_line": 0.0
+  },
+  "censoring_diagnostic": [
+    {
+      "issue_year": 2013,
+      "term_months": 36,
+      "status_group": "Charged Off",
+      "loans": 12378
+    },
+    {
+      "issue_year": 2013,
+      "term_months": 36,
+      "status_group": "Fully Paid",
+      "loans": 88044
+    },
+    {
+      "issue_year": 2014,
+      "term_months": 36,
+      "status_group": "Charged Off",
+      "loans": 22315
+    },
+    {
+      "issue_year": 2014,
+      "term_months": 36,
+      "status_group": "Fully Paid",
+      "loans": 140255
+    },
+    {
+      "issue_year": 2015,
+      "term_months": 36,
+      "status_group": "Charged Off",
+      "loans": 42132
+    },
+    {
+      "issue_year": 2015,
+      "term_months": 36,
+      "status_group": "Fully Paid",
+      "loans": 240894
+    },
+    {
+      "issue_year": 2015,
+      "term_months": 36,
+      "status_group": "Not final",
+      "loans": 147
+    }
+  ],
+  "note": "Loans issued late in the file may still be open; 'Not final' counts show how many."
+}
