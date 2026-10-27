@@ -1,0 +1,22 @@
+account_id,account_name,account_type,statement,normal_balance,report_group
+1000,Cash and Bank,Asset,BS,D,Current Assets
+1100,Loans Receivable (Gross),Asset,BS,D,Loan Book
+1110,Allowance for Credit Losses,Asset,BS,C,Loan Book
+1200,Fixed Assets (Net),Asset,BS,D,Non-current Assets
+1300,Prepaid and Other Assets,Asset,BS,D,Current Assets
+2000,Borrowings,Liability,BS,C,Debt
+2100,Accrued Expenses,Liability,BS,C,Current Liabilities
+2200,Taxes Payable,Liability,BS,C,Current Liabilities
+3000,Share Capital,Equity,BS,C,Equity
+3100,Retained Earnings (Opening),Equity,BS,C,Equity
+4000,Interest Income,Revenue,PL,C,Interest Income
+4100,Fee Income,Revenue,PL,C,Fee Income
+5000,Interest Expense,Expense,PL,D,Interest Expense
+5100,Provision for Credit Losses,Expense,PL,D,Credit Costs
+6000,Salaries and Benefits,Expense,PL,D,Operating Expenses
+6100,Marketing,Expense,PL,D,Operating Expenses
+6200,Technology and Software,Expense,PL,D,Operating Expenses
+6300,Rent and Administration,Expense,PL,D,Operating Expenses
+6400,Collections and Recovery Costs,Expense,PL,D,Operating Expenses
+6500,Depreciation,Expense,PL,D,Operating Expenses
+7000,Income Tax,Expense,PL,D,Tax
