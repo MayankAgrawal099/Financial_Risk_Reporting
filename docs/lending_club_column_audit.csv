@@ -1,0 +1,152 @@
+column,decision,reason
+id,KEY,Loan identifier
+member_id,EXCLUDED_IDENTIFIER_OR_TEXT,"Identifier, free text or near-identifier"
+loan_amnt,USED_FEATURE,Known at application; kept as a candidate feature
+funded_amnt,LEAKAGE,Set at funding and almost identical to loan_amnt (redundant)
+funded_amnt_inv,LEAKAGE,Set at funding and almost identical to loan_amnt (redundant)
+term,USED_FEATURE,Known at application; kept as a candidate feature
+int_rate,REFERENCE_ONLY,"Lending Club's own interest rate, comparison only"
+installment,USED_FEATURE,Known at application; kept as a candidate feature
+grade,REFERENCE_ONLY,"Lending Club's own risk grade; comparison only, not a feature"
+sub_grade,REFERENCE_ONLY,"Lending Club's own risk grade; comparison only, not a feature"
+emp_title,EXCLUDED_IDENTIFIER_OR_TEXT,"Identifier, free text or near-identifier"
+emp_length,USED_FEATURE,Known at application; kept as a candidate feature
+home_ownership,USED_FEATURE,Known at application; kept as a candidate feature
+annual_inc,USED_FEATURE,Known at application; kept as a candidate feature
+verification_status,USED_FEATURE,Known at application; kept as a candidate feature
+issue_d,SPLIT_ONLY,"Issue date; used to split train/test by time, never a feature"
+loan_status,TARGET_SOURCE,Final loan status; used only to derive the default flag
+pymnt_plan,LEAKAGE,"Process or programme flags set after approval, or constant"
+url,EXCLUDED_IDENTIFIER_OR_TEXT,"Identifier, free text or near-identifier"
+desc,EXCLUDED_IDENTIFIER_OR_TEXT,"Identifier, free text or near-identifier"
+purpose,USED_FEATURE,Known at application; kept as a candidate feature
+title,EXCLUDED_IDENTIFIER_OR_TEXT,"Identifier, free text or near-identifier"
+zip_code,EXCLUDED_IDENTIFIER_OR_TEXT,"Identifier, free text or near-identifier"
+addr_state,USED_FEATURE,Known at application; kept as a candidate feature
+dti,USED_FEATURE,Known at application; kept as a candidate feature
+delinq_2yrs,USED_FEATURE,Known at application; kept as a candidate feature
+earliest_cr_line,USED_FEATURE,Known at application; kept as a candidate feature
+fico_range_low,USED_FEATURE,Known at application; kept as a candidate feature
+fico_range_high,USED_FEATURE,Known at application; kept as a candidate feature
+inq_last_6mths,USED_FEATURE,Known at application; kept as a candidate feature
+mths_since_last_delinq,USED_FEATURE,Known at application; kept as a candidate feature
+mths_since_last_record,USED_FEATURE,Known at application; kept as a candidate feature
+open_acc,USED_FEATURE,Known at application; kept as a candidate feature
+pub_rec,USED_FEATURE,Known at application; kept as a candidate feature
+revol_bal,USED_FEATURE,Known at application; kept as a candidate feature
+revol_util,USED_FEATURE,Known at application; kept as a candidate feature
+total_acc,USED_FEATURE,Known at application; kept as a candidate feature
+initial_list_status,USED_FEATURE,Known at application; kept as a candidate feature
+out_prncp,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+out_prncp_inv,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+total_pymnt,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+total_pymnt_inv,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+total_rec_prncp,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+total_rec_int,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+total_rec_late_fee,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+recoveries,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+collection_recovery_fee,LEAKAGE,"Payments, balances or recoveries observed after the loan started"
+last_pymnt_d,LEAKAGE,Latest payment or credit-pull information observed during the loan's life
+last_pymnt_amnt,LEAKAGE,Latest payment or credit-pull information observed during the loan's life
+next_pymnt_d,LEAKAGE,Latest payment or credit-pull information observed during the loan's life
+last_credit_pull_d,LEAKAGE,Latest payment or credit-pull information observed during the loan's life
+last_fico_range_high,LEAKAGE,Latest payment or credit-pull information observed during the loan's life
+last_fico_range_low,LEAKAGE,Latest payment or credit-pull information observed during the loan's life
+collections_12_mths_ex_med,USED_FEATURE,Known at application; kept as a candidate feature
+mths_since_last_major_derog,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+policy_code,LEAKAGE,"Process or programme flags set after approval, or constant"
+application_type,USED_FEATURE,Known at application; kept as a candidate feature
+annual_inc_joint,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+dti_joint,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+verification_status_joint,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+acc_now_delinq,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+tot_coll_amt,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+tot_cur_bal,USED_FEATURE,Known at application; kept as a candidate feature
+open_acc_6m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+open_act_il,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+open_il_12m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+open_il_24m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mths_since_rcnt_il,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+total_bal_il,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+il_util,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+open_rv_12m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+open_rv_24m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+max_bal_bc,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+all_util,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+total_rev_hi_lim,USED_FEATURE,Known at application; kept as a candidate feature
+inq_fi,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+total_cu_tl,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+inq_last_12m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+acc_open_past_24mths,USED_FEATURE,Known at application; kept as a candidate feature
+avg_cur_bal,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+bc_open_to_buy,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+bc_util,USED_FEATURE,Known at application; kept as a candidate feature
+chargeoff_within_12_mths,USED_FEATURE,Known at application; kept as a candidate feature
+delinq_amnt,USED_FEATURE,Known at application; kept as a candidate feature
+mo_sin_old_il_acct,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mo_sin_old_rev_tl_op,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mo_sin_rcnt_rev_tl_op,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mo_sin_rcnt_tl,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mort_acc,USED_FEATURE,Known at application; kept as a candidate feature
+mths_since_recent_bc,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mths_since_recent_bc_dlq,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mths_since_recent_inq,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+mths_since_recent_revol_delinq,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_accts_ever_120_pd,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_actv_bc_tl,USED_FEATURE,Known at application; kept as a candidate feature
+num_actv_rev_tl,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_bc_sats,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_bc_tl,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_il_tl,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_op_rev_tl,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_rev_accts,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_rev_tl_bal_gt_0,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_sats,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_tl_120dpd_2m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_tl_30dpd,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+num_tl_90g_dpd_24m,USED_FEATURE,Known at application; kept as a candidate feature
+num_tl_op_past_12m,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+pct_tl_nvr_dlq,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+percent_bc_gt_75,USED_FEATURE,Known at application; kept as a candidate feature
+pub_rec_bankruptcies,USED_FEATURE,Known at application; kept as a candidate feature
+tax_liens,USED_FEATURE,Known at application; kept as a candidate feature
+tot_hi_cred_lim,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+total_bal_ex_mort,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+total_bc_limit,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+total_il_high_credit_limit,NOT_SELECTED_REVIEW,Not selected; verify against the data dictionary before use
+revol_bal_joint,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_fico_range_low,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_fico_range_high,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_earliest_cr_line,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_inq_last_6mths,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_mort_acc,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_open_acc,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_revol_util,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_open_act_il,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_num_rev_accts,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_chargeoff_within_12_mths,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_collections_12_mths_ex_med,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+sec_app_mths_since_last_major_derog,EXCLUDED_SPARSE_JOINT,Only populated for joint applications
+hardship_flag,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_type,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_reason,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_status,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+deferral_term,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_amount,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_start_date,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_end_date,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+payment_plan_start_date,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_length,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_dpd,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_loan_status,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+orig_projected_additional_accrued_interest,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_payoff_balance_amount,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+hardship_last_payment_amount,LEAKAGE,"Hardship programme data, only exists after a borrower struggles"
+disbursement_method,LEAKAGE,"Process or programme flags set after approval, or constant"
+debt_settlement_flag,LEAKAGE,"Debt settlement data, only exists after default"
+debt_settlement_flag_date,LEAKAGE,"Debt settlement data, only exists after default"
+settlement_status,LEAKAGE,"Debt settlement data, only exists after default"
+settlement_date,LEAKAGE,"Debt settlement data, only exists after default"
+settlement_amount,LEAKAGE,"Debt settlement data, only exists after default"
+settlement_percentage,LEAKAGE,"Debt settlement data, only exists after default"
+settlement_term,LEAKAGE,"Debt settlement data, only exists after default"
