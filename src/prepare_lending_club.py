@@ -93,6 +93,15 @@ EXCEL_MESSAGE = (
     "  - extract it again from the Kaggle zip, or point --input at the .csv.gz inside the zip\n"
     "    (no need to unzip it). Do not save over it from Excel.")
 
+# Whole-number columns. Written as integers (not 3.0) so PostgreSQL SMALLINT columns accept them.
+INTEGER_COLUMNS = [
+    "issue_year", "term_months", "delinq_2yrs", "fico_range_low", "fico_range_high",
+    "inq_last_6mths", "mths_since_last_delinq", "mths_since_last_record", "open_acc", "pub_rec",
+    "total_acc", "mort_acc", "pub_rec_bankruptcies", "acc_open_past_24mths",
+    "collections_12_mths_ex_med", "tax_liens", "chargeoff_within_12_mths", "num_tl_90g_dpd_24m",
+    "num_actv_bc_tl",
+]
+
 OUTPUT_COLUMNS = (
     ["id", "loan_status", "default", "issue_d", "issue_year", "term_months"]
     + [c for c in CATEGORICAL if c != "term"]
@@ -201,6 +210,8 @@ def prepare(input_path: Path, output_path: Path, profile_path: Path, years=(2013
     for c in missing_cols:
         sample[c] = np.nan
     sample = sample[OUTPUT_COLUMNS]
+    for col in INTEGER_COLUMNS:
+        sample[col] = pd.to_numeric(sample[col], errors="coerce").round().astype("Int64")
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     sample.to_csv(output_path, index=False)

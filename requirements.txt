@@ -5,3 +5,4 @@ matplotlib
 faker
 jupyter
 pytest
+psycopg[binary]

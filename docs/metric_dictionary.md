@@ -22,6 +22,7 @@ metric is built. Updated as each metric is built; finalised on 1 Nov 2026.
 | Zero denominators | A ratio with a zero denominator is shown as blank, never as 0. |
 
 Reference implementation: `src/finance_metrics.py`. SQL and dashboard results must match it (see section 6).
+SQL: M01-M16 are implemented in `sql/02_pl_views.sql` (`fin.v_pl_monthly`, `fin.v_pl_quarterly`, `fin.v_pl_annual`).
 
 ## 1. Profit and loss
 
@@ -134,3 +135,4 @@ section and the data disagree. USD, whole dollars.
 | Date | Change |
 |---|---|
 | 28 Oct 2026 | First version: P&L, balance sheet, variance and portfolio metrics defined; scorecard metrics drafted. |
+| 30 Oct 2026 | P&L metrics M01-M16 implemented as SQL views and verified against the reference values in section 6. |

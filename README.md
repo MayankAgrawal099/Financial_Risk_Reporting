@@ -64,9 +64,16 @@ python src/prepare_lending_club.py --input data/raw/accepted_2007_to_2018q4.csv
 python src/audit_lending_club_columns.py --input data/raw/accepted_2007_to_2018q4.csv
 python src/check_leakage.py
 
-# 4. Tests
+# 4. PostgreSQL: create an empty database first (CREATE DATABASE fin_risk;), then load everything.
+#    Keep the password out of git: set it in the connection string or in FIN_PG_DSN.
+python src/load_to_postgres.py --dsn postgresql://postgres:YOUR_PASSWORD@localhost:5432/fin_risk --lending-club
+
+# 5. Tests (the SQL view tests run only when FIN_PG_DSN is set)
 python -m pytest
 ```
+
+SQL files in `sql/`: `00_create_schema.sql` (tables), `02_pl_views.sql` (P&L views: monthly, quarterly,
+annual and a tall income statement). They are plain SQL and also run in pgAdmin or DBeaver.
 
 Sample design: 36-month loans issued 2013-2015 with a final outcome, 60,000 per year. Loans issued
 in 2016 are excluded because many are still open at the end of the file, which would bias their
@@ -87,8 +94,9 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Repository and folder structure
 - [x] Data preparation (Lending Club sample, leakage audit, synthetic ledgers)
 - [x] Data dictionary and metric dictionary (first version)
-- [ ] Load data into SQL
-- [ ] P&L and balance sheet
+- [x] Load data into SQL (schemas `fin` and `risk`)
+- [x] P&L views in SQL
+- [ ] Balance sheet
 - [ ] Budget vs actual
 - [ ] Credit risk scorecard
 - [ ] Qlik Sense dashboards

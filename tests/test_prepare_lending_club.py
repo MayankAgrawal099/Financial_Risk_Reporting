@@ -103,3 +103,12 @@ def test_excel_resaved_file_is_rejected(tmp_path):
                   "loan_status": ["Fully Paid", "Charged Off"]}).to_csv(src, index=False)
     with pytest.raises(SystemExit, match="Excel"):
         plc.prepare(src, tmp_path / "o.csv", tmp_path / "p.json")
+
+
+def test_whole_number_columns_have_no_decimal_point(run, tmp_path):
+    src = tmp_path / "accepted.csv"
+    raw = pd.read_csv(tmp_path / "sample.csv", dtype=str) if (tmp_path / "sample.csv").exists() else None
+    assert raw is not None
+    for col in plc.INTEGER_COLUMNS:
+        vals = raw[col].dropna()
+        assert not vals.str.contains(r"\.", regex=True).any(), col
