@@ -22,7 +22,7 @@ metric is built. Updated as each metric is built; finalised on 1 Nov 2026.
 | Zero denominators | A ratio with a zero denominator is shown as blank, never as 0. |
 
 Reference implementation: `src/finance_metrics.py`. SQL and dashboard results must match it (see section 6).
-SQL: M01-M16 are implemented in `sql/02_pl_views.sql` (`fin.v_pl_monthly`, `fin.v_pl_quarterly`, `fin.v_pl_annual`).
+SQL: M01-M16 are implemented in `sql/02_pl_views.sql` (`fin.v_pl_monthly`, `fin.v_pl_quarterly`, `fin.v_pl_annual`) and M20-M28 in `sql/03_balance_sheet_views.sql` (`fin.v_balance_sheet_monthly`, `fin.v_balance_sheet_year_end`).
 
 ## 1. Profit and loss
 
@@ -57,7 +57,7 @@ SQL: M01-M16 are implemented in `sql/02_pl_views.sql` (`fin.v_pl_monthly`, `fin.
 | M25 | Total Liabilities | Borrowings, accrued expenses, taxes payable. | Accounts 2000 + 2100 + 2200 | `fact_gl_journal` | Defined |
 | M26 | Total Equity | Owners' funds. | Account 3000 + account 3100 + cumulative M11 | `fact_gl_journal` | Defined |
 | M27 | Debt-to-Equity | Borrowings per dollar of equity. | Account 2000 balance / M26 | derived | Defined |
-| M28 | Return on Equity (annualised) | Profit earned on owners' funds. | M11 x (12 / n) / average of month-end M26 | derived | Draft |
+| M28 | Return on Equity (annualised) | Profit earned on owners' funds. | M11 x (12 / n) / average of the month-end M26 values in the period | derived | Defined |
 
 Check that must hold every month: **M24 = M25 + M26** (the balance sheet balances).
 
@@ -124,11 +124,11 @@ section and the data disagree. USD, whole dollars.
 
 **Ratios and balances**
 
-| Year | Cost-to-Income (M13) | Net Profit Margin (M12) | Yield (M14) | NIM (M16) | Gross Loans, year end (M20) | Borrowings, year end | Equity, year end (M26) | Debt-to-Equity (M27) |
-|---|---|---|---|---|---|---|---|---|
-| FY2023 | 48.4% | 11.6% | 16.0% | 10.5% | 86,976,200 | 63,500,000 | 23,287,978 | 2.73x |
-| FY2024 | 45.4% | 14.6% | 15.7% | 9.8% | 107,259,535 | 80,500,000 | 25,691,322 | 3.13x |
-| FY2025 | 43.2% | 9.6% | 15.8% | 9.8% | 132,329,507 | 101,500,000 | 27,653,672 | 3.67x |
+| Year | Cost-to-Income (M13) | Net Profit Margin (M12) | Yield (M14) | NIM (M16) | Gross Loans, year end (M20) | Borrowings, year end | Equity, year end (M26) | Debt-to-Equity (M27) | ROE (M28) |
+|---|---|---|---|---|---|---|---|---|---|
+| FY2023 | 48.4% | 11.6% | 16.0% | 10.5% | 86,976,200 | 63,500,000 | 23,287,978 | 2.73x | 6.6% |
+| FY2024 | 45.4% | 14.6% | 15.7% | 9.8% | 107,259,535 | 80,500,000 | 25,691,322 | 3.13x | 9.8% |
+| FY2025 | 43.2% | 9.6% | 15.8% | 9.8% | 132,329,507 | 101,500,000 | 27,653,672 | 3.67x | 7.4% |
 
 ## Change log
 
@@ -136,3 +136,4 @@ section and the data disagree. USD, whole dollars.
 |---|---|
 | 28 Oct 2026 | First version: P&L, balance sheet, variance and portfolio metrics defined; scorecard metrics drafted. |
 | 30 Oct 2026 | P&L metrics M01-M16 implemented as SQL views and verified against the reference values in section 6. |
+| 30 Oct 2026 | Balance sheet metrics M20-M28 implemented as SQL views and verified; ROE (M28) now Defined and added to the reference values. |

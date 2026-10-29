@@ -76,6 +76,8 @@ def annual_summary(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
     fy["borrowings_ye"] = year_end["borrowings"].values
     fy["equity_ye"] = year_end["equity"].values
     fy["debt_to_equity_ye"] = year_end["debt_to_equity"].values
+    eq = bs["equity"][bs.index != "2022-12"]                                  # month-end equity, opening excluded
+    fy["roe"] = fy.net_income / eq.groupby(eq.index.str[:4]).mean()           # M28 (12 months)
     return fy
 
 
@@ -98,5 +100,5 @@ def reference_rows(tables: dict[str, pd.DataFrame]) -> tuple[list[str], list[str
                  f"{usd(r.tax)} | {usd(r.net_income)} |")
         b.append(f"| FY{y} | {pct(r.cost_to_income)} | {pct(r.net_profit_margin)} | {pct(r.yield_on_loans)} | "
                  f"{pct(r.nim)} | {usd(r.gross_loans_ye)} | {usd(r.borrowings_ye)} | {usd(r.equity_ye)} | "
-                 f"{r.debt_to_equity_ye:.2f}x |")
+                 f"{r.debt_to_equity_ye:.2f}x | {pct(r.roe)} |")
     return a, b
