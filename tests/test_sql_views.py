@@ -118,3 +118,61 @@ def test_statement_lines_add_up(conn):
     tle = df[df.line_name == "Total Liabilities and Equity"].set_index("period").amount
     assert np.allclose(assets, total.reindex(assets.index), atol=0.01)
     assert np.allclose(total, tle.reindex(total.index), atol=0.01)
+
+
+# ---------------------------------------------------------------- budget vs actual (04_budget_vs_actual_views.sql)
+def test_bva_net_income_matches_reference(conn, tables):
+    from finance_metrics import bva_net_income
+    sql = query(conn, "SELECT fiscal_year, actual, budget, variance FROM fin.v_bva_summary_annual "
+                      "WHERE line_name = 'Net Income' ORDER BY fiscal_year")
+    ref = bva_net_income(tables)
+    assert np.allclose(sql.actual.astype(float), ref.net_income_actual, atol=0.01)
+    assert np.allclose(sql.budget.astype(float), ref.net_income_budget, atol=0.01)
+    assert np.allclose(sql.variance.astype(float), ref.net_income_variance, atol=0.01)
+
+
+def test_bva_actual_equals_pl_view(conn):
+    a = query(conn, "SELECT period, actual FROM fin.v_bva_summary WHERE line_name = 'Net Income' ORDER BY period")
+    p = query(conn, "SELECT period, net_income FROM fin.v_pl_monthly ORDER BY period")
+    assert list(a.period) == list(p.period)
+    assert np.allclose(a.actual.astype(float), p.net_income.astype(float), atol=0.01)
+
+
+def test_bva_quarters_add_up_to_years(conn):
+    q = query(conn, "SELECT fiscal_year, line_name, SUM(variance) AS v FROM fin.v_bva_summary_quarterly "
+                    "GROUP BY fiscal_year, line_name")
+    y = query(conn, "SELECT fiscal_year, line_name, variance AS v FROM fin.v_bva_summary_annual")
+    m = q.merge(y, on=["fiscal_year", "line_name"], suffixes=("_q", "_y"))
+    assert len(m) == len(y) == 33
+    assert np.allclose(m.v_q.astype(float), m.v_y.astype(float), atol=0.01)
+
+
+def test_variance_sign_is_favourable_positive(conn):
+    df = query(conn, "SELECT account_type, actual, budget, variance FROM fin.v_bva_account_month")
+    rev = df[df.account_type == "Revenue"]
+    exp = df[df.account_type == "Expense"]
+    assert np.allclose(rev.variance.astype(float), rev.actual.astype(float) - rev.budget.astype(float), atol=0.001)
+    assert np.allclose(exp.variance.astype(float), exp.budget.astype(float) - exp.actual.astype(float), atol=0.001)
+
+
+def test_driver_effects_add_up_in_sql(conn):
+    df = query(conn, "SELECT variance, COALESCE(volume_effect, 0) + COALESCE(rate_effect, 0) + other_effect AS parts "
+                     "FROM fin.v_variance_drivers")
+    assert np.allclose(df.variance.astype(float), df.parts.astype(float), atol=0.011)
+
+
+def test_driver_effects_match_reference(conn, tables):
+    from finance_metrics import variance_drivers
+    ref = variance_drivers(tables).fillna(0.0).set_index(["period", "account_id"]).sort_index()
+    sql = query(conn, "SELECT period, account_id, COALESCE(volume_effect, 0) AS volume_effect, "
+                      "COALESCE(rate_effect, 0) AS rate_effect FROM fin.v_variance_drivers")
+    sql = sql.set_index(["period", "account_id"]).sort_index().astype(float)
+    assert list(sql.index) == list(ref.index)
+    assert np.allclose(sql.volume_effect, ref.volume_effect, atol=0.011)
+    assert np.allclose(sql.rate_effect, ref.rate_effect, atol=0.011)
+
+
+def test_cost_center_variances_add_up_to_operating_expenses(conn):
+    a = query(conn, "SELECT fiscal_year, SUM(variance) AS v FROM fin.v_bva_cost_center_annual GROUP BY fiscal_year ORDER BY 1")
+    b = query(conn, "SELECT fiscal_year, variance AS v FROM fin.v_bva_summary_annual WHERE line_name = 'Operating Expenses' ORDER BY 1")
+    assert np.allclose(a.v.astype(float), b.v.astype(float), atol=0.01)

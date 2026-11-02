@@ -481,7 +481,7 @@ def generate(seed: int = SEED) -> dict[str, pd.DataFrame]:
 def write_tables(tables: dict[str, pd.DataFrame], out_dir: Path) -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     for name, df in tables.items():
-        df.to_csv(out_dir / f"{name}.csv", index=False, float_format="%.6g" if name == "fact_drivers" else "%.2f")
+        df.to_csv(out_dir / f"{name}.csv", index=False, float_format="%.12g" if name == "fact_drivers" else "%.2f")
 
 
 def main() -> None:

@@ -102,3 +102,57 @@ def reference_rows(tables: dict[str, pd.DataFrame]) -> tuple[list[str], list[str
                  f"{pct(r.nim)} | {usd(r.gross_loans_ye)} | {usd(r.borrowings_ye)} | {usd(r.equity_ye)} | "
                  f"{r.debt_to_equity_ye:.2f}x | {pct(r.roe)} |")
     return a, b
+
+
+# ---------------------------------------------------------------- budget vs actual (M30-M33)
+DRIVER_LINES = {   # account_id: (label, volume column, sign: +1 revenue / -1 cost)
+    4000: ("Interest Income", "avg_loan_book", 1),
+    4100: ("Fee Income", "originations", 1),
+    5000: ("Interest Expense", "opening_borrowings", -1),
+    5100: ("Provision for Credit Losses", "opening_loan_book", -1),
+    6000: ("Salaries and Benefits", "headcount", -1),
+    6100: ("Marketing", "originations", -1),
+}
+
+
+def bva_account_month(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Actual, budget and favourable-positive variance (M30) by period and P&L account."""
+    gl = tables["fact_gl_journal"]
+    gl = gl[gl["account_id"] >= 4000]
+    sign = (gl["account_id"] < 5000).map({True: 1, False: -1})
+    actual = (sign * (gl["credit"] - gl["debit"])).groupby([gl["period"], gl["account_id"]]).sum().rename("actual")
+    bu = tables["fact_budget"]
+    budget = bu.groupby(["period", "account_id"])["budget_amount"].sum().rename("budget")
+    df = pd.concat([actual, budget], axis=1).fillna(0.0).reset_index()
+    s = (df["account_id"] < 5000).map({True: 1, False: -1})
+    df["variance"] = s * (df["actual"] - df["budget"])
+    return df
+
+
+def variance_drivers(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Monthly volume effect (M32), rate effect (M33) and other effect per driver line, favourable positive."""
+    df = bva_account_month(tables)
+    drv = tables["fact_drivers"].set_index(["period", "scenario"])
+    rows = []
+    for r in df.itertuples():
+        if r.account_id not in DRIVER_LINES:
+            rows.append((r.period, r.account_id, r.variance, None, None, round(r.variance, 2)))
+            continue
+        _, col, sgn = DRIVER_LINES[r.account_id]
+        va, vb = drv.loc[(r.period, "Actual"), col], drv.loc[(r.period, "Budget"), col]
+        rate_b = r.budget / vb
+        vol = round(sgn * (va - vb) * rate_b, 2)
+        rows.append((r.period, r.account_id, r.variance, vol, round(r.variance - vol, 2), 0.0))
+    return pd.DataFrame(rows, columns=["period", "account_id", "variance", "volume_effect", "rate_effect", "other_effect"])
+
+
+def bva_net_income(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """Annual net income actual, budget and variance; and total of all line variances (must equal it)."""
+    df = bva_account_month(tables)
+    s = (df["account_id"] < 5000).map({True: 1, False: -1})
+    df["fy"] = df["period"].str[:4]
+    df["a"], df["b"] = s * df["actual"], s * df["budget"]
+    g = df.groupby("fy")[["a", "b", "variance"]].sum()
+    g.columns = ["net_income_actual", "net_income_budget", "sum_of_line_variances"]
+    g["net_income_variance"] = g["net_income_actual"] - g["net_income_budget"]
+    return g

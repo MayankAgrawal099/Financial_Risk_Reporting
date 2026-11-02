@@ -72,18 +72,26 @@ Variances compare `fact_gl_journal` (actual) with `fact_budget`. Budget and actu
 | M32 | Volume Effect | Part of the variance caused by a different business volume than planned. | (Volume actual - Volume budget) x Rate budget | `fact_drivers` | Defined |
 | M33 | Rate Effect | Part of the variance caused by a different price or rate than planned. | (Rate actual - Rate budget) x Volume actual | `fact_drivers` | Defined |
 
-M32 + M33 equals the total actual-minus-budget difference exactly. Driver pairs (volume, rate):
+M32 + M33 (+ other effect) equals the variance M30 exactly. In the SQL views (`fin.v_variance_drivers`) all
+effects use the M30 sign, so a **positive effect always helps profit**. Rates are implied: rate = amount / volume,
+for actual and for budget, which is what makes the split exact (it equals the yield, fee rate, cost of funds and
+so on shown in `fact_drivers`, apart from rounding). Driver pairs (volume, rate):
 
 | P&L line | Volume driver | Rate driver |
 |---|---|---|
-| Interest Income | `avg_loan_book` | `yield_annual` / 12 |
-| Fee Income | `originations` | `fee_rate` |
-| Interest Expense | `opening_borrowings` | `cost_of_funds_annual` / 12 |
-| Marketing | `originations` | `marketing_pct_of_originations` |
+| Interest Income | `avg_loan_book` | yield (monthly, = `yield_annual` / 12) |
+| Fee Income | `originations` | fee rate |
+| Interest Expense | `opening_borrowings` | cost of funds (monthly) |
+| Provision for Credit Losses | `opening_loan_book` | provision rate on the opening book |
+| Salaries and Benefits | `headcount` | cost per head |
+| Marketing | `originations` | marketing % of originations |
 
-For these lines the effects are in the P&L sign (actual minus budget); apply the M30 sign convention afterwards.
-Other lines (salaries, technology, provision, collections) are explained with their drivers (`headcount`,
-`cost_per_head`, `chargeoff_rate_monthly`, `allowance_coverage`) and the injected events listed in the data dictionary.
+Lines without a driver (technology, rent and administration, collections, depreciation, income tax) show their
+whole variance as the **other effect**; for technology this is the one-off cost of March 2024. The sum of all
+line variances equals the net income variance.
+
+Reading the split: a **volume effect** says "the business was bigger or smaller than planned"; a **rate effect**
+says "each unit earned or cost more or less than planned" (price for income lines, cost per unit for cost lines).
 
 ## 4. Portfolio credit risk (company ledger)
 
@@ -137,3 +145,4 @@ section and the data disagree. USD, whole dollars.
 | 28 Oct 2026 | First version: P&L, balance sheet, variance and portfolio metrics defined; scorecard metrics drafted. |
 | 30 Oct 2026 | P&L metrics M01-M16 implemented as SQL views and verified against the reference values in section 6. |
 | 30 Oct 2026 | Balance sheet metrics M20-M28 implemented as SQL views and verified; ROE (M28) now Defined and added to the reference values. |
+| 3 Nov 2026 | Variance metrics M30-M33 implemented as SQL views (`04_budget_vs_actual_views.sql`); volume and rate effects use implied rates and the M30 sign; salaries and provision added as driver lines. |

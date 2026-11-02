@@ -37,7 +37,8 @@ financial-risk-reporting/
 ├── sql/
 │   ├── 00_create_schema.sql          # schemas fin and risk, tables
 │   ├── 02_pl_views.sql               # P&L views
-│   └── 03_balance_sheet_views.sql    # balance sheet views
+│   ├── 03_balance_sheet_views.sql    # balance sheet views
+│   └── 04_budget_vs_actual_views.sql # budget vs actual and variance drivers
 ├── excel/
 │   └── DA04_PowerPivot_Model.xlsx    # data tables, P&L / balance sheet summaries, Power Pivot model
 ├── src/              # generate_ledgers, prepare_lending_club, load_to_postgres,
@@ -91,7 +92,7 @@ python src/build_excel_workbook.py
 python -m pytest
 ```
 
-SQL files in `sql/`: `00_create_schema.sql` (tables), `02_pl_views.sql` (P&L views), `03_balance_sheet_views.sql` (balance sheet views). They are plain SQL and also run in pgAdmin or DBeaver.
+SQL files in `sql/`: `00_create_schema.sql` (tables), `02_pl_views.sql` (P&L views), `03_balance_sheet_views.sql` (balance sheet views), `04_budget_vs_actual_views.sql` (budget vs actual and variance drivers). They are plain SQL and also run in pgAdmin or DBeaver.
 
 Sample design: 36-month loans issued 2013-2015 with a final outcome, 60,000 per year. Loans issued
 in 2016 are excluded because many are still open at the end of the file, which would bias their
@@ -117,7 +118,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] P&L views in SQL
 - [x] Balance sheet views in SQL
 - [x] Excel workbook for Power Pivot (`excel/DA04_PowerPivot_Model.xlsx`, DAX in `docs/dax_measures.md`)
-- [ ] Budget vs actual
+- [x] Budget vs actual in SQL with variance drivers
 - [ ] Credit risk scorecard
 - [ ] Qlik Sense dashboards
 - [ ] Power Automate board pack
