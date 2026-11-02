@@ -88,6 +88,10 @@ python src/build_excel_workbook.py
 # 4b. Excel workbook (needs openpyxl: pip install openpyxl); then follow its 'Data Model Guide' sheet
 python src/build_excel_workbook.py
 
+# 4c. Scorecard data: clean the sample and split by issue year (train 2013-2014, test 2015).
+#     Writes data/processed/lc_train.csv, lc_test.csv and docs/scorecard_data_prep.md
+python src/clean_lending_club.py
+
 # 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
 #    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
 python src/run_data_checks.py
@@ -104,6 +108,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 
 ## Documentation
 
+- [Scorecard data preparation](docs/scorecard_data_prep.md): split, missing-value policy, dropped columns (generated).
 - [Data dictionary](docs/data_dictionary.md): every table and column, real vs synthetic, leakage handling.
 - [Metric dictionary](docs/metric_dictionary.md): every metric, its formula and reference values.
 - [DAX measures](docs/dax_measures.md): Power Pivot relationships and measures.
@@ -124,7 +129,8 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Excel workbook for Power Pivot (`excel/DA04_PowerPivot_Model.xlsx`, DAX in `docs/dax_measures.md`)
 - [x] Budget vs actual in SQL with variance drivers
 - [x] Data checks (ledger, SQL views, Lending Club) with report in `reports/data_checks.md`
-- [ ] Credit risk scorecard
+- [x] Scorecard data: cleaning and time-based split by issue year
+- [ ] Credit risk scorecard (WoE/IV, logistic regression, bands, validation)
 - [ ] Qlik Sense dashboards
 - [ ] Power Automate board pack
 - [ ] Documentation, tests and final presentation

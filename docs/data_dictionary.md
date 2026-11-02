@@ -142,7 +142,7 @@ input, known at application), **reference** (comparison only, not a feature).
 | `application_type` | VARCHAR(20) | feature | Individual or Joint App. |
 | `loan_amnt` | NUMERIC(10,2) | feature | Amount of the loan applied for, USD. |
 | `int_rate` | NUMERIC(6,2) | reference | Interest rate, percent. Lending Club's price of risk, so not a feature. |
-| `installment` | NUMERIC(10,2) | feature | Monthly payment owed, USD. |
+| `installment` | NUMERIC(10,2) | reference | Monthly payment owed, USD. Computed from the loan amount and the interest rate, so it carries Lending Club's price of risk; not a feature. |
 | `annual_inc` | NUMERIC(14,2) | feature | Self-reported annual income, USD. |
 | `dti` | NUMERIC(8,2) | feature | Monthly debt payments (excluding mortgage and this loan) divided by monthly income, percent. |
 | `delinq_2yrs` | SMALLINT | feature | Number of 30+ days past-due delinquencies in the past 2 years. |
@@ -175,6 +175,20 @@ input, known at application), **reference** (comparison only, not a feature).
 
 Conventions: percentages in this table are on a 0-100 scale as in the source (for example 18.5 means 18.5%).
 Blank cells in the CSV load as NULL.
+
+### 2b. Scorecard datasets (REAL data, cleaned)
+
+Written by `src/clean_lending_club.py` from the sample above: `data/processed/lc_train.csv` (issue years 2013-2014)
+and `data/processed/lc_test.csv` (2015), both git-ignored. Same columns in both files:
+
+| Group | Columns |
+|---|---|
+| Key, target, split | `id`, `default`, `issue_year` |
+| Numeric features | the numeric `feature` columns above, minus the raw FICO bounds, plus derived `credit_history_years` (issue date minus `earliest_cr_line`, years), `fico_avg` (mean of low and high) and `loan_to_income` (`loan_amnt` / `annual_inc`); any column dropped by the rules is listed in `docs/scorecard_data_prep.md` |
+| Categorical features | `emp_length`, `home_ownership`, `verification_status`, `purpose`, `addr_state`, `initial_list_status`, `application_type` (blank becomes "Missing", rare values "Other") |
+| Reference only | `int_rate`, `grade`, `sub_grade`, `installment` (to benchmark the scorecard against Lending Club's own grade; never model inputs) |
+
+Cleaning parameters are learned on train only; see `docs/scorecard_data_prep.md` and `docs/scorecard_data_prep.json`.
 
 ---
 

@@ -1,0 +1,402 @@
+{
+  "train_years": [
+    2013,
+    2014
+  ],
+  "test_years": [
+    2015
+  ],
+  "params": {
+    "settings": {
+      "keep_missing_above": 0.05,
+      "drop_missing_above": 0.6,
+      "rare_category_below": 0.005,
+      "winsor_low": 0.005,
+      "winsor_high": 0.995,
+      "drift_flag_points": 0.1
+    },
+    "dropped": {
+      "term_months": "constant in train",
+      "application_type": "constant in train"
+    },
+    "impute_median": {
+      "revol_util": 56.7,
+      "bc_util": 69.1,
+      "percent_bc_gt_75": 50.0
+    },
+    "keep_missing": [
+      "mths_since_last_delinq",
+      "mths_since_last_record"
+    ],
+    "winsor": {
+      "loan_amnt": [
+        1200.0,
+        35000.0
+      ],
+      "annual_inc": [
+        15000.0,
+        300000.0
+      ],
+      "dti": [
+        1.32,
+        36.25
+      ],
+      "delinq_2yrs": [
+        0.0,
+        5.0
+      ],
+      "inq_last_6mths": [
+        0.0,
+        5.0
+      ],
+      "mths_since_last_delinq": [
+        1.0,
+        81.0
+      ],
+      "mths_since_last_record": [
+        8.0,
+        119.0
+      ],
+      "open_acc": [
+        3.0,
+        29.0
+      ],
+      "pub_rec": [
+        0.0,
+        3.0
+      ],
+      "revol_bal": [
+        158.995,
+        116711.38000000035
+      ],
+      "revol_util": [
+        1.1,
+        99.0
+      ],
+      "total_acc": [
+        5.0,
+        63.0
+      ],
+      "mort_acc": [
+        0.0,
+        10.0
+      ],
+      "pub_rec_bankruptcies": [
+        0.0,
+        2.0
+      ],
+      "tot_cur_bal": [
+        2141.0,
+        770099.205000002
+      ],
+      "total_rev_hi_lim": [
+        2100.0,
+        177400.0
+      ],
+      "bc_util": [
+        0.0,
+        102.3
+      ],
+      "acc_open_past_24mths": [
+        0.0,
+        14.0
+      ],
+      "collections_12_mths_ex_med": [
+        0.0,
+        1.0
+      ],
+      "delinq_amnt": [
+        0.0,
+        0.0
+      ],
+      "tax_liens": [
+        0.0,
+        2.0
+      ],
+      "chargeoff_within_12_mths": [
+        0.0,
+        1.0
+      ],
+      "num_tl_90g_dpd_24m": [
+        0.0,
+        3.0
+      ],
+      "percent_bc_gt_75": [
+        0.0,
+        100.0
+      ],
+      "num_actv_bc_tl": [
+        0.0,
+        12.0
+      ],
+      "credit_history_years": [
+        3.5044490075290895,
+        42.42026009582478
+      ],
+      "fico_avg": [
+        662.0,
+        807.0
+      ],
+      "loan_to_income": [
+        0.02068951534976591,
+        0.45
+      ]
+    },
+    "categories": {
+      "emp_length": [
+        "1 year",
+        "10+ years",
+        "2 years",
+        "3 years",
+        "4 years",
+        "5 years",
+        "6 years",
+        "7 years",
+        "8 years",
+        "9 years",
+        "< 1 year",
+        "Missing",
+        "Other"
+      ],
+      "home_ownership": [
+        "MORTGAGE",
+        "OWN",
+        "RENT",
+        "Other"
+      ],
+      "verification_status": [
+        "Not Verified",
+        "Source Verified",
+        "Verified",
+        "Other"
+      ],
+      "purpose": [
+        "car",
+        "credit_card",
+        "debt_consolidation",
+        "home_improvement",
+        "major_purchase",
+        "medical",
+        "moving",
+        "other",
+        "small_business",
+        "vacation",
+        "Other"
+      ],
+      "addr_state": [
+        "AL",
+        "AR",
+        "AZ",
+        "CA",
+        "CO",
+        "CT",
+        "FL",
+        "GA",
+        "HI",
+        "IL",
+        "IN",
+        "KS",
+        "KY",
+        "LA",
+        "MA",
+        "MD",
+        "MI",
+        "MN",
+        "MO",
+        "NC",
+        "NJ",
+        "NM",
+        "NV",
+        "NY",
+        "OH",
+        "OK",
+        "OR",
+        "PA",
+        "SC",
+        "TN",
+        "TX",
+        "UT",
+        "VA",
+        "WA",
+        "WI",
+        "Other"
+      ],
+      "initial_list_status": [
+        "f",
+        "w",
+        "Other"
+      ]
+    },
+    "train_missing_share": {
+      "loan_amnt": 0.0,
+      "annual_inc": 0.0,
+      "dti": 0.0,
+      "delinq_2yrs": 0.0,
+      "inq_last_6mths": 0.0,
+      "mths_since_last_delinq": 0.5272,
+      "mths_since_last_record": 0.8415,
+      "open_acc": 0.0,
+      "pub_rec": 0.0,
+      "revol_bal": 0.0,
+      "revol_util": 0.0005,
+      "total_acc": 0.0,
+      "mort_acc": 0.0,
+      "pub_rec_bankruptcies": 0.0,
+      "tot_cur_bal": 0.0,
+      "total_rev_hi_lim": 0.0,
+      "bc_util": 0.0101,
+      "acc_open_past_24mths": 0.0,
+      "collections_12_mths_ex_med": 0.0,
+      "delinq_amnt": 0.0,
+      "tax_liens": 0.0,
+      "chargeoff_within_12_mths": 0.0,
+      "num_tl_90g_dpd_24m": 0.0,
+      "percent_bc_gt_75": 0.0098,
+      "num_actv_bc_tl": 0.0,
+      "term_months": 0.0,
+      "credit_history_years": 0.0,
+      "fico_avg": 0.0,
+      "loan_to_income": 0.0,
+      "emp_length": 0.0546,
+      "home_ownership": 0.0,
+      "verification_status": 0.0,
+      "purpose": 0.0,
+      "addr_state": 0.0,
+      "initial_list_status": 0.0,
+      "application_type": 0.0
+    },
+    "numeric_features": [
+      "loan_amnt",
+      "annual_inc",
+      "dti",
+      "delinq_2yrs",
+      "inq_last_6mths",
+      "mths_since_last_delinq",
+      "mths_since_last_record",
+      "open_acc",
+      "pub_rec",
+      "revol_bal",
+      "revol_util",
+      "total_acc",
+      "mort_acc",
+      "pub_rec_bankruptcies",
+      "tot_cur_bal",
+      "total_rev_hi_lim",
+      "bc_util",
+      "acc_open_past_24mths",
+      "collections_12_mths_ex_med",
+      "delinq_amnt",
+      "tax_liens",
+      "chargeoff_within_12_mths",
+      "num_tl_90g_dpd_24m",
+      "percent_bc_gt_75",
+      "num_actv_bc_tl",
+      "credit_history_years",
+      "fico_avg",
+      "loan_to_income"
+    ],
+    "categorical_features": [
+      "emp_length",
+      "home_ownership",
+      "verification_status",
+      "purpose",
+      "addr_state",
+      "initial_list_status"
+    ],
+    "reference_columns": [
+      "int_rate",
+      "grade",
+      "sub_grade",
+      "installment"
+    ]
+  },
+  "train_stats": {
+    "rows_in": 120000,
+    "duplicate_ids_removed": 0,
+    "capped_at_train_percentile": {
+      "loan_amnt": 419,
+      "annual_inc": 996,
+      "dti": 1193,
+      "delinq_2yrs": 428,
+      "inq_last_6mths": 224,
+      "mths_since_last_delinq": 346,
+      "mths_since_last_record": 95,
+      "open_acc": 969,
+      "pub_rec": 360,
+      "revol_bal": 1200,
+      "revol_util": 1187,
+      "total_acc": 716,
+      "mort_acc": 415,
+      "pub_rec_bankruptcies": 132,
+      "tot_cur_bal": 1198,
+      "total_rev_hi_lim": 1191,
+      "bc_util": 583,
+      "acc_open_past_24mths": 494,
+      "collections_12_mths_ex_med": 74,
+      "delinq_amnt": 348,
+      "tax_liens": 396,
+      "chargeoff_within_12_mths": 118,
+      "num_tl_90g_dpd_24m": 331,
+      "num_actv_bc_tl": 348,
+      "credit_history_years": 1162,
+      "fico_avg": 537,
+      "loan_to_income": 1071
+    },
+    "imputed_with_median": {
+      "revol_util": 58,
+      "bc_util": 1212,
+      "percent_bc_gt_75": 1174
+    },
+    "grouped_into_Other": {
+      "purpose": 837,
+      "addr_state": 4001
+    },
+    "rows_out": 120000
+  },
+  "test_stats": {
+    "rows_in": 60000,
+    "duplicate_ids_removed": 0,
+    "invalid_set_to_missing": {
+      "annual_inc": 1
+    },
+    "capped_at_train_percentile": {
+      "loan_amnt": 295,
+      "annual_inc": 692,
+      "dti": 1710,
+      "delinq_2yrs": 337,
+      "inq_last_6mths": 3,
+      "mths_since_last_delinq": 198,
+      "mths_since_last_record": 85,
+      "open_acc": 763,
+      "pub_rec": 336,
+      "revol_bal": 829,
+      "revol_util": 838,
+      "total_acc": 633,
+      "mort_acc": 135,
+      "pub_rec_bankruptcies": 146,
+      "tot_cur_bal": 667,
+      "total_rev_hi_lim": 817,
+      "bc_util": 271,
+      "acc_open_past_24mths": 615,
+      "collections_12_mths_ex_med": 80,
+      "delinq_amnt": 255,
+      "tax_liens": 359,
+      "chargeoff_within_12_mths": 54,
+      "num_tl_90g_dpd_24m": 266,
+      "num_actv_bc_tl": 298,
+      "credit_history_years": 789,
+      "fico_avg": 330,
+      "loan_to_income": 1457
+    },
+    "imputed_with_median": {
+      "revol_util": 34,
+      "bc_util": 616,
+      "percent_bc_gt_75": 627
+    },
+    "grouped_into_Other": {
+      "purpose": 234,
+      "addr_state": 2457
+    },
+    "rows_out": 60000
+  }
+}
