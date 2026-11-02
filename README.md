@@ -42,11 +42,11 @@ financial-risk-reporting/
 ├── excel/
 │   └── DA04_PowerPivot_Model.xlsx    # data tables, P&L / balance sheet summaries, Power Pivot model
 ├── src/              # generate_ledgers, prepare_lending_club, load_to_postgres,
-│                     # finance_metrics, build_excel_workbook, leakage tools
+│                     # finance_metrics, run_data_checks, build_excel_workbook, leakage tools
 ├── notebooks/        # exploration and scorecard notebooks
 ├── dashboards/       # Qlik Sense exports and screenshots
 ├── automation/       # Power Automate flow documentation
-├── reports/          # board pack PDF and test results
+├── reports/          # test_results.txt, data_checks.md/.csv, board pack PDF
 ├── tests/            # data integrity, leakage, dictionary, SQL and Excel checks
 ├── pytest.ini
 ├── requirements.txt
@@ -88,7 +88,11 @@ python src/build_excel_workbook.py
 # 4b. Excel workbook (needs openpyxl: pip install openpyxl); then follow its 'Data Model Guide' sheet
 python src/build_excel_workbook.py
 
-# 5. Tests (the SQL view tests run only when FIN_PG_DSN is set)
+# 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
+#    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
+python src/run_data_checks.py
+
+# 6. Tests (the SQL view tests run only when FIN_PG_DSN is set)
 python -m pytest
 ```
 
@@ -119,6 +123,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Balance sheet views in SQL
 - [x] Excel workbook for Power Pivot (`excel/DA04_PowerPivot_Model.xlsx`, DAX in `docs/dax_measures.md`)
 - [x] Budget vs actual in SQL with variance drivers
+- [x] Data checks (ledger, SQL views, Lending Club) with report in `reports/data_checks.md`
 - [ ] Credit risk scorecard
 - [ ] Qlik Sense dashboards
 - [ ] Power Automate board pack
