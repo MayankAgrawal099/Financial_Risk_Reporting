@@ -6,3 +6,4 @@ faker
 jupyter
 pytest
 psycopg[binary]
+openpyxl

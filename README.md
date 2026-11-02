@@ -24,16 +24,29 @@ financial-risk-reporting/
 ├── data/
 │   ├── raw/          # original downloads (git-ignored, too large)
 │   ├── processed/    # trimmed and sampled data (git-ignored)
-│   └── synthetic/    # generated ledgers
+│   └── synthetic/    # generated ledgers (7 CSVs)
 ├── docs/
-│   └── architecture/ # architecture diagram
-├── sql/              # schema, P&L, balance sheet and variance queries
-├── src/              # Python scripts (data prep, ledger generation, scorecard)
+│   ├── architecture/             # architecture diagram
+│   ├── screenshots/              # Power Pivot and other evidence screenshots
+│   ├── data_dictionary.md        # every table and column, real vs synthetic
+│   ├── metric_dictionary.md      # every metric, formula, reference values
+│   ├── dax_measures.md           # Power Pivot relationships and DAX measures
+│   ├── lending_club_profile.json # sample profile
+│   ├── lending_club_column_audit.csv
+│   └── leakage_check.csv
+├── sql/
+│   ├── 00_create_schema.sql          # schemas fin and risk, tables
+│   ├── 02_pl_views.sql               # P&L views
+│   └── 03_balance_sheet_views.sql    # balance sheet views
+├── excel/
+│   └── DA04_PowerPivot_Model.xlsx    # data tables, P&L / balance sheet summaries, Power Pivot model
+├── src/              # generate_ledgers, prepare_lending_club, load_to_postgres,
+│                     # finance_metrics, build_excel_workbook, leakage tools
 ├── notebooks/        # exploration and scorecard notebooks
 ├── dashboards/       # Qlik Sense exports and screenshots
 ├── automation/       # Power Automate flow documentation
-├── reports/          # board pack PDF output
-├── tests/            # data integrity, leakage, dictionary and metric checks
+├── reports/          # board pack PDF and test results
+├── tests/            # data integrity, leakage, dictionary, SQL and Excel checks
 ├── pytest.ini
 ├── requirements.txt
 └── README.md
@@ -68,12 +81,17 @@ python src/check_leakage.py
 #    Keep the password out of git: set it in the connection string or in FIN_PG_DSN.
 python src/load_to_postgres.py --dsn postgresql://postgres:YOUR_PASSWORD@localhost:5432/fin_risk --lending-club
 
+# 4b. Excel workbook (tables, P&L and balance sheet formulas, DAX list, Power Pivot guide)
+python src/build_excel_workbook.py
+
+# 4b. Excel workbook (needs openpyxl: pip install openpyxl); then follow its 'Data Model Guide' sheet
+python src/build_excel_workbook.py
+
 # 5. Tests (the SQL view tests run only when FIN_PG_DSN is set)
 python -m pytest
 ```
 
-SQL files in `sql/`: `00_create_schema.sql` (tables), `02_pl_views.sql` (P&L views: monthly, quarterly,
-annual and a tall income statement). They are plain SQL and also run in pgAdmin or DBeaver.
+SQL files in `sql/`: `00_create_schema.sql` (tables), `02_pl_views.sql` (P&L views), `03_balance_sheet_views.sql` (balance sheet views). They are plain SQL and also run in pgAdmin or DBeaver.
 
 Sample design: 36-month loans issued 2013-2015 with a final outcome, 60,000 per year. Loans issued
 in 2016 are excluded because many are still open at the end of the file, which would bias their
@@ -83,6 +101,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 
 - [Data dictionary](docs/data_dictionary.md): every table and column, real vs synthetic, leakage handling.
 - [Metric dictionary](docs/metric_dictionary.md): every metric, its formula and reference values.
+- [DAX measures](docs/dax_measures.md): Power Pivot relationships and measures.
 
 ## Data sources
 
@@ -96,7 +115,8 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Data dictionary and metric dictionary (first version)
 - [x] Load data into SQL (schemas `fin` and `risk`)
 - [x] P&L views in SQL
-- [ ] Balance sheet
+- [x] Balance sheet views in SQL
+- [x] Excel workbook for Power Pivot (`excel/DA04_PowerPivot_Model.xlsx`, DAX in `docs/dax_measures.md`)
 - [ ] Budget vs actual
 - [ ] Credit risk scorecard
 - [ ] Qlik Sense dashboards
