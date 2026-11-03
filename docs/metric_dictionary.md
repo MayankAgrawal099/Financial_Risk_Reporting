@@ -109,10 +109,10 @@ M40 comes from the synthetic ledger and M42 from the real Lending Club sample. T
 |---|---|---|---|---|
 | M50 | Weight of Evidence (WoE) | How strongly a bin separates good loans from bad. | ln(share of all non-defaults in bin / share of all defaults in bin). A constant of 0.5 is added to each bin's counts so an empty cell never gives an infinite value. Bins are fitted on the train loans only (`src/woe_binning.py`). | Defined |
 | M51 | Information Value (IV) | Predictive strength of a feature. | Sum over bins of (share non-defaults - share defaults) x WoE. Rule of thumb: under 0.02 useless, 0.02-0.1 weak, 0.1-0.3 medium, 0.3-0.5 strong, over 0.5 suspicious (check for leakage). Features are selected at IV 0.02 to 0.5; IV is also computed on the test loans with the same bins as a stability check. | Defined |
-| M52 | AUC | Probability a random defaulter is scored riskier than a random non-defaulter. | Area under the ROC curve on the 2015 test set | Draft |
-| M53 | Gini | Rescaled AUC. | 2 x AUC - 1 | Draft |
-| M54 | KS statistic | Largest gap between the cumulative bad and good distributions across score. | max abs(cumulative % defaults - cumulative % non-defaults) | Draft |
-| M55 | Default Rate by Score Band | Observed default rate in each risk band. | M42 per band; should rise steadily from the best to the worst band | Draft |
+| M52 | AUC | Probability a random defaulter is scored riskier than a random non-defaulter. | Area under the ROC curve on the 2015 test set (`src/scorecard_model.py`, also reported on train) | Defined |
+| M53 | Gini | Rescaled AUC. | 2 x AUC - 1 | Defined |
+| M54 | KS statistic | Largest gap between the cumulative bad and good distributions across score. | max abs(cumulative % defaults - cumulative % non-defaults) | Defined |
+| M55 | Default Rate by Score Band | Observed default rate in each risk band. | M42 per band. Five bands A (safest) to E, cut at the 20th, 40th, 60th and 80th percentile of the train scores and applied unchanged to the test loans; should rise steadily from A to E | Defined |
 | M56 | Population Stability Index (PSI) | How much the score distribution moved between train and test. | Sum over bands of (share test - share train) x ln(share test / share train). Rule of thumb: under 0.1 stable, 0.1-0.25 moderate shift, over 0.25 large shift. | Draft |
 
 Train = loans issued 2013-2014. Test = loans issued 2015. `grade`, `sub_grade` and `int_rate` are not used as inputs.
@@ -147,3 +147,4 @@ section and the data disagree. USD, whole dollars.
 | 30 Oct 2026 | Balance sheet metrics M20-M28 implemented as SQL views and verified; ROE (M28) now Defined and added to the reference values. |
 | 3 Nov 2026 | Variance metrics M30-M33 implemented as SQL views (`04_budget_vs_actual_views.sql`); volume and rate effects use implied rates and the M30 sign; salaries and provision added as driver lines. |
 | 4 Nov 2026 | Scorecard metrics M50 (WoE) and M51 (IV) implemented in `src/woe_binning.py` and set to Defined. |
+| 4 Nov 2026 | Scorecard metrics M52 (AUC), M53 (Gini), M54 (KS) and M55 (default rate by band) implemented in `src/scorecard_model.py` and set to Defined. Score scaling: 600 points at 50:1 odds, 20 points to double the odds. |

@@ -43,7 +43,7 @@ financial-risk-reporting/
 │   └── DA04_PowerPivot_Model.xlsx    # data tables, P&L / balance sheet summaries, Power Pivot model
 ├── src/              # generate_ledgers, prepare_lending_club, load_to_postgres,
 │                     # finance_metrics, run_data_checks, build_excel_workbook, leakage tools
-├── models/           # fitted scorecard artefacts (woe_binning.json)
+├── models/           # fitted scorecard artefacts (woe_binning.json, scorecard_model.json)
 ├── notebooks/        # exploration and scorecard notebooks
 ├── dashboards/       # Qlik Sense exports and screenshots
 ├── automation/       # Power Automate flow documentation
@@ -97,6 +97,11 @@ python src/clean_lending_club.py
 #     docs/woe_bins.csv, docs/iv_summary.csv, docs/woe_iv_report.md and charts in docs/screenshots)
 python src/woe_binning.py
 
+# 4e. Scorecard: logistic regression on the WoE features, points, AUC / KS / Gini, risk bands.
+#     Writes models/scorecard_model.json, docs/scorecard_*.csv, docs/scorecard_report.md, charts in docs/screenshots,
+#     and data/processed/lc_scored.csv
+python src/scorecard_model.py
+
 # 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
 #    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
 python src/run_data_checks.py
@@ -113,6 +118,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 
 ## Documentation
 
+- [Scorecard report](docs/scorecard_report.md): model quality, risk bands, points (generated).
 - [WoE and IV report](docs/woe_iv_report.md): feature ranking, bins, charts (generated).
 - [Scorecard data preparation](docs/scorecard_data_prep.md): split, missing-value policy, dropped columns (generated).
 - [Data dictionary](docs/data_dictionary.md): every table and column, real vs synthetic, leakage handling.
@@ -137,7 +143,8 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Data checks (ledger, SQL views, Lending Club) with report in `reports/data_checks.md`
 - [x] Scorecard data: cleaning and time-based split by issue year
 - [x] Scorecard: WoE binning and information value
-- [ ] Credit risk scorecard (logistic regression, bands, validation)
+- [x] Scorecard: logistic regression, AUC / KS / Gini, score bands
+- [ ] Scorecard validation (PSI) and documentation
 - [ ] Qlik Sense dashboards
 - [ ] Power Automate board pack
 - [ ] Documentation, tests and final presentation
