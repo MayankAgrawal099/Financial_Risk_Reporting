@@ -1,0 +1,35 @@
+feature,type,bins,iv_train,iv_test,strength,missing_bin,selected,note
+fico_avg,numeric,8,0.126024,0.146048,medium,False,True,
+annual_inc,numeric,8,0.093792,0.060084,weak,False,True,
+tot_cur_bal,numeric,8,0.065861,0.059415,weak,False,True,
+total_rev_hi_lim,numeric,8,0.061234,0.060134,weak,False,True,
+acc_open_past_24mths,numeric,8,0.058754,0.109707,weak,False,True,
+dti,numeric,8,0.05403,0.067319,weak,False,True,
+mort_acc,numeric,6,0.051023,0.050191,weak,False,True,
+loan_to_income,numeric,8,0.042114,0.038267,weak,False,True,
+home_ownership,categorical,3,0.041114,0.048568,weak,False,True,
+percent_bc_gt_75,numeric,6,0.035127,0.028222,weak,False,True,
+bc_util,numeric,8,0.028711,0.02502,weak,False,True,
+inq_last_6mths,numeric,4,0.027088,0.060012,weak,False,True,
+credit_history_years,numeric,8,0.023837,0.02065,weak,False,True,
+emp_length,categorical,8,0.02059,0.026641,weak,False,True,
+revol_util,numeric,8,0.020579,0.01949,weak,False,True,
+revol_bal,numeric,8,0.020031,0.018035,weak,False,True,
+purpose,categorical,4,0.019151,0.019681,not useful,False,False,below 0.02: dropped
+addr_state,categorical,8,0.012667,0.013097,not useful,False,False,below 0.02: dropped
+total_acc,numeric,8,0.010788,0.002842,not useful,False,False,below 0.02: dropped
+loan_amnt,numeric,4,0.009887,0.003666,not useful,False,False,below 0.02: dropped
+verification_status,categorical,3,0.005748,0.063487,not useful,False,False,below 0.02: dropped
+num_actv_bc_tl,numeric,5,0.004339,0.008061,not useful,False,False,below 0.02: dropped
+mths_since_last_record,numeric,3,0.002597,0.013034,not useful,True,False,below 0.02: dropped
+pub_rec,numeric,2,0.001728,0.011621,not useful,False,False,below 0.02: dropped
+pub_rec_bankruptcies,numeric,2,0.001562,0.007959,not useful,False,False,below 0.02: dropped
+mths_since_last_delinq,numeric,4,0.001463,0.001706,not useful,True,False,below 0.02: dropped
+delinq_2yrs,numeric,3,0.001362,0.000811,not useful,False,False,below 0.02: dropped
+num_tl_90g_dpd_24m,numeric,2,0.000647,0.000911,not useful,False,False,below 0.02: dropped
+initial_list_status,categorical,2,0.000641,0.02159,not useful,False,False,below 0.02: dropped
+open_acc,numeric,5,0.00018,0.003337,not useful,False,False,below 0.02: dropped
+tax_liens,numeric,1,0.0,0.0,not useful,False,False,below 0.02: dropped
+chargeoff_within_12_mths,numeric,1,0.0,0.0,not useful,False,False,below 0.02: dropped
+delinq_amnt,numeric,1,0.0,0.0,not useful,False,False,below 0.02: dropped
+collections_12_mths_ex_med,numeric,1,0.0,0.0,not useful,False,False,below 0.02: dropped

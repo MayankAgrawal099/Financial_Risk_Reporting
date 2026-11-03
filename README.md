@@ -43,6 +43,7 @@ financial-risk-reporting/
 │   └── DA04_PowerPivot_Model.xlsx    # data tables, P&L / balance sheet summaries, Power Pivot model
 ├── src/              # generate_ledgers, prepare_lending_club, load_to_postgres,
 │                     # finance_metrics, run_data_checks, build_excel_workbook, leakage tools
+├── models/           # fitted scorecard artefacts (woe_binning.json)
 ├── notebooks/        # exploration and scorecard notebooks
 ├── dashboards/       # Qlik Sense exports and screenshots
 ├── automation/       # Power Automate flow documentation
@@ -92,6 +93,10 @@ python src/build_excel_workbook.py
 #     Writes data/processed/lc_train.csv, lc_test.csv and docs/scorecard_data_prep.md
 python src/clean_lending_club.py
 
+# 4d. WoE binning and information value on the train loans (writes models/woe_binning.json,
+#     docs/woe_bins.csv, docs/iv_summary.csv, docs/woe_iv_report.md and charts in docs/screenshots)
+python src/woe_binning.py
+
 # 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
 #    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
 python src/run_data_checks.py
@@ -108,6 +113,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 
 ## Documentation
 
+- [WoE and IV report](docs/woe_iv_report.md): feature ranking, bins, charts (generated).
 - [Scorecard data preparation](docs/scorecard_data_prep.md): split, missing-value policy, dropped columns (generated).
 - [Data dictionary](docs/data_dictionary.md): every table and column, real vs synthetic, leakage handling.
 - [Metric dictionary](docs/metric_dictionary.md): every metric, its formula and reference values.
@@ -130,7 +136,8 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Budget vs actual in SQL with variance drivers
 - [x] Data checks (ledger, SQL views, Lending Club) with report in `reports/data_checks.md`
 - [x] Scorecard data: cleaning and time-based split by issue year
-- [ ] Credit risk scorecard (WoE/IV, logistic regression, bands, validation)
+- [x] Scorecard: WoE binning and information value
+- [ ] Credit risk scorecard (logistic regression, bands, validation)
 - [ ] Qlik Sense dashboards
 - [ ] Power Automate board pack
 - [ ] Documentation, tests and final presentation

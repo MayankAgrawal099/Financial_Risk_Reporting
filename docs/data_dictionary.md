@@ -190,6 +190,8 @@ and `data/processed/lc_test.csv` (2015), both git-ignored. Same columns in both 
 
 Cleaning parameters are learned on train only; see `docs/scorecard_data_prep.md` and `docs/scorecard_data_prep.json`.
 
+Binned versions: `src/woe_binning.py` writes `data/processed/lc_train_woe.csv` and `lc_test_woe.csv` (git-ignored). Each feature `x` becomes `woe_x`, the weight of evidence of the bin the loan falls in; `id`, `default` and `issue_year` are kept. Bins: `docs/woe_bins.csv`; fitted rules: `models/woe_binning.json`.
+
 ---
 
 ## 3. Synthetic ledger tables (SYNTHETIC data)

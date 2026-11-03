@@ -107,8 +107,8 @@ M40 comes from the synthetic ledger and M42 from the real Lending Club sample. T
 
 | ID | Metric | Definition | Formula | Status |
 |---|---|---|---|---|
-| M50 | Weight of Evidence (WoE) | How strongly a bin separates good loans from bad. | ln(share of all non-defaults in bin / share of all defaults in bin). Bins with a zero count get a small smoothing constant. | Draft |
-| M51 | Information Value (IV) | Predictive strength of a feature. | Sum over bins of (share non-defaults - share defaults) x WoE. Rule of thumb: under 0.02 useless, 0.02-0.1 weak, 0.1-0.3 medium, 0.3-0.5 strong, over 0.5 suspicious. | Draft |
+| M50 | Weight of Evidence (WoE) | How strongly a bin separates good loans from bad. | ln(share of all non-defaults in bin / share of all defaults in bin). A constant of 0.5 is added to each bin's counts so an empty cell never gives an infinite value. Bins are fitted on the train loans only (`src/woe_binning.py`). | Defined |
+| M51 | Information Value (IV) | Predictive strength of a feature. | Sum over bins of (share non-defaults - share defaults) x WoE. Rule of thumb: under 0.02 useless, 0.02-0.1 weak, 0.1-0.3 medium, 0.3-0.5 strong, over 0.5 suspicious (check for leakage). Features are selected at IV 0.02 to 0.5; IV is also computed on the test loans with the same bins as a stability check. | Defined |
 | M52 | AUC | Probability a random defaulter is scored riskier than a random non-defaulter. | Area under the ROC curve on the 2015 test set | Draft |
 | M53 | Gini | Rescaled AUC. | 2 x AUC - 1 | Draft |
 | M54 | KS statistic | Largest gap between the cumulative bad and good distributions across score. | max abs(cumulative % defaults - cumulative % non-defaults) | Draft |
@@ -146,3 +146,4 @@ section and the data disagree. USD, whole dollars.
 | 30 Oct 2026 | P&L metrics M01-M16 implemented as SQL views and verified against the reference values in section 6. |
 | 30 Oct 2026 | Balance sheet metrics M20-M28 implemented as SQL views and verified; ROE (M28) now Defined and added to the reference values. |
 | 3 Nov 2026 | Variance metrics M30-M33 implemented as SQL views (`04_budget_vs_actual_views.sql`); volume and rate effects use implied rates and the M30 sign; salaries and provision added as driver lines. |
+| 4 Nov 2026 | Scorecard metrics M50 (WoE) and M51 (IV) implemented in `src/woe_binning.py` and set to Defined. |
