@@ -1,0 +1,24 @@
+{
+  "score_psi_test": 0.002793685832584242,
+  "band_psi_test": 0.0022438424484798915,
+  "n_features": 14,
+  "n_stable": 14,
+  "n_moderate": 0,
+  "n_large": 0,
+  "top_feature": "inq_last_6mths",
+  "top_feature_psi": 0.03857703465257348,
+  "gini_train": 0.3247264682606943,
+  "gini_test": 0.3500069320841286,
+  "pred_test": 0.12966843179362864,
+  "actual_test": 0.14831666666666668,
+  "bands_monotonic_by_year": {
+    "2013": true,
+    "2014": true,
+    "2015": true
+  },
+  "thresholds": {
+    "stable_below": 0.1,
+    "large_from": 0.25
+  },
+  "status": "stable"
+}

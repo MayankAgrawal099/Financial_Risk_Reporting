@@ -319,3 +319,5 @@ These make the budget vs actual variances explainable:
 - 30% of vendor costs are accrued and paid the following month. Tax is accrued monthly on year-to-date profit at 25% and paid quarterly.
 - Borrowings are drawn or repaid in USD 500,000 steps at month end to keep cash between USD 2.0M and 4.5M.
 - Opening balances at 31 Dec 2022: cash 3.0M, loans 60.0M, allowance 2.7M, fixed assets 1.2M, other assets 0.5M, borrowings 40.0M, accrued expenses 0.12M, taxes payable 0.08M, share capital 12.0M, retained earnings as the balancing figure (9.8M).
+
+Stability outputs: `src/scorecard_stability.py` writes `docs/psi_features.csv` (PSI of each scorecard feature against train, for each issue year and for the test set), `docs/psi_by_year.csv` (loans, default rate, AUC, Gini, KS, score PSI, band PSI and default rate per band for each issue year), `docs/psi_score_deciles.csv` (share of train and test loans in each train score decile) and `models/scorecard_stability.json` (headline numbers and thresholds).

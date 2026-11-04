@@ -43,7 +43,7 @@ financial-risk-reporting/
 │   └── DA04_PowerPivot_Model.xlsx    # data tables, P&L / balance sheet summaries, Power Pivot model
 ├── src/              # generate_ledgers, prepare_lending_club, load_to_postgres,
 │                     # finance_metrics, run_data_checks, build_excel_workbook, leakage tools
-├── models/           # fitted scorecard artefacts (woe_binning.json, scorecard_model.json)
+├── models/           # fitted scorecard artefacts (woe_binning.json, scorecard_model.json, scorecard_stability.json)
 ├── notebooks/        # exploration and scorecard notebooks
 ├── dashboards/       # Qlik Sense exports and screenshots
 ├── automation/       # Power Automate flow documentation
@@ -102,6 +102,10 @@ python src/woe_binning.py
 #     and data/processed/lc_scored.csv
 python src/scorecard_model.py
 
+# 4f. Scorecard stability: PSI of the score and of each feature, plus AUC / Gini / KS and band default rates by issue year.
+#     Writes models/scorecard_stability.json, docs/psi_*.csv, docs/scorecard_stability_report.md, charts in docs/screenshots
+python src/scorecard_stability.py
+
 # 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
 #    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
 python src/run_data_checks.py
@@ -119,6 +123,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 ## Documentation
 
 - [Scorecard report](docs/scorecard_report.md): model quality, risk bands, points (generated).
+- [Scorecard stability report](docs/scorecard_stability_report.md): PSI of the score and features, performance by issue year (generated).
 - [WoE and IV report](docs/woe_iv_report.md): feature ranking, bins, charts (generated).
 - [Scorecard data preparation](docs/scorecard_data_prep.md): split, missing-value policy, dropped columns (generated).
 - [Data dictionary](docs/data_dictionary.md): every table and column, real vs synthetic, leakage handling.
@@ -144,7 +149,8 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Scorecard data: cleaning and time-based split by issue year
 - [x] Scorecard: WoE binning and information value
 - [x] Scorecard: logistic regression, AUC / KS / Gini, score bands
-- [ ] Scorecard validation (PSI) and documentation
+- [x] Scorecard stability check (PSI), earlier vs later issue years
+- [ ] Scorecard documentation
 - [ ] Qlik Sense dashboards
 - [ ] Power Automate board pack
 - [ ] Documentation, tests and final presentation

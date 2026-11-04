@@ -113,7 +113,7 @@ M40 comes from the synthetic ledger and M42 from the real Lending Club sample. T
 | M53 | Gini | Rescaled AUC. | 2 x AUC - 1 | Defined |
 | M54 | KS statistic | Largest gap between the cumulative bad and good distributions across score. | max abs(cumulative % defaults - cumulative % non-defaults) | Defined |
 | M55 | Default Rate by Score Band | Observed default rate in each risk band. | M42 per band. Five bands A (safest) to E, cut at the 20th, 40th, 60th and 80th percentile of the train scores and applied unchanged to the test loans; should rise steadily from A to E | Defined |
-| M56 | Population Stability Index (PSI) | How much the score distribution moved between train and test. | Sum over bands of (share test - share train) x ln(share test / share train). Rule of thumb: under 0.1 stable, 0.1-0.25 moderate shift, over 0.25 large shift. | Draft |
+| M56 | Population Stability Index (PSI) | How much the score distribution (or a feature's bin mix) moved between train and a later period. | Sum over bins of (share later - share train) x ln(share later / share train). Score bins are the 10 train score deciles (also reported on the 5 risk bands); feature bins are the WoE bins fitted on train, including Missing. Shares are floored at 0.0001. Under 0.10 stable, 0.10-0.25 moderate shift, over 0.25 large shift. | Defined |
 
 Train = loans issued 2013-2014. Test = loans issued 2015. `grade`, `sub_grade` and `int_rate` are not used as inputs.
 
@@ -148,3 +148,4 @@ section and the data disagree. USD, whole dollars.
 | 3 Nov 2026 | Variance metrics M30-M33 implemented as SQL views (`04_budget_vs_actual_views.sql`); volume and rate effects use implied rates and the M30 sign; salaries and provision added as driver lines. |
 | 4 Nov 2026 | Scorecard metrics M50 (WoE) and M51 (IV) implemented in `src/woe_binning.py` and set to Defined. |
 | 4 Nov 2026 | Scorecard metrics M52 (AUC), M53 (Gini), M54 (KS) and M55 (default rate by band) implemented in `src/scorecard_model.py` and set to Defined. Score scaling: 600 points at 50:1 odds, 20 points to double the odds. |
+| 4 Nov 2026 | Scorecard metric M56 (PSI) implemented in `src/scorecard_stability.py` and set to Defined: score PSI on train deciles and risk bands, feature PSI on the fitted WoE bins, by issue year. |
