@@ -1,138 +1,197 @@
-============================= test session starts =============================
-platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\USER\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\python.exe
-cachedir: .pytest_cache
-rootdir: C:\Users\USER\OneDrive\Desktop\Resume Projects\financial-risk-reporting
-configfile: pytest.ini
-testpaths: tests
-plugins: anyio-4.13.0, Faker-40.43.0, typeguard-4.5.1
-collecting ... collected 127 items
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\USER\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\USER\OneDrive\Desktop\Resume Projects\financial-risk-reporting
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.13.0, Faker-40.43.0, typeguard-4.5.1
+collecting ... collected 131 items
+
+tests/test_clean_lending_club.py::test_split_is_by_time_with_no_overlap PASSED [  0%]
+tests/test_clean_lending_club.py::test_split_rejects_bad_year_setup PASSED [  1%]
+tests/test_clean_lending_club.py::test_target_and_rows_are_preserved PASSED [  2%]
+tests/test_clean_lending_club.py::test_params_come_from_train_only PASSED [  3%]
+tests/test_clean_lending_club.py::test_missing_policy PASSED             [  3%]
+tests/test_clean_lending_club.py::test_constant_and_mostly_missing_columns_are_dropped PASSED [  4%]
+tests/test_clean_lending_club.py::test_mostly_missing_ordinary_column_is_dropped_but_never_columns_are_kept PASSED [  5%]
+tests/test_clean_lending_club.py::test_impossible_values_become_missing_and_outliers_are_capped PASSED [  6%]
+tests/test_clean_lending_club.py::test_unseen_and_rare_categories_become_other PASSED [  6%]
+tests/test_clean_lending_club.py::test_derived_features_exist_and_raw_dates_are_gone PASSED [  7%]
+tests/test_clean_lending_club.py::test_no_leakage_and_reference_columns_are_not_features PASSED [  8%]
+tests/test_clean_lending_club.py::test_train_and_test_have_identical_columns_and_files_are_written PASSED [  9%]
+tests/test_clean_lending_club.py::test_apply_is_deterministic PASSED     [  9%]
+tests/test_data_checks.py::test_all_ledger_checks_pass PASSED            [ 10%]
+tests/test_data_checks.py::test_checks_can_fail_when_the_ledger_is_broken PASSED [ 11%]
+tests/test_data_checks.py::test_nan_never_passes PASSED                  [ 12%]
+tests/test_data_checks.py::test_reports_are_written PASSED               [ 12%]
+tests/test_data_checks.py::test_sql_checks_pass_on_the_database PASSED   [ 13%]
+tests/test_data_dictionary.py::test_every_synthetic_table_column_is_documented PASSED [ 14%]
+tests/test_data_dictionary.py::test_lending_club_sample_columns_are_documented_in_order PASSED [ 15%]
+tests/test_data_dictionary.py::test_provenance_is_stated PASSED          [ 16%]
+tests/test_leakage_tools.py::test_known_leakage_columns_are_classified_as_leakage PASSED [ 16%]
+tests/test_leakage_tools.py::test_kept_columns_are_never_leakage PASSED  [ 17%]
+tests/test_leakage_tools.py::test_other_classes PASSED                   [ 18%]
+tests/test_leakage_tools.py::test_audit_reads_only_the_header PASSED     [ 19%]
+tests/test_leakage_tools.py::test_auc_function_known_values PASSED       [ 19%]
+tests/test_leakage_tools.py::test_check_flags_a_leaky_column_and_not_a_random_one PASSED [ 20%]
+tests/test_ledgers.py::test_every_journal_balances PASSED                [ 21%]
+tests/test_ledgers.py::test_trial_balance_is_zero PASSED                 [ 22%]
+tests/test_ledgers.py::test_balance_sheet_balances_every_month PASSED    [ 22%]
+tests/test_ledgers.py::test_loan_roll_forward PASSED                     [ 23%]
+tests/test_ledgers.py::test_cash_and_debt_stay_sensible PASSED           [ 24%]
+tests/test_ledgers.py::test_pl_ties_to_drivers PASSED                    [ 25%]
+tests/test_ledgers.py::test_budget_covers_every_period_and_matches_budget_drivers PASSED [ 25%]
+tests/test_ledgers.py::test_actual_differs_from_budget_where_events_were_injected PASSED [ 26%]
+tests/test_ledgers.py::test_foreign_keys_and_ranges PASSED               [ 27%]
+tests/test_ledgers.py::test_deterministic_for_same_seed PASSED           [ 28%]
+tests/test_metric_definitions.py::test_net_income_identity PASSED        [ 29%]
+tests/test_metric_definitions.py::test_net_revenue_two_ways PASSED       [ 29%]
+tests/test_metric_definitions.py::test_balance_sheet_balances_every_month PASSED [ 30%]
+tests/test_metric_definitions.py::test_allowance_coverage_matches_drivers PASSED [ 31%]
+tests/test_metric_definitions.py::test_volume_plus_rate_equals_total_variance[4000-avg_loan_book-yield_annual-0.08333333333333333] PASSED [ 32%]
+tests/test_metric_definitions.py::test_volume_plus_rate_equals_total_variance[4100-originations-fee_rate-1] PASSED [ 32%]
+tests/test_metric_definitions.py::test_volume_plus_rate_equals_total_variance[5000-opening_borrowings-cost_of_funds_annual-0.08333333333333333] PASSED [ 33%]
+tests/test_metric_definitions.py::test_reference_values_in_doc_match_data PASSED [ 34%]
+tests/test_metric_definitions.py::test_every_metric_id_is_defined_once PASSED [ 35%]
+tests/test_prepare_lending_club.py::test_allowlist_has_no_leakage_columns PASSED [ 35%]
+tests/test_prepare_lending_club.py::test_output_has_no_leakage_or_text_columns PASSED [ 36%]
+tests/test_prepare_lending_club.py::test_only_final_outcomes_and_target_mapping PASSED [ 37%]
+tests/test_prepare_lending_club.py::test_year_range_and_per_year_cap PASSED [ 38%]
+tests/test_prepare_lending_club.py::test_footer_rows_removed_and_numbers_parsed PASSED [ 38%]
+tests/test_prepare_lending_club.py::test_profile_contents PASSED         [ 39%]
+tests/test_prepare_lending_club.py::test_term_filter_and_reproducible PASSED [ 40%]
+tests/test_prepare_lending_club.py::test_excel_resaved_file_is_rejected PASSED [ 41%]
+tests/test_prepare_lending_club.py::test_whole_number_columns_have_no_decimal_point PASSED [ 41%]
+tests/test_record_test_results.py::test_splice_appends_then_replaces PASSED [ 42%]
+tests/test_record_test_results.py::test_record_keeps_pytest_output_and_is_repeatable PASSED [ 43%]
+tests/test_record_test_results.py::test_numbers_match_source_files PASSED [ 44%]
+tests/test_record_test_results.py::test_reads_utf16_from_powershell_redirect PASSED [ 45%]
+tests/test_scorecard_model.py::test_auc_gini_ks_perfect_and_random PASSED [ 45%]
+tests/test_scorecard_model.py::test_ks_by_hand PASSED                    [ 46%]
+tests/test_scorecard_model.py::test_scaling_base_score_and_pdo PASSED    [ 47%]
+tests/test_scorecard_model.py::test_points_add_up_to_the_exact_score_within_rounding PASSED [ 48%]
+tests/test_scorecard_model.py::test_points_table_matches_scores PASSED   [ 48%]
+tests/test_scorecard_model.py::test_higher_score_means_lower_pd PASSED   [ 49%]
+tests/test_scorecard_model.py::test_all_coefficients_negative_and_significant PASSED [ 50%]
+tests/test_scorecard_model.py::test_wald_p_values_agree_with_known_effect PASSED [ 51%]
+tests/test_scorecard_model.py::test_correlated_features_are_pruned_keeping_higher_iv PASSED [ 51%]
+tests/test_scorecard_model.py::test_no_retained_pair_is_highly_correlated PASSED [ 52%]
+tests/test_scorecard_model.py::test_model_ranks_well_and_beats_noise_features PASSED [ 53%]
+tests/test_scorecard_model.py::test_test_data_never_changes_the_fit PASSED [ 54%]
+tests/test_scorecard_model.py::test_bands_are_five_and_rate_rises_from_a_to_e PASSED [ 54%]
+tests/test_scorecard_model.py::test_band_cuts_come_from_train_scores_only PASSED [ 55%]
+tests/test_scorecard_model.py::test_assign_band_edges PASSED             [ 56%]
+tests/test_scorecard_model.py::test_band_table_lift PASSED               [ 57%]
+tests/test_scorecard_model.py::test_subgrade_rank_order PASSED           [ 58%]
+tests/test_scorecard_model.py::test_unseen_values_in_new_loans_still_get_a_score PASSED [ 58%]
+tests/test_scorecard_model.py::test_outputs_are_written PASSED           [ 59%]
+tests/test_scorecard_stability.py::test_psi_by_hand PASSED               [ 60%]
+tests/test_scorecard_stability.py::test_psi_zero_for_identical_and_symmetric PASSED [ 61%]
+tests/test_scorecard_stability.py::test_psi_empty_bin_is_finite PASSED   [ 61%]
+tests/test_scorecard_stability.py::test_status_thresholds PASSED         [ 62%]
+tests/test_scorecard_stability.py::test_score_deciles_on_train_are_equal PASSED [ 63%]
+tests/test_scorecard_stability.py::test_score_psi_detects_a_shift PASSED [ 64%]
+tests/test_scorecard_stability.py::test_band_psi_known PASSED            [ 64%]
+tests/test_scorecard_stability.py::test_calm_population_is_stable PASSED [ 65%]
+tests/test_scorecard_stability.py::test_drifted_population_is_flagged PASSED [ 66%]
+tests/test_scorecard_stability.py::test_year_table_covers_every_year PASSED [ 67%]
+tests/test_scorecard_stability.py::test_bands_rise_in_calm_case PASSED   [ 67%]
+tests/test_scorecard_stability.py::test_features_sorted_and_deciles_sum_to_one PASSED [ 68%]
+tests/test_scorecard_stability.py::test_outputs_written PASSED           [ 69%]
+tests/test_sql_schema.py::test_ledger_tables_match_generated_columns PASSED [ 70%]
+tests/test_sql_schema.py::test_lending_club_table_matches_prepared_columns PASSED [ 70%]
+tests/test_sql_schema.py::test_integer_columns_are_integer_in_the_schema PASSED [ 71%]
+tests/test_sql_schema.py::test_sql_files_are_plain_sql_without_psql_commands PASSED [ 72%]
+tests/test_sql_views.py::test_row_counts_match_the_csv_files PASSED      [ 73%]
+tests/test_sql_views.py::test_monthly_view_matches_reference PASSED      [ 74%]
+tests/test_sql_views.py::test_annual_view_matches_reference PASSED       [ 74%]
+tests/test_sql_views.py::test_income_statement_net_income_equals_monthly_view PASSED [ 75%]
+tests/test_sql_views.py::test_quarters_add_up_to_years PASSED            [ 76%]
+tests/test_sql_views.py::test_balance_sheet_monthly_matches_reference PASSED [ 77%]
+tests/test_sql_views.py::test_balance_sheet_balances_every_month_in_sql PASSED [ 77%]
+tests/test_sql_views.py::test_year_end_view_and_roe_match_reference PASSED [ 78%]
+tests/test_sql_views.py::test_statement_lines_add_up PASSED              [ 79%]
+tests/test_sql_views.py::test_bva_net_income_matches_reference PASSED    [ 80%]
+tests/test_sql_views.py::test_bva_actual_equals_pl_view PASSED           [ 80%]
+tests/test_sql_views.py::test_bva_quarters_add_up_to_years PASSED        [ 81%]
+tests/test_sql_views.py::test_variance_sign_is_favourable_positive PASSED [ 82%]
+tests/test_sql_views.py::test_driver_effects_add_up_in_sql PASSED        [ 83%]
+tests/test_sql_views.py::test_driver_effects_match_reference PASSED      [ 83%]
+tests/test_sql_views.py::test_cost_center_variances_add_up_to_operating_expenses PASSED [ 84%]
+tests/test_variance.py::test_volume_plus_rate_plus_other_equals_variance PASSED [ 85%]
+tests/test_variance.py::test_driver_lines_have_effects_and_other_lines_do_not PASSED [ 86%]
+tests/test_variance.py::test_line_variances_add_up_to_net_income_variance PASSED [ 87%]
+tests/test_variance.py::test_injected_events_show_up PASSED              [ 87%]
+tests/test_woe_binning.py::test_woe_and_iv_by_hand PASSED                [ 88%]
+tests/test_woe_binning.py::test_empty_cell_gives_finite_woe PASSED       [ 89%]
+tests/test_woe_binning.py::test_strength_labels PASSED                   [ 90%]
+tests/test_woe_binning.py::test_numeric_woe_is_monotonic_and_bins_are_big_enough PASSED [ 90%]
+tests/test_woe_binning.py::test_strong_feature_has_high_iv_and_noise_is_rejected PASSED [ 91%]
+tests/test_woe_binning.py::test_leaky_feature_is_flagged_not_selected PASSED [ 92%]
+tests/test_woe_binning.py::test_sign_of_woe_follows_risk PASSED          [ 93%]
+tests/test_woe_binning.py::test_missing_values_get_their_own_informative_bin PASSED [ 93%]
+tests/test_woe_binning.py::test_tiny_missing_share_joins_nearest_bin PASSED [ 94%]
+tests/test_woe_binning.py::test_categorical_groups_cover_every_category_once PASSED [ 95%]
+tests/test_woe_binning.py::test_unseen_category_gets_average_risk_woe PASSED [ 96%]
+tests/test_woe_binning.py::test_every_loan_gets_a_finite_woe_even_for_extreme_values PASSED [ 96%]
+tests/test_woe_binning.py::test_bins_come_from_train_only PASSED         [ 97%]
+tests/test_woe_binning.py::test_reference_columns_are_not_binned PASSED  [ 98%]
+tests/test_woe_binning.py::test_correlated_pairs_found PASSED            [ 99%]
+tests/test_woe_binning.py::test_pipeline_writes_all_outputs PASSED       [100%]
+
+============================ 131 passed in 50.12s =============================
 
-tests/test_clean_lending_club.py::test_split_is_by_time_with_no_overlap PASSED [  0%]
-tests/test_clean_lending_club.py::test_split_rejects_bad_year_setup PASSED [  1%]
-tests/test_clean_lending_club.py::test_target_and_rows_are_preserved PASSED [  2%]
-tests/test_clean_lending_club.py::test_params_come_from_train_only PASSED [  3%]
-tests/test_clean_lending_club.py::test_missing_policy PASSED             [  3%]
-tests/test_clean_lending_club.py::test_constant_and_mostly_missing_columns_are_dropped PASSED [  4%]
-tests/test_clean_lending_club.py::test_mostly_missing_ordinary_column_is_dropped_but_never_columns_are_kept PASSED [  5%]
-tests/test_clean_lending_club.py::test_impossible_values_become_missing_and_outliers_are_capped PASSED [  6%]
-tests/test_clean_lending_club.py::test_unseen_and_rare_categories_become_other PASSED [  7%]
-tests/test_clean_lending_club.py::test_derived_features_exist_and_raw_dates_are_gone PASSED [  7%]
-tests/test_clean_lending_club.py::test_no_leakage_and_reference_columns_are_not_features PASSED [  8%]
-tests/test_clean_lending_club.py::test_train_and_test_have_identical_columns_and_files_are_written PASSED [  9%]
-tests/test_clean_lending_club.py::test_apply_is_deterministic PASSED     [ 10%]
-tests/test_data_checks.py::test_all_ledger_checks_pass PASSED            [ 11%]
-tests/test_data_checks.py::test_checks_can_fail_when_the_ledger_is_broken PASSED [ 11%]
-tests/test_data_checks.py::test_nan_never_passes PASSED                  [ 12%]
-tests/test_data_checks.py::test_reports_are_written PASSED               [ 13%]
-tests/test_data_checks.py::test_sql_checks_pass_on_the_database PASSED   [ 14%]
-tests/test_data_dictionary.py::test_every_synthetic_table_column_is_documented PASSED [ 14%]
-tests/test_data_dictionary.py::test_lending_club_sample_columns_are_documented_in_order PASSED [ 15%]
-tests/test_data_dictionary.py::test_provenance_is_stated PASSED          [ 16%]
-tests/test_leakage_tools.py::test_known_leakage_columns_are_classified_as_leakage PASSED [ 17%]
-tests/test_leakage_tools.py::test_kept_columns_are_never_leakage PASSED  [ 18%]
-tests/test_leakage_tools.py::test_other_classes PASSED                   [ 18%]
-tests/test_leakage_tools.py::test_audit_reads_only_the_header PASSED     [ 19%]
-tests/test_leakage_tools.py::test_auc_function_known_values PASSED       [ 20%]
-tests/test_leakage_tools.py::test_check_flags_a_leaky_column_and_not_a_random_one PASSED [ 21%]
-tests/test_ledgers.py::test_every_journal_balances PASSED                [ 22%]
-tests/test_ledgers.py::test_trial_balance_is_zero PASSED                 [ 22%]
-tests/test_ledgers.py::test_balance_sheet_balances_every_month PASSED    [ 23%]
-tests/test_ledgers.py::test_loan_roll_forward PASSED                     [ 24%]
-tests/test_ledgers.py::test_cash_and_debt_stay_sensible PASSED           [ 25%]
-tests/test_ledgers.py::test_pl_ties_to_drivers PASSED                    [ 25%]
-tests/test_ledgers.py::test_budget_covers_every_period_and_matches_budget_drivers PASSED [ 26%]
-tests/test_ledgers.py::test_actual_differs_from_budget_where_events_were_injected PASSED [ 27%]
-tests/test_ledgers.py::test_foreign_keys_and_ranges PASSED               [ 28%]
-tests/test_ledgers.py::test_deterministic_for_same_seed PASSED           [ 29%]
-tests/test_metric_definitions.py::test_net_income_identity PASSED        [ 29%]
-tests/test_metric_definitions.py::test_net_revenue_two_ways PASSED       [ 30%]
-tests/test_metric_definitions.py::test_balance_sheet_balances_every_month PASSED [ 31%]
-tests/test_metric_definitions.py::test_allowance_coverage_matches_drivers PASSED [ 32%]
-tests/test_metric_definitions.py::test_volume_plus_rate_equals_total_variance[4000-avg_loan_book-yield_annual-0.08333333333333333] PASSED [ 33%]
-tests/test_metric_definitions.py::test_volume_plus_rate_equals_total_variance[4100-originations-fee_rate-1] PASSED [ 33%]
-tests/test_metric_definitions.py::test_volume_plus_rate_equals_total_variance[5000-opening_borrowings-cost_of_funds_annual-0.08333333333333333] PASSED [ 34%]
-tests/test_metric_definitions.py::test_reference_values_in_doc_match_data PASSED [ 35%]
-tests/test_metric_definitions.py::test_every_metric_id_is_defined_once PASSED [ 36%]
-tests/test_prepare_lending_club.py::test_allowlist_has_no_leakage_columns PASSED [ 37%]
-tests/test_prepare_lending_club.py::test_output_has_no_leakage_or_text_columns PASSED [ 37%]
-tests/test_prepare_lending_club.py::test_only_final_outcomes_and_target_mapping PASSED [ 38%]
-tests/test_prepare_lending_club.py::test_year_range_and_per_year_cap PASSED [ 39%]
-tests/test_prepare_lending_club.py::test_footer_rows_removed_and_numbers_parsed PASSED [ 40%]
-tests/test_prepare_lending_club.py::test_profile_contents PASSED         [ 40%]
-tests/test_prepare_lending_club.py::test_term_filter_and_reproducible PASSED [ 41%]
-tests/test_prepare_lending_club.py::test_excel_resaved_file_is_rejected PASSED [ 42%]
-tests/test_prepare_lending_club.py::test_whole_number_columns_have_no_decimal_point PASSED [ 43%]
-tests/test_scorecard_model.py::test_auc_gini_ks_perfect_and_random PASSED [ 44%]
-tests/test_scorecard_model.py::test_ks_by_hand PASSED                    [ 44%]
-tests/test_scorecard_model.py::test_scaling_base_score_and_pdo PASSED    [ 45%]
-tests/test_scorecard_model.py::test_points_add_up_to_the_exact_score_within_rounding PASSED [ 46%]
-tests/test_scorecard_model.py::test_points_table_matches_scores PASSED   [ 47%]
-tests/test_scorecard_model.py::test_higher_score_means_lower_pd PASSED   [ 48%]
-tests/test_scorecard_model.py::test_all_coefficients_negative_and_significant PASSED [ 48%]
-tests/test_scorecard_model.py::test_wald_p_values_agree_with_known_effect PASSED [ 49%]
-tests/test_scorecard_model.py::test_correlated_features_are_pruned_keeping_higher_iv PASSED [ 50%]
-tests/test_scorecard_model.py::test_no_retained_pair_is_highly_correlated PASSED [ 51%]
-tests/test_scorecard_model.py::test_model_ranks_well_and_beats_noise_features PASSED [ 51%]
-tests/test_scorecard_model.py::test_test_data_never_changes_the_fit PASSED [ 52%]
-tests/test_scorecard_model.py::test_bands_are_five_and_rate_rises_from_a_to_e PASSED [ 53%]
-tests/test_scorecard_model.py::test_band_cuts_come_from_train_scores_only PASSED [ 54%]
-tests/test_scorecard_model.py::test_assign_band_edges PASSED             [ 55%]
-tests/test_scorecard_model.py::test_band_table_lift PASSED               [ 55%]
-tests/test_scorecard_model.py::test_subgrade_rank_order PASSED           [ 56%]
-tests/test_scorecard_model.py::test_unseen_values_in_new_loans_still_get_a_score PASSED [ 57%]
-tests/test_scorecard_model.py::test_outputs_are_written PASSED           [ 58%]
-tests/test_scorecard_stability.py::test_psi_by_hand PASSED               [ 59%]
-tests/test_scorecard_stability.py::test_psi_zero_for_identical_and_symmetric PASSED [ 59%]
-tests/test_scorecard_stability.py::test_psi_empty_bin_is_finite PASSED   [ 60%]
-tests/test_scorecard_stability.py::test_status_thresholds PASSED         [ 61%]
-tests/test_scorecard_stability.py::test_score_deciles_on_train_are_equal PASSED [ 62%]
-tests/test_scorecard_stability.py::test_score_psi_detects_a_shift PASSED [ 62%]
-tests/test_scorecard_stability.py::test_band_psi_known PASSED            [ 63%]
-tests/test_scorecard_stability.py::test_calm_population_is_stable PASSED [ 64%]
-tests/test_scorecard_stability.py::test_drifted_population_is_flagged PASSED [ 65%]
-tests/test_scorecard_stability.py::test_year_table_covers_every_year PASSED [ 66%]
-tests/test_scorecard_stability.py::test_bands_rise_in_calm_case PASSED   [ 66%]
-tests/test_scorecard_stability.py::test_features_sorted_and_deciles_sum_to_one PASSED [ 67%]
-tests/test_scorecard_stability.py::test_outputs_written PASSED           [ 68%]
-tests/test_sql_schema.py::test_ledger_tables_match_generated_columns PASSED [ 69%]
-tests/test_sql_schema.py::test_lending_club_table_matches_prepared_columns PASSED [ 70%]
-tests/test_sql_schema.py::test_integer_columns_are_integer_in_the_schema PASSED [ 70%]
-tests/test_sql_schema.py::test_sql_files_are_plain_sql_without_psql_commands PASSED [ 71%]
-tests/test_sql_views.py::test_row_counts_match_the_csv_files PASSED      [ 72%]
-tests/test_sql_views.py::test_monthly_view_matches_reference PASSED      [ 73%]
-tests/test_sql_views.py::test_annual_view_matches_reference PASSED       [ 74%]
-tests/test_sql_views.py::test_income_statement_net_income_equals_monthly_view PASSED [ 74%]
-tests/test_sql_views.py::test_quarters_add_up_to_years PASSED            [ 75%]
-tests/test_sql_views.py::test_balance_sheet_monthly_matches_reference PASSED [ 76%]
-tests/test_sql_views.py::test_balance_sheet_balances_every_month_in_sql PASSED [ 77%]
-tests/test_sql_views.py::test_year_end_view_and_roe_match_reference PASSED [ 77%]
-tests/test_sql_views.py::test_statement_lines_add_up PASSED              [ 78%]
-tests/test_sql_views.py::test_bva_net_income_matches_reference PASSED    [ 79%]
-tests/test_sql_views.py::test_bva_actual_equals_pl_view PASSED           [ 80%]
-tests/test_sql_views.py::test_bva_quarters_add_up_to_years PASSED        [ 81%]
-tests/test_sql_views.py::test_variance_sign_is_favourable_positive PASSED [ 81%]
-tests/test_sql_views.py::test_driver_effects_add_up_in_sql PASSED        [ 82%]
-tests/test_sql_views.py::test_driver_effects_match_reference PASSED      [ 83%]
-tests/test_sql_views.py::test_cost_center_variances_add_up_to_operating_expenses PASSED [ 84%]
-tests/test_variance.py::test_volume_plus_rate_plus_other_equals_variance PASSED [ 85%]
-tests/test_variance.py::test_driver_lines_have_effects_and_other_lines_do_not PASSED [ 85%]
-tests/test_variance.py::test_line_variances_add_up_to_net_income_variance PASSED [ 86%]
-tests/test_variance.py::test_injected_events_show_up PASSED              [ 87%]
-tests/test_woe_binning.py::test_woe_and_iv_by_hand PASSED                [ 88%]
-tests/test_woe_binning.py::test_empty_cell_gives_finite_woe PASSED       [ 88%]
-tests/test_woe_binning.py::test_strength_labels PASSED                   [ 89%]
-tests/test_woe_binning.py::test_numeric_woe_is_monotonic_and_bins_are_big_enough PASSED [ 90%]
-tests/test_woe_binning.py::test_strong_feature_has_high_iv_and_noise_is_rejected PASSED [ 91%]
-tests/test_woe_binning.py::test_leaky_feature_is_flagged_not_selected PASSED [ 92%]
-tests/test_woe_binning.py::test_sign_of_woe_follows_risk PASSED          [ 92%]
-tests/test_woe_binning.py::test_missing_values_get_their_own_informative_bin PASSED [ 93%]
-tests/test_woe_binning.py::test_tiny_missing_share_joins_nearest_bin PASSED [ 94%]
-tests/test_woe_binning.py::test_categorical_groups_cover_every_category_once PASSED [ 95%]
-tests/test_woe_binning.py::test_unseen_category_gets_average_risk_woe PASSED [ 96%]
-tests/test_woe_binning.py::test_every_loan_gets_a_finite_woe_even_for_extreme_values PASSED [ 96%]
-tests/test_woe_binning.py::test_bins_come_from_train_only PASSED         [ 97%]
-tests/test_woe_binning.py::test_reference_columns_are_not_binned PASSED  [ 98%]
-tests/test_woe_binning.py::test_correlated_pairs_found PASSED            [ 99%]
-tests/test_woe_binning.py::test_pipeline_writes_all_outputs PASSED       [100%]
+=== SCORECARD ACCURACY (start) ===
+Recorded 2026-11-05 by src/record_test_results.py
 
-============================ 127 passed in 33.86s =============================
+Data: Lending Club 36-month loans. Train issue years 2013, 2014, test 2015 (time-based split).
+Model: logistic regression on WoE features (14 features), score 600 points at 50:1 odds, 20 points to double the odds, higher = safer.
+
+1. Discrimination (higher is better)
+model / data                                loans  default_rate    AUC   Gini     KS
+----------------------------------------  -------  ------------  -----  -----  -----
+Scorecard, train                          120,000        12.96%  0.662  0.325  0.234
+Scorecard, test                            60,000        14.83%  0.675  0.350  0.256
+Lending Club sub_grade (benchmark), test   60,000        14.83%  0.683  0.365  0.263
+Lending Club int_rate (benchmark), test    60,000        14.83%  0.682  0.364  0.263
+FICO score alone (benchmark), test         60,000        14.83%  0.602  0.204  0.155
+
+2. Default rate by risk band (A = safest)
+train:
+band    score_range   loans  default_rate  avg_predicted_pd  lift
+----  -------------  ------  ------------  ----------------  ----
+A     561 and above  25,182         5.21%             5.27%  0.40
+B        550 to 560  23,216         8.89%             8.82%  0.69
+C        540 to 549  25,890        12.30%            12.06%  0.95
+D        530 to 539  23,149        15.68%            16.04%  1.21
+E         below 530  22,563        23.77%            23.67%  1.83
+bands rise steadily from A to E: yes
+
+test:
+band    score_range   loans  default_rate  avg_predicted_pd  lift
+----  -------------  ------  ------------  ----------------  ----
+A     561 and above  13,463         5.35%             5.24%  0.36
+B        550 to 560  11,431        10.35%             8.81%  0.70
+C        540 to 549  12,275        14.00%            12.04%  0.94
+D        530 to 539  11,097        18.79%            16.01%  1.27
+E         below 530  11,734        27.21%            23.96%  1.83
+bands rise steadily from A to E: yes
+
+3. Stability (PSI, metric M56; under 0.10 stable, 0.10-0.25 moderate, over 0.25 large)
+score PSI test vs train, 10 deciles: 0.003 (stable)
+score PSI test vs train, 5 bands:    0.002
+features: 14 stable, 0 moderate, 0 large (largest: inq_last_6mths 0.039)
+
+issue_year   data  default_rate  avg_predicted_pd    AUC   Gini     KS  score_psi
+----------  -----  ------------  ----------------  -----  -----  -----  ---------
+2013        train        12.16%            12.67%  0.658  0.317  0.230      0.002
+2014        train        13.76%            13.25%  0.665  0.330  0.237      0.002
+2015         test        14.83%            12.97%  0.675  0.350  0.256      0.003
+
+4. Calibration
+test year: predicted default rate 12.97%, actual 14.83% (gap +1.86%). Ranking is stable but the level drifts; an intercept recalibration on recent loans would fix it.
+
+5. Data checks (reports/data_checks.md)
+32 passed, 0 failed, 0 skipped
+
+=== SCORECARD ACCURACY (end) ===

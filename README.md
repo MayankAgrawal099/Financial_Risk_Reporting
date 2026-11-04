@@ -94,17 +94,21 @@ python src/build_excel_workbook.py
 python src/clean_lending_club.py
 
 # 4d. WoE binning and information value on the train loans (writes models/woe_binning.json,
-#     docs/woe_bins.csv, docs/iv_summary.csv, docs/woe_iv_report.md and charts in docs/screenshots)
+#     docs/woe_bins.csv, docs/iv_summary.csv, docs/woe_iv_report.md and charts in docs/Screenshots)
 python src/woe_binning.py
 
 # 4e. Scorecard: logistic regression on the WoE features, points, AUC / KS / Gini, risk bands.
-#     Writes models/scorecard_model.json, docs/scorecard_*.csv, docs/scorecard_report.md, charts in docs/screenshots,
+#     Writes models/scorecard_model.json, docs/scorecard_*.csv, docs/scorecard_report.md, charts in docs/Screenshots,
 #     and data/processed/lc_scored.csv
 python src/scorecard_model.py
 
 # 4f. Scorecard stability: PSI of the score and of each feature, plus AUC / Gini / KS and band default rates by issue year.
-#     Writes models/scorecard_stability.json, docs/psi_*.csv, docs/scorecard_stability_report.md, charts in docs/screenshots
+#     Writes models/scorecard_stability.json, docs/psi_*.csv, docs/scorecard_stability_report.md, charts in docs/Screenshots
 python src/scorecard_stability.py
+
+# 4g. Record the scorecard accuracy numbers (AUC / Gini / KS, band default rates, PSI, calibration) at the end of
+#     reports/test_results.txt. Run it AFTER the pytest command in step 6 (saved with `> reports\test_results.txt`), because pytest overwrites that file.
+python src/record_test_results.py
 
 # 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
 #    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
@@ -150,6 +154,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [x] Scorecard: WoE binning and information value
 - [x] Scorecard: logistic regression, AUC / KS / Gini, score bands
 - [x] Scorecard stability check (PSI), earlier vs later issue years
+- [x] Scorecard accuracy numbers recorded in `reports/test_results.txt`
 - [ ] Scorecard documentation
 - [ ] Qlik Sense dashboards
 - [ ] Power Automate board pack
