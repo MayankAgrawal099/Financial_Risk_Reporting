@@ -24,3 +24,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+#dashboard guide
+dashboard/qlik/finance_sheet_mockup.png
+dashboard/qlik/finance_step_by_step.md
