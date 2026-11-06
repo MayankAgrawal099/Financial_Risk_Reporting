@@ -1,0 +1,541 @@
+period,account_id,account_name,account_type,report_group,cost_center_id,cost_center_name,actual,budget,variance,variance_pct
+2023-01,4000,Interest Income,Revenue,Interest Income,,,813341.57,813266.67,74.90,0.000092
+2023-01,4100,Fee Income,Revenue,Fee Income,,,72381.33,69000.00,3381.33,0.049005
+2023-01,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,266666.67,266666.67,0.00,0.000000
+2023-01,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,176062.22,179550.00,3487.78,0.019425
+2023-01,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,13886.20,14000.00,113.80,0.008129
+2023-01,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,48601.65,49000.00,398.35,0.008130
+2023-01,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,20829.28,21000.00,170.72,0.008130
+2023-01,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,20829.28,21000.00,170.72,0.008130
+2023-01,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,34715.47,35000.00,284.53,0.008129
+2023-01,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,55357.32,50600.00,-4757.32,-0.094018
+2023-01,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,57301.69,56400.00,-901.69,-0.015987
+2023-01,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34000.00,34000.00,0.00,0.000000
+2023-01,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,21891.72,24000.00,2108.28,0.087845
+2023-01,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24000.00,24000.00,0.00,0.000000
+2023-01,7000,Income Tax,Expense,Tax,COR,Corporate,27895.35,26762.50,-1132.85,-0.042330
+2023-02,4000,Interest Income,Revenue,Interest Income,,,836249.03,840602.90,-4353.87,-0.005179
+2023-02,4100,Fee Income,Revenue,Fee Income,,,69775.51,72105.00,-2329.49,-0.032307
+2023-02,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,273333.33,273333.33,0.00,0.000000
+2023-02,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,184420.48,187954.58,3534.10,0.018803
+2023-02,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,13941.87,14000.00,58.13,0.004152
+2023-02,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,48796.47,49000.00,203.53,0.004154
+2023-02,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,20912.77,21000.00,87.23,0.004154
+2023-02,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,20912.77,21000.00,87.23,0.004154
+2023-02,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,34854.62,35000.00,145.38,0.004154
+2023-02,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,46934.93,52877.00,5942.07,0.112375
+2023-02,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,56720.80,57342.00,621.20,0.010833
+2023-02,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34102.00,34102.00,0.00,0.000000
+2023-02,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,26101.19,24796.00,-1305.19,-0.052637
+2023-02,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24092.00,24020.00,-72.00,-0.002998
+2023-02,7000,Income Tax,Expense,Tax,COR,Corporate,30225.33,29570.75,-654.58,-0.022136
+2023-03,4000,Interest Income,Revenue,Interest Income,,,868224.17,870904.24,-2680.07,-0.003077
+2023-03,4100,Fee Income,Revenue,Fee Income,,,84414.04,78347.02,6067.02,0.077438
+2023-03,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,286666.67,286666.67,0.00,0.000000
+2023-03,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,227244.61,205715.09,-21529.52,-0.104657
+2023-03,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,13914.33,14000.00,85.67,0.006119
+2023-03,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,48700.07,49000.00,299.93,0.006121
+2023-03,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,20871.45,21000.00,128.55,0.006121
+2023-03,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,20871.45,21000.00,128.55,0.006121
+2023-03,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,34785.76,35000.00,214.24,0.006121
+2023-03,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,63262.96,57454.48,-5808.48,-0.101097
+2023-03,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,60738.75,59120.88,-1617.87,-0.027365
+2023-03,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34204.31,34204.31,0.00,0.000000
+2023-03,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,25971.81,25640.17,-331.64,-0.012934
+2023-03,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24308.67,24039.60,-269.07,-0.011193
+2023-03,7000,Income Tax,Expense,Tax,COR,Corporate,22774.34,29102.51,6328.17,0.217444
+2023-04,4000,Interest Income,Revenue,Interest Income,,,914144.66,903425.02,10719.64,0.011866
+2023-04,4100,Fee Income,Revenue,Fee Income,,,87254.17,80064.51,7189.66,0.089798
+2023-04,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,306666.67,303333.33,-3333.34,-0.010989
+2023-04,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,232287.29,209753.66,-22533.63,-0.107429
+2023-04,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14379.75,14400.00,20.25,0.001406
+2023-04,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,50329.04,50400.00,70.96,0.001408
+2023-04,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,21569.58,21600.00,30.42,0.001408
+2023-04,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,21569.58,21600.00,30.42,0.001408
+2023-04,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,35949.31,36000.00,50.69,0.001408
+2023-04,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,64751.52,58713.97,-6037.55,-0.102830
+2023-04,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,61610.80,59693.56,-1917.24,-0.032118
+2023-04,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34306.91,34306.91,0.00,0.000000
+2023-04,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,28671.69,26614.08,-2057.61,-0.077313
+2023-04,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24303.56,24058.81,-244.75,-0.010173
+2023-04,7000,Income Tax,Expense,Tax,COR,Corporate,26250.78,30753.80,4503.02,0.146422
+2023-05,4000,Interest Income,Revenue,Interest Income,,,946425.23,936420.74,10004.49,0.010684
+2023-05,4100,Fee Income,Revenue,Fee Income,,,75678.13,82598.59,-6920.46,-0.083784
+2023-05,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,323333.33,316666.67,-6666.66,-0.021053
+2023-05,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,188708.62,216238.07,27529.45,0.127311
+2023-05,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14553.51,14400.00,-153.51,-0.010660
+2023-05,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,50937.25,50400.00,-537.25,-0.010660
+2023-05,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,21830.25,21600.00,-230.25,-0.010660
+2023-05,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,21830.25,21600.00,-230.25,-0.010660
+2023-05,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,36383.75,36000.00,-383.75,-0.010660
+2023-05,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,53872.86,60572.30,6699.44,0.110602
+2023-05,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,58638.89,60484.35,1845.46,0.030511
+2023-05,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34409.84,34409.84,0.00,0.000000
+2023-05,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,26702.22,27591.42,889.20,0.032227
+2023-05,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24237.64,24077.63,-160.01,-0.006646
+2023-05,7000,Income Tax,Expense,Tax,COR,Corporate,41666.24,33744.77,-7921.47,-0.234747
+2023-06,4000,Interest Income,Revenue,Interest Income,,,971453.33,969194.11,2259.22,0.002331
+2023-06,4100,Fee Income,Revenue,Fee Income,,,78868.33,82793.68,-3925.35,-0.047411
+2023-06,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,333333.33,333333.33,0.00,0.000000
+2023-06,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,196892.42,215676.85,18784.43,0.087095
+2023-06,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14422.63,14400.00,-22.63,-0.001572
+2023-06,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,50479.15,50400.00,-79.15,-0.001570
+2023-06,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,21633.92,21600.00,-33.92,-0.001570
+2023-06,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,21633.92,21600.00,-33.92,-0.001570
+2023-06,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,36056.53,36000.00,-56.53,-0.001570
+2023-06,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,53802.61,60715.36,6912.75,0.113855
+2023-06,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,59604.98,60651.74,1046.76,0.017259
+2023-06,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34513.07,34513.07,0.00,0.000000
+2023-06,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,29113.06,28593.82,-519.24,-0.018159
+2023-06,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24225.67,24096.08,-129.59,-0.005378
+2023-06,7000,Income Tax,Expense,Tax,COR,Corporate,43652.59,37601.88,-6050.71,-0.160915
+2023-07,4000,Interest Income,Revenue,Interest Income,,,993381.46,1000353.98,-6972.52,-0.006970
+2023-07,4100,Fee Income,Revenue,Fee Income,,,85292.92,82175.91,3117.01,0.037931
+2023-07,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,346666.67,346666.67,0.00,0.000000
+2023-07,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,227994.73,212720.96,-15273.77,-0.071802
+2023-07,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14377.18,14800.00,422.82,0.028569
+2023-07,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,50320.04,51800.00,1479.96,0.028571
+2023-07,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,21565.73,22200.00,634.27,0.028571
+2023-07,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,21565.73,22200.00,634.27,0.028571
+2023-07,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,35942.89,37000.00,1057.11,0.028571
+2023-07,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,62774.12,60262.33,-2511.79,-0.041681
+2023-07,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,61433.93,60602.73,-831.20,-0.013716
+2023-07,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34616.61,34616.61,0.00,0.000000
+2023-07,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,31335.10,29557.82,-1777.28,-0.060129
+2023-07,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24272.41,24114.16,-158.25,-0.006563
+2023-07,7000,Income Tax,Expense,Tax,COR,Corporate,36452.31,41497.15,5044.84,0.121571
+2023-08,4000,Interest Income,Revenue,Interest Income,,,1032103.63,1030684.47,1419.16,0.001377
+2023-08,4100,Fee Income,Revenue,Fee Income,,,84870.89,83977.33,893.56,0.010640
+2023-08,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,360000.00,360000.00,0.00,0.000000
+2023-08,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,223374.74,217089.47,-6285.27,-0.028952
+2023-08,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14250.89,14800.00,549.11,0.037102
+2023-08,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,49878.03,51800.00,1921.97,0.037104
+2023-08,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,21376.29,22200.00,823.71,0.037104
+2023-08,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,21376.29,22200.00,823.71,0.037104
+2023-08,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,35627.16,37000.00,1372.84,0.037104
+2023-08,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,60612.53,61583.38,970.85,0.015765
+2023-08,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,61437.46,61199.17,-238.29,-0.003894
+2023-08,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34720.46,34720.46,0.00,0.000000
+2023-08,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,29490.44,30463.42,972.98,0.031939
+2023-08,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24309.53,24131.87,-177.66,-0.007362
+2023-08,7000,Income Tax,Expense,Tax,COR,Corporate,45130.18,44368.51,-761.67,-0.017167
+2023-09,4000,Interest Income,Revenue,Interest Income,,,1064936.43,1060577.38,4359.05,0.004110
+2023-09,4100,Fee Income,Revenue,Fee Income,,,86597.42,84159.96,2437.46,0.028962
+2023-09,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,373333.33,373333.33,0.00,0.000000
+2023-09,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,237021.28,216591.70,-20429.58,-0.094323
+2023-09,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14158.87,14800.00,641.13,0.043320
+2023-09,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,49555.96,51800.00,2244.04,0.043321
+2023-09,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,21238.26,22200.00,961.74,0.043322
+2023-09,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,21238.26,22200.00,961.74,0.043322
+2023-09,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,35397.11,37000.00,1602.89,0.043321
+2023-09,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,64247.89,61717.31,-2530.58,-0.041003
+2023-09,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,62014.28,61364.29,-649.99,-0.010592
+2023-09,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34824.62,34824.62,0.00,0.000000
+2023-09,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,32887.96,31377.65,-1510.31,-0.048133
+2023-09,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24204.61,24149.24,-55.37,-0.002293
+2023-09,7000,Income Tax,Expense,Tax,COR,Corporate,45352.85,48344.80,2991.95,0.061888
+2023-10,4000,Interest Income,Revenue,Interest Income,,,1095622.41,1090813.31,4809.10,0.004409
+2023-10,4100,Fee Income,Revenue,Fee Income,,,85799.36,87674.88,-1875.52,-0.021392
+2023-10,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,390000.00,386666.67,-3333.33,-0.008621
+2023-10,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,202406.82,226130.70,23723.88,0.104912
+2023-10,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14728.05,15200.00,471.95,0.031049
+2023-10,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,51548.09,53200.00,1651.91,0.031051
+2023-10,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,22092.03,22800.00,707.97,0.031051
+2023-10,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,22092.03,22800.00,707.97,0.031051
+2023-10,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,36820.06,38000.00,1179.94,0.031051
+2023-10,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,62988.32,64294.91,1306.59,0.020322
+2023-10,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,61918.23,62418.37,500.14,0.008013
+2023-10,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,34929.10,34929.10,0.00,0.000000
+2023-10,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,30352.98,32256.99,1904.01,0.059026
+2023-10,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24231.96,24166.25,-65.71,-0.002719
+2023-10,7000,Income Tax,Expense,Tax,COR,Corporate,56828.53,48906.30,-7922.23,-0.161988
+2023-11,4000,Interest Income,Revenue,Interest Income,,,1128429.16,1119885.93,8543.23,0.007629
+2023-11,4100,Fee Income,Revenue,Fee Income,,,91752.66,84501.88,7250.78,0.085806
+2023-11,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,400000.00,400000.00,0.00,0.000000
+2023-11,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,221820.89,215542.52,-6278.37,-0.029128
+2023-11,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,14792.04,15200.00,407.96,0.026839
+2023-11,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,51772.14,53200.00,1427.86,0.026839
+2023-11,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,22188.06,22800.00,611.94,0.026839
+2023-11,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,22188.06,22800.00,611.94,0.026839
+2023-11,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,36980.10,38000.00,1019.90,0.026839
+2023-11,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,72895.76,61968.05,-10927.71,-0.176344
+2023-11,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,63622.89,61689.35,-1933.54,-0.031343
+2023-11,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35033.88,35033.88,0.00,0.000000
+2023-11,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,32033.17,33191.81,1158.64,0.034907
+2023-11,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24276.67,24182.93,-93.74,-0.003876
+2023-11,7000,Income Tax,Expense,Tax,COR,Corporate,55644.54,55194.82,-449.72,-0.008148
+2023-12,4000,Interest Income,Revenue,Interest Income,,,1150137.72,1141793.44,8344.28,0.007308
+2023-12,4100,Fee Income,Revenue,Fee Income,,,80291.73,74398.84,5892.89,0.079207
+2023-12,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,413333.33,413333.33,0.00,0.000000
+2023-12,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,198425.48,184307.47,-14118.01,-0.076600
+2023-12,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,15061.67,15200.00,138.33,0.009101
+2023-12,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,52715.78,53200.00,484.22,0.009102
+2023-12,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,22592.48,22800.00,207.52,0.009102
+2023-12,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,22592.48,22800.00,207.52,0.009102
+2023-12,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,37654.13,38000.00,345.87,0.009102
+2023-12,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,58180.13,54559.15,-3620.98,-0.066368
+2023-12,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,60684.11,59112.67,-1571.44,-0.026584
+2023-12,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35138.98,35138.98,0.00,0.000000
+2023-12,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,32843.48,34001.35,1157.87,0.034054
+2023-12,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24729.35,24199.27,-530.08,-0.021905
+2023-12,7000,Income Tax,Expense,Tax,COR,Corporate,64119.51,64885.01,765.50,0.011798
+2024-01,4000,Interest Income,Revenue,Interest Income,,,1175421.09,1160577.68,14843.41,0.012790
+2024-01,4100,Fee Income,Revenue,Fee Income,,,79934.79,79618.73,316.06,0.003970
+2024-01,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,423333.33,420000.00,-3333.33,-0.007937
+2024-01,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,188470.18,199389.66,10919.48,0.054765
+2024-01,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16245.15,16224.00,-21.15,-0.001304
+2024-01,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,56857.97,56784.00,-73.97,-0.001303
+2024-01,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24367.70,24336.00,-31.70,-0.001303
+2024-01,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24367.70,24336.00,-31.70,-0.001303
+2024-01,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,40612.84,40560.00,-52.84,-0.001303
+2024-01,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,55694.50,58387.07,2692.57,0.046116
+2024-01,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,60706.74,60622.46,-84.28,-0.001390
+2024-01,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35244.40,35244.40,0.00,0.000000
+2024-01,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,30869.23,34506.26,3637.03,0.105402
+2024-01,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,25034.13,24215.28,-818.85,-0.033815
+2024-01,7000,Income Tax,Expense,Tax,COR,Corporate,68388.00,61397.82,-6990.18,-0.113851
+2024-02,4000,Interest Income,Revenue,Interest Income,,,1194067.48,1182457.12,11610.36,0.009819
+2024-02,4100,Fee Income,Revenue,Fee Income,,,89023.53,83201.57,5821.96,0.069974
+2024-02,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,433333.33,430000.00,-3333.33,-0.007752
+2024-02,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,222792.91,209426.60,-13366.31,-0.063823
+2024-02,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16383.44,16224.00,-159.44,-0.009827
+2024-02,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,57342.04,56784.00,-558.04,-0.009827
+2024-02,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24575.16,24336.00,-239.16,-0.009827
+2024-02,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24575.16,24336.00,-239.16,-0.009827
+2024-02,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,40958.60,40560.00,-398.60,-0.009827
+2024-02,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,65871.74,61014.49,-4857.25,-0.079608
+2024-02,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,63248.58,61696.06,-1552.52,-0.025164
+2024-02,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35350.14,35350.14,0.00,0.000000
+2024-02,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,37205.18,35128.40,-2076.78,-0.059120
+2024-02,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24937.40,24230.98,-706.42,-0.029154
+2024-02,7000,Income Tax,Expense,Tax,COR,Corporate,59129.34,61643.00,2513.66,0.040778
+2024-03,4000,Interest Income,Revenue,Interest Income,,,1224341.29,1208178.36,16162.93,0.013378
+2024-03,4100,Fee Income,Revenue,Fee Income,,,92975.99,90404.20,2571.79,0.028448
+2024-03,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,443333.33,436666.67,-6666.66,-0.015267
+2024-03,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,239013.76,230244.59,-8769.17,-0.038086
+2024-03,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16143.01,16224.00,80.99,0.004992
+2024-03,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,56500.47,56784.00,283.53,0.004993
+2024-03,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24214.49,24336.00,121.51,0.004993
+2024-03,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24214.49,24336.00,121.51,0.004993
+2024-03,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,40357.48,40560.00,202.52,0.004993
+2024-03,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,68936.53,66296.41,-2640.12,-0.039823
+2024-03,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,184421.10,63735.29,-120685.81,-1.893548
+2024-03,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35456.19,35456.19,0.00,0.000000
+2024-03,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,34518.09,35819.03,1300.94,0.036320
+2024-03,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24903.99,24246.36,-657.63,-0.027123
+2024-03,7000,Income Tax,Expense,Tax,COR,Corporate,31326.08,60969.51,29643.43,0.486201
+2024-04,4000,Interest Income,Revenue,Interest Income,,,1256278.63,1236862.69,19415.94,0.015698
+2024-04,4100,Fee Income,Revenue,Fee Income,,,87743.51,92386.00,-4642.49,-0.050251
+2024-04,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,460000.00,450000.00,-10000.00,-0.022222
+2024-04,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,227076.72,235214.78,8138.06,0.034598
+2024-04,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16442.85,16640.00,197.15,0.011848
+2024-04,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,57549.88,58240.00,690.12,0.011850
+2024-04,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24664.23,24960.00,295.77,0.011850
+2024-04,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24664.23,24960.00,295.77,0.011850
+2024-04,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,41107.06,41600.00,492.94,0.011850
+2024-04,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,68870.12,67749.74,-1120.38,-0.016537
+2024-04,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,63144.65,64382.65,1238.00,0.019229
+2024-04,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35562.55,35562.55,0.00,0.000000
+2024-04,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,37197.41,36671.68,-525.73,-0.014336
+2024-04,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24752.71,24261.43,-491.28,-0.020249
+2024-04,7000,Income Tax,Expense,Tax,COR,Corporate,65747.44,62251.47,-3495.97,-0.056159
+2024-05,4000,Interest Income,Revenue,Interest Income,,,1267735.49,1266479.64,1255.85,0.000992
+2024-05,4100,Fee Income,Revenue,Fee Income,,,97442.30,95310.06,2132.24,0.022372
+2024-05,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,470000.00,463333.33,-6666.67,-0.014388
+2024-05,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,250963.11,242993.72,-7969.39,-0.032797
+2024-05,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16479.43,16640.00,160.57,0.009650
+2024-05,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,57677.91,58240.00,562.09,0.009651
+2024-05,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24719.10,24960.00,240.90,0.009651
+2024-05,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24719.10,24960.00,240.90,0.009651
+2024-05,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,41198.51,41600.00,401.49,0.009651
+2024-05,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,74504.62,69894.05,-4610.57,-0.065965
+2024-05,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,65850.23,65281.64,-568.59,-0.008710
+2024-05,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35669.24,35669.24,0.00,0.000000
+2024-05,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,39797.51,37540.09,-2257.42,-0.060134
+2024-05,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24689.01,24276.20,-412.81,-0.017005
+2024-05,7000,Income Tax,Expense,Tax,COR,Corporate,59727.50,64100.35,4372.85,0.068219
+2024-06,4000,Interest Income,Revenue,Interest Income,,,1304159.39,1296207.88,7951.51,0.006134
+2024-06,4100,Fee Income,Revenue,Fee Income,,,90193.88,95535.18,-5341.30,-0.055909
+2024-06,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,483333.33,476666.67,-6666.66,-0.013986
+2024-06,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,235389.87,242629.84,7239.97,0.029840
+2024-06,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16519.34,16640.00,120.66,0.007251
+2024-06,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,57817.62,58240.00,422.38,0.007252
+2024-06,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24778.98,24960.00,181.02,0.007252
+2024-06,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24778.98,24960.00,181.02,0.007252
+2024-06,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,41298.30,41600.00,301.70,0.007252
+2024-06,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,67332.98,70059.13,2726.15,0.038912
+2024-06,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,64036.92,65461.26,1424.34,0.021759
+2024-06,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35776.25,35776.25,0.00,0.000000
+2024-06,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,40607.06,38448.69,-2158.37,-0.056136
+2024-06,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24736.28,24290.68,-445.60,-0.018344
+2024-06,7000,Income Tax,Expense,Tax,COR,Corporate,69486.84,68002.64,-1484.20,-0.021826
+2024-07,4000,Interest Income,Revenue,Interest Income,,,1277367.50,1324426.18,-47058.68,-0.035531
+2024-07,4100,Fee Income,Revenue,Fee Income,,,91957.86,94822.34,-2864.48,-0.030209
+2024-07,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,493333.33,490000.00,-3333.33,-0.006803
+2024-07,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,240401.40,239490.44,-910.96,-0.003804
+2024-07,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,17419.05,17056.00,-363.05,-0.021286
+2024-07,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,60966.61,59696.00,-1270.61,-0.021285
+2024-07,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,26128.54,25584.00,-544.54,-0.021284
+2024-07,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,26128.54,25584.00,-544.54,-0.021284
+2024-07,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,43547.58,42640.00,-907.58,-0.021285
+2024-07,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,72554.69,69536.38,-3018.31,-0.043406
+2024-07,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,64627.27,65391.13,763.86,0.011681
+2024-07,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35883.57,35883.57,0.00,0.000000
+2024-07,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,42295.17,39323.78,-2971.39,-0.075562
+2024-07,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24917.47,24304.86,-612.61,-0.025205
+2024-07,7000,Income Tax,Expense,Tax,COR,Corporate,55280.54,71189.59,15909.05,0.223474
+2024-08,4000,Interest Income,Revenue,Interest Income,,,1297625.35,1352024.01,-54398.66,-0.040235
+2024-08,4100,Fee Income,Revenue,Fee Income,,,88882.26,96900.99,-8018.73,-0.082752
+2024-08,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,503333.33,500000.00,-3333.33,-0.006667
+2024-08,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,220380.60,244790.81,24410.21,0.099719
+2024-08,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16915.92,17056.00,140.08,0.008213
+2024-08,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,59205.66,59696.00,490.34,0.008214
+2024-08,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,25373.85,25584.00,210.15,0.008214
+2024-08,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,25373.85,25584.00,210.15,0.008214
+2024-08,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,42289.76,42640.00,350.24,0.008214
+2024-08,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,61419.02,71060.73,9641.71,0.135683
+2024-08,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,63927.42,66065.75,2138.33,0.032367
+2024-08,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,35991.23,35991.23,0.00,0.000000
+2024-08,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,39904.62,40141.79,237.17,0.005908
+2024-08,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24835.81,24318.77,-517.04,-0.021261
+2024-08,7000,Income Tax,Expense,Tax,COR,Corporate,66889.13,73998.98,7109.85,0.096080
+2024-09,4000,Interest Income,Revenue,Interest Income,,,1319658.75,1379438.84,-59780.09,-0.043337
+2024-09,4100,Fee Income,Revenue,Fee Income,,,88357.30,97111.73,-8754.43,-0.090148
+2024-09,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,513333.33,513333.33,0.00,0.000000
+2024-09,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,209556.10,244464.71,34908.61,0.142796
+2024-09,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16360.05,17056.00,695.95,0.040804
+2024-09,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,57260.12,59696.00,2435.88,0.040805
+2024-09,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24540.05,25584.00,1043.95,0.040805
+2024-09,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24540.05,25584.00,1043.95,0.040805
+2024-09,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,40900.09,42640.00,1739.91,0.040805
+2024-09,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,62755.50,71215.27,8459.77,0.118792
+2024-09,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,63908.11,66242.63,2334.52,0.035242
+2024-09,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36099.20,36099.20,0.00,0.000000
+2024-09,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,39232.01,40979.65,1747.64,0.042647
+2024-09,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24763.66,24332.39,-431.27,-0.017724
+2024-09,7000,Income Tax,Expense,Tax,COR,Corporate,73691.94,77330.84,3638.90,0.047056
+2024-10,4000,Interest Income,Revenue,Interest Income,,,1351580.69,1407557.39,-55976.70,-0.039769
+2024-10,4100,Fee Income,Revenue,Fee Income,,,89348.18,101167.57,-11819.39,-0.116830
+2024-10,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,520000.00,523333.33,3333.33,0.006369
+2024-10,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,208066.68,255709.20,47642.52,0.186315
+2024-10,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16489.78,17472.00,982.22,0.056217
+2024-10,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,57714.13,61152.00,3437.87,0.056218
+2024-10,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,24734.62,26208.00,1473.38,0.056219
+2024-10,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,24734.62,26208.00,1473.38,0.056219
+2024-10,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,41224.38,43680.00,2455.62,0.056218
+2024-10,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,62555.69,74189.55,11633.86,0.156813
+2024-10,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,64293.38,67445.22,3151.84,0.046732
+2024-10,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36207.50,36207.50,0.00,0.000000
+2024-10,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,41153.95,41786.68,632.73,0.015142
+2024-10,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24560.69,24345.74,-214.95,-0.008829
+2024-10,7000,Income Tax,Expense,Tax,COR,Corporate,79798.37,77746.94,-2051.43,-0.026386
+2024-11,4000,Interest Income,Revenue,Interest Income,,,1350680.48,1434628.12,-83947.64,-0.058515
+2024-11,4100,Fee Income,Revenue,Fee Income,,,96533.25,97506.27,-973.02,-0.009979
+2024-11,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,526666.67,536666.67,10000.00,0.018634
+2024-11,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,217554.88,243718.70,26163.82,0.107353
+2024-11,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16795.03,17472.00,676.97,0.038746
+2024-11,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,58782.54,61152.00,2369.46,0.038747
+2024-11,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,25192.52,26208.00,1015.48,0.038747
+2024-11,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,25192.52,26208.00,1015.48,0.038747
+2024-11,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,41987.53,43680.00,1692.47,0.038747
+2024-11,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,69424.66,71504.60,2079.94,0.029088
+2024-11,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,66330.81,66590.28,259.47,0.003897
+2024-11,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36316.12,36316.12,0.00,0.000000
+2024-11,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,35445.90,42666.76,7220.86,0.169239
+2024-11,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24549.55,24358.83,-190.72,-0.007830
+2024-11,7000,Income Tax,Expense,Tax,COR,Corporate,75743.75,83898.11,8154.36,0.097194
+2024-12,4000,Interest Income,Revenue,Interest Income,,,1382076.88,1453712.77,-71635.89,-0.049278
+2024-12,4100,Fee Income,Revenue,Fee Income,,,78251.64,85848.42,-7596.78,-0.088491
+2024-12,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,536666.67,546666.67,10000.00,0.018293
+2024-12,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,160026.72,207894.01,47867.29,0.230249
+2024-12,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,16704.07,17472.00,767.93,0.043952
+2024-12,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,58464.19,61152.00,2687.81,0.043953
+2024-12,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,25056.08,26208.00,1151.92,0.043953
+2024-12,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,25056.08,26208.00,1151.92,0.043953
+2024-12,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,41760.14,43680.00,1919.86,0.043953
+2024-12,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,53567.39,62955.51,9388.12,0.149123
+2024-12,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,61577.47,63603.28,2025.81,0.031851
+2024-12,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36425.07,36425.07,0.00,0.000000
+2024-12,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,36958.63,43410.93,6452.30,0.148633
+2024-12,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24441.93,24371.65,-70.28,-0.002884
+2024-12,7000,Income Tax,Expense,Tax,COR,Corporate,95906.02,94878.51,-1027.51,-0.010830
+2025-01,4000,Interest Income,Revenue,Interest Income,,,1399130.88,1469462.95,-70332.07,-0.047862
+2025-01,4100,Fee Income,Revenue,Fee Income,,,89540.63,91871.62,-2330.99,-0.025372
+2025-01,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,536666.67,550000.00,13333.33,0.024242
+2025-01,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,216475.27,225505.07,9029.80,0.040043
+2025-01,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,17710.47,18603.52,893.05,0.048004
+2025-01,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,61986.59,65112.32,3125.73,0.048005
+2025-01,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,26565.68,27905.28,1339.60,0.048005
+2025-01,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,26565.68,27905.28,1339.60,0.048005
+2025-01,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,44276.13,46508.80,2232.67,0.048005
+2025-01,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,74560.09,67372.52,-7187.57,-0.106684
+2025-01,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,64710.00,65331.60,621.60,0.009515
+2025-01,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36534.34,36534.34,0.00,0.000000
+2025-01,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,37588.22,43811.84,6223.62,0.142053
+2025-01,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24391.11,24384.22,-6.89,-0.000283
+2025-01,7000,Income Tax,Expense,Tax,COR,Corporate,80160.32,90589.94,10429.62,0.115130
+2025-02,4000,Interest Income,Revenue,Interest Income,,,1432361.05,1489042.41,-56681.36,-0.038066
+2025-02,4100,Fee Income,Revenue,Fee Income,,,93998.71,96005.85,-2007.14,-0.020906
+2025-02,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,546666.67,556666.67,10000.00,0.017964
+2025-02,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,217746.40,237285.44,19539.04,0.082344
+2025-02,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,17731.02,18603.52,872.50,0.046900
+2025-02,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,62058.53,65112.32,3053.79,0.046900
+2025-02,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,26596.51,27905.28,1308.77,0.046900
+2025-02,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,26596.51,27905.28,1308.77,0.046900
+2025-02,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,44327.52,46508.80,2181.28,0.046900
+2025-02,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,74987.78,70404.29,-4583.49,-0.065102
+2025-02,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,66021.32,66556.56,535.24,0.008042
+2025-02,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36643.95,36643.95,0.00,0.000000
+2025-02,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,39439.24,44355.94,4916.70,0.110846
+2025-02,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24304.86,24396.54,91.68,0.003758
+2025-02,7000,Income Tax,Expense,Tax,COR,Corporate,85809.86,90675.92,4866.06,0.053664
+2025-03,4000,Interest Income,Revenue,Interest Income,,,1463584.05,1513301.41,-49717.36,-0.032854
+2025-03,4100,Fee Income,Revenue,Fee Income,,,107702.43,104316.92,3385.51,0.032454
+2025-03,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,553333.33,563333.33,10000.00,0.017751
+2025-03,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,285939.89,261497.33,-24442.56,-0.093472
+2025-03,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,17622.11,18603.52,981.41,0.052754
+2025-03,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,61677.32,65112.32,3435.00,0.052755
+2025-03,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,26433.13,27905.28,1472.15,0.052755
+2025-03,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,26433.13,27905.28,1472.15,0.052755
+2025-03,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,44055.23,46508.80,2453.57,0.052755
+2025-03,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,80720.06,76499.08,-4220.98,-0.055177
+2025-03,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,69798.51,68895.71,-902.80,-0.013104
+2025-03,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36753.88,36753.88,0.00,0.000000
+2025-03,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,45998.61,44986.61,-1012.00,-0.022496
+2025-03,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24307.12,24408.60,101.48,0.004158
+2025-03,7000,Income Tax,Expense,Tax,COR,Corporate,74553.54,88802.15,14248.61,0.160453
+2025-04,4000,Interest Income,Revenue,Interest Income,,,1500572.13,1541215.30,-40643.17,-0.026371
+2025-04,4100,Fee Income,Revenue,Fee Income,,,108966.99,106603.71,2363.28,0.022169
+2025-04,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,570000.00,576666.67,6666.67,0.011561
+2025-04,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,489687.20,267414.25,-222272.95,-0.831193
+2025-04,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,19121.09,19036.16,-84.93,-0.004462
+2025-04,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,66923.76,66626.56,-297.20,-0.004461
+2025-04,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,28681.61,28554.24,-127.37,-0.004461
+2025-04,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,28681.61,28554.24,-127.37,-0.004461
+2025-04,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,47802.68,47590.40,-212.28,-0.004461
+2025-04,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,83548.00,78176.06,-5371.94,-0.068716
+2025-04,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,70258.96,69628.75,-630.21,-0.009051
+2025-04,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36864.14,36864.14,0.00,0.000000
+2025-04,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,61936.60,45811.48,-16125.12,-0.351989
+2025-04,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24143.18,24420.43,277.25,0.011353
+2025-04,7000,Income Tax,Expense,Tax,COR,Corporate,20472.57,89618.91,69146.34,0.771560
+2025-05,4000,Interest Income,Revenue,Interest Income,,,1535226.95,1570430.87,-35203.92,-0.022417
+2025-05,4100,Fee Income,Revenue,Fee Income,,,112735.26,109977.77,2757.49,0.025073
+2025-05,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,583333.33,590000.00,6666.67,0.011299
+2025-05,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,517277.14,276564.29,-240712.85,-0.870369
+2025-05,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,18949.56,19036.16,86.60,0.004549
+2025-05,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,66323.42,66626.56,303.14,0.004550
+2025-05,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,28424.32,28554.24,129.92,0.004550
+2025-05,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,28424.32,28554.24,129.92,0.004550
+2025-05,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,47373.87,47590.40,216.53,0.004550
+2025-05,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,92376.55,80650.37,-11726.18,-0.145395
+2025-05,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,71387.44,70652.11,-735.33,-0.010408
+2025-05,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,36974.74,36974.74,0.00,0.000000
+2025-05,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,66741.29,46661.44,-20079.85,-0.430331
+2025-05,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24006.80,24432.02,425.22,0.017404
+2025-05,7000,Income Tax,Expense,Tax,COR,Corporate,16592.36,91028.02,74435.66,0.817722
+2025-06,4000,Interest Income,Revenue,Interest Income,,,1568409.82,1599990.60,-31580.78,-0.019738
+2025-06,4100,Fee Income,Revenue,Fee Income,,,113124.24,110237.53,2886.71,0.026186
+2025-06,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,600000.00,600000.00,0.00,0.000000
+2025-06,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,564525.55,276310.80,-288214.75,-1.043082
+2025-06,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,18802.87,19036.16,233.29,0.012255
+2025-06,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,65809.98,66626.56,816.58,0.012256
+2025-06,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,28204.27,28554.24,349.97,0.012256
+2025-06,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,28204.27,28554.24,349.97,0.012256
+2025-06,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,47007.13,47590.40,583.27,0.012256
+2025-06,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,95158.91,80840.85,-14318.06,-0.177114
+2025-06,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,71615.14,70845.35,-769.79,-0.010866
+2025-06,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,37085.66,37085.66,0.00,0.000000
+2025-06,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,80693.53,47564.41,-33129.12,-0.696511
+2025-06,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24378.10,24443.38,65.28,0.002671
+2025-06,7000,Income Tax,Expense,Tax,COR,Corporate,5012.16,95694.01,90681.85,0.947623
+2025-07,4000,Interest Income,Revenue,Interest Income,,,1621002.05,1628014.34,-7012.29,-0.004307
+2025-07,4100,Fee Income,Revenue,Fee Income,,,124417.98,109414.99,15002.99,0.137120
+2025-07,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,613333.33,613333.33,0.00,0.000000
+2025-07,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,551353.98,272847.40,-278506.58,-1.020741
+2025-07,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,19220.01,19468.80,248.79,0.012779
+2025-07,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,67270.00,68140.80,870.80,0.012779
+2025-07,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,28830.00,29203.20,373.20,0.012779
+2025-07,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,28830.00,29203.20,373.20,0.012779
+2025-07,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,48050.00,48672.00,622.00,0.012779
+2025-07,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,110901.07,80237.66,-30663.41,-0.382157
+2025-07,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,74751.15,70750.35,-4000.80,-0.056548
+2025-07,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,37196.91,37196.91,0.00,0.000000
+2025-07,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,69739.45,48435.03,-21304.42,-0.439856
+2025-07,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24252.94,24454.52,201.58,0.008243
+2025-07,7000,Income Tax,Expense,Tax,COR,Corporate,17922.80,98871.54,80948.74,0.818726
+2025-08,4000,Interest Income,Revenue,Interest Income,,,1652109.74,1655519.51,-3409.77,-0.002060
+2025-08,4100,Fee Income,Revenue,Fee Income,,,109119.95,111813.53,-2693.58,-0.024090
+2025-08,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,630000.00,623333.33,-6666.67,-0.010695
+2025-08,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,558514.70,279115.68,-279399.02,-1.001015
+2025-08,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,19502.41,19468.80,-33.61,-0.001726
+2025-08,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,68258.40,68140.80,-117.60,-0.001726
+2025-08,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,29253.60,29203.20,-50.40,-0.001726
+2025-08,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,29253.60,29203.20,-50.40,-0.001726
+2025-08,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,48756.00,48672.00,-84.00,-0.001726
+2025-08,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,101829.12,81996.59,-19832.53,-0.241870
+2025-08,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,70796.39,71514.68,718.29,0.010044
+2025-08,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,37308.51,37308.51,0.00,0.000000
+2025-08,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,79599.37,49245.84,-30353.53,-0.616367
+2025-08,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24147.97,24465.43,317.46,0.012976
+2025-08,7000,Income Tax,Expense,Tax,COR,Corporate,16002.40,101416.24,85413.84,0.842211
+2025-09,4000,Interest Income,Revenue,Interest Income,,,1691159.54,1683002.29,8157.25,0.004847
+2025-09,4100,Fee Income,Revenue,Fee Income,,,108665.07,112056.70,-3391.63,-0.030267
+2025-09,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,640000.00,633333.33,-6666.67,-0.010526
+2025-09,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,503642.30,278885.00,-224757.30,-0.805914
+2025-09,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,19776.25,19468.80,-307.45,-0.015792
+2025-09,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,69216.80,68140.80,-1076.00,-0.015791
+2025-09,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,29664.34,29203.20,-461.14,-0.015791
+2025-09,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,29664.34,29203.20,-461.14,-0.015791
+2025-09,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,49440.57,48672.00,-768.57,-0.015791
+2025-09,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,89491.73,82174.91,-7316.82,-0.089040
+2025-09,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,70800.19,71704.62,904.43,0.012613
+2025-09,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,37420.43,37420.43,0.00,0.000000
+2025-09,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,68479.42,50085.34,-18394.08,-0.367255
+2025-09,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24456.44,24476.12,19.68,0.000804
+2025-09,7000,Income Tax,Expense,Tax,COR,Corporate,41942.95,105572.81,63629.86,0.602711
+2025-10,4000,Interest Income,Revenue,Interest Income,,,1704651.16,1711477.66,-6826.50,-0.003989
+2025-10,4100,Fee Income,Revenue,Fee Income,,,111173.80,116736.72,-5562.92,-0.047654
+2025-10,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,650000.00,646666.67,-3333.33,-0.005155
+2025-10,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,317786.18,291999.22,-25786.96,-0.088312
+2025-10,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,19933.29,19901.44,-31.85,-0.001600
+2025-10,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,69766.48,69655.04,-111.44,-0.001600
+2025-10,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,29899.92,29852.16,-47.76,-0.001600
+2025-10,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,29899.92,29852.16,-47.76,-0.001600
+2025-10,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,49833.20,49753.60,-79.60,-0.001600
+2025-10,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,85351.08,85606.93,255.85,0.002989
+2025-10,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,71594.65,73078.09,1483.44,0.020299
+2025-10,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,37532.69,37532.69,0.00,0.000000
+2025-10,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,57240.94,50894.80,-6346.14,-0.124691
+2025-10,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,25000.98,24486.59,-514.39,-0.021007
+2025-10,7000,Income Tax,Expense,Tax,COR,Corporate,92996.41,104733.75,11737.34,0.112068
+2025-11,4000,Interest Income,Revenue,Interest Income,,,1720851.16,1738916.68,-18065.52,-0.010389
+2025-11,4100,Fee Income,Revenue,Fee Income,,,116748.06,112511.96,4236.10,0.037650
+2025-11,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,660000.00,656666.67,-3333.33,-0.005076
+2025-11,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,319622.04,278296.65,-41325.39,-0.148494
+2025-11,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,19877.84,19901.44,23.60,0.001186
+2025-11,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,69572.40,69655.04,82.64,0.001186
+2025-11,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,29816.74,29852.16,35.42,0.001187
+2025-11,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,29816.74,29852.16,35.42,0.001187
+2025-11,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,49694.57,49753.60,59.03,0.001186
+2025-11,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,84653.90,82508.77,-2145.13,-0.025999
+2025-11,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,73206.96,72077.34,-1129.62,-0.015672
+2025-11,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,37645.29,37645.29,0.00,0.000000
+2025-11,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,53955.42,51793.86,-2161.56,-0.041734
+2025-11,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24874.01,24496.86,-377.15,-0.015396
+2025-11,7000,Income Tax,Expense,Tax,COR,Corporate,96215.83,112232.20,16016.37,0.142707
+2025-12,4000,Interest Income,Revenue,Interest Income,,,1744539.77,1757305.80,-12766.03,-0.007265
+2025-12,4100,Fee Income,Revenue,Fee Income,,,106002.68,99060.03,6942.65,0.070085
+2025-12,5000,Interest Expense,Expense,Interest Expense,COR,Corporate,670000.00,666666.67,-3333.33,-0.005000
+2025-12,5100,Provision for Credit Losses,Expense,Credit Costs,RSK,Risk and Collections,277150.66,237086.16,-40064.50,-0.168987
+2025-12,6000,Salaries and Benefits,Expense,Operating Expenses,COR,Corporate,19958.34,19901.44,-56.90,-0.002859
+2025-12,6000,Salaries and Benefits,Expense,Operating Expenses,OPS,Operations,69854.13,69655.04,-199.09,-0.002858
+2025-12,6000,Salaries and Benefits,Expense,Operating Expenses,RSK,Risk and Collections,29937.48,29852.16,-85.32,-0.002858
+2025-12,6000,Salaries and Benefits,Expense,Operating Expenses,SMK,Sales and Marketing,29937.48,29852.16,-85.32,-0.002858
+2025-12,6000,Salaries and Benefits,Expense,Operating Expenses,TEC,Technology,49895.81,49753.60,-142.21,-0.002858
+2025-12,6100,Marketing,Expense,Operating Expenses,SMK,Sales and Marketing,86661.11,72644.02,-14017.09,-0.192956
+2025-12,6200,Technology and Software,Expense,Operating Expenses,TEC,Technology,70467.75,68616.38,-1851.37,-0.026981
+2025-12,6300,Rent and Administration,Expense,Operating Expenses,COR,Corporate,37758.22,37758.22,0.00,0.000000
+2025-12,6400,Collections and Recovery Costs,Expense,Operating Expenses,RSK,Risk and Collections,58348.25,52541.14,-5807.11,-0.110525
+2025-12,6500,Depreciation,Expense,Operating Expenses,COR,Corporate,24832.56,24506.93,-325.63,-0.013287
+2025-12,7000,Income Tax,Expense,Tax,COR,Corporate,106435.16,124382.98,17947.82,0.144295

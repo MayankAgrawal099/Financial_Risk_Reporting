@@ -1,0 +1,72 @@
+// DA-04 Financial Analytics and Risk Reporting - Finance app load script (Qlik Sense)
+// Paste into the Data load editor of a new app. Change vDataPath to your folder or Data files connection.
+//   Qlik Sense Cloud:   SET vDataPath = 'lib://DataFiles/';       (upload the three CSVs under "Data files")
+//   Qlik Sense Desktop: SET vDataPath = 'lib://DA04_Data/';       (create a Folder data connection called DA04_Data)
+// Source files are produced by src/export_for_qlik.py. Favourable variance is positive (metric M30).
+// Model: Calendar (one row per month) links to three fact tables through the single key Period.
+// Every other field is renamed per table so Qlik creates no synthetic keys.
+
+SET vDataPath = 'lib://DataFiles/';
+
+// ---------------------------------------------------------------- P&L lines by month: actual, budget, variance
+BvA_Lines:
+LOAD
+    period                 as Period,
+    line_order             as [Line Order],
+    line_name              as [P&L Line],
+    is_cost                as [Is Cost],
+    actual                 as Actual,
+    budget                 as Budget,
+    variance               as Variance
+FROM [$(vDataPath)bva_lines.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
+
+// ---------------------------------------------------------------- Calendar: one row per month
+Calendar:
+LOAD DISTINCT
+    period                                              as Period,
+    fiscal_year                                         as Year,
+    quarter                                             as Quarter,
+    fiscal_year & ' ' & quarter                         as [Year Quarter],
+    Dual(Date(Date#(month_end, 'YYYY-MM-DD'), 'MMM YYYY'),
+         Num(Date#(month_end, 'YYYY-MM-DD')))           as [Month],
+    Date(Date#(month_end, 'YYYY-MM-DD'), 'YYYY-MM-DD')  as [Month End]
+FROM [$(vDataPath)bva_lines.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
+
+// ---------------------------------------------------------------- Account and cost centre detail by month
+BvA_Accounts:
+LOAD
+    period                 as Period,
+    account_id             as [Account ID],
+    account_name           as [Account],
+    account_type           as [Account Type],
+    report_group           as [Report Group],
+    cost_center_id         as [Cost Center ID],
+    cost_center_name       as [Cost Center],
+    actual                 as [Account Actual],
+    budget                 as [Account Budget],
+    variance               as [Account Variance]
+FROM [$(vDataPath)bva_accounts.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
+
+// ---------------------------------------------------------------- Variance drivers by month (volume, rate, other)
+Drivers:
+LOAD
+    period                 as Period,
+    account_id             as [Driver Account ID],
+    account_name           as [Driver Account],
+    volume_driver          as [Volume Driver],
+    rate_driver            as [Rate Driver],
+    volume_actual          as [Volume Actual],
+    volume_budget          as [Volume Budget],
+    rate_actual            as [Rate Actual],
+    rate_budget            as [Rate Budget],
+    actual                 as [Driver Actual],
+    budget                 as [Driver Budget],
+    variance               as [Driver Variance],
+    volume_effect          as [Volume Effect],
+    rate_effect            as [Rate Effect],
+    other_effect           as [Other Effect]
+FROM [$(vDataPath)variance_drivers.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
