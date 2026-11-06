@@ -1,0 +1,6 @@
+model,loans,default_rate,auc,gini,ks
+"Scorecard, train",120000,0.1296,0.662363,0.324726,0.233548
+"Scorecard, test",60000,0.148317,0.675003,0.350007,0.255655
+"Lending Club sub_grade (benchmark), test",60000,0.148317,0.682536,0.365072,0.263137
+"Lending Club int_rate (benchmark), test",60000,0.148317,0.682178,0.364356,0.26312
+"FICO score alone (benchmark), test",60000,0.148317,0.602215,0.20443,0.154661

@@ -26,5 +26,7 @@ Thumbs.db
 *.log
 
 #dashboard guide
-dashboard/qlik/finance_sheet_mockup.png
-dashboard/qlik/finance_step_by_step.md
+dashboards/qlik/finance_sheet_mockup.png
+dashboards/qlik/finance_step_by_step.md
+dashboards/qlik/risk_step_by_step.md
+dashboards/qlik/risk_sheet_mockup.png

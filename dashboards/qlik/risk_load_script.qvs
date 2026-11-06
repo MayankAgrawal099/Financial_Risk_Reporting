@@ -1,0 +1,71 @@
+// DA-04 Financial Analytics and Risk Reporting - Risk app load script (Qlik Sense)
+// Use a NEW app named "DA04 Risk", separate from the finance app: the Lending Club loans (2013-2015) and the synthetic
+// ledger (2023-2025) are different data and must not be mixed.
+// Paste into the Data load editor. Change vDataPath to your Data files or folder connection:
+//   Qlik Sense Cloud:   SET vDataPath = 'lib://DataFiles/';
+//   Qlik Sense Desktop: SET vDataPath = 'lib://DA04_Data/';
+// Source files are made by src/export_risk_for_qlik.py. Model: Risk_Years and Risk_Bands link through [Issue Year];
+// the other three tables stand alone. Every other field is renamed per table so Qlik creates no synthetic keys.
+
+SET vDataPath = 'lib://DataFiles/';
+
+// ---------------------------------------------------------------- one row per issue year: discrimination and stability
+Risk_Years:
+LOAD
+    issue_year             as [Issue Year],
+    data                   as Data,
+    loans                  as [Year Loans],
+    default_rate           as [Year Default Rate],
+    avg_predicted_pd       as [Year Avg Predicted PD],
+    auc                    as AUC,
+    gini                   as Gini,
+    ks                     as KS,
+    score_psi              as [Score PSI],
+    band_psi               as [Band PSI],
+    psi_status             as [PSI Status]
+FROM [$(vDataPath)risk_years.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
+
+// ---------------------------------------------------------------- one row per issue year and risk band
+Risk_Bands:
+LOAD
+    issue_year             as [Issue Year],
+    band                   as Band,
+    score_range            as [Score Range],
+    loans                  as [Band Loans],
+    defaults               as [Band Defaults],
+    pd_sum                 as [Band PD Sum],
+    score_sum              as [Band Score Sum]
+FROM [$(vDataPath)risk_bands.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
+
+// ---------------------------------------------------------------- feature stability (PSI against train)
+Feature_PSI:
+LOAD
+    feature                as Feature,
+    iv_train               as [IV Train],
+    psi_period             as [PSI Period],
+    psi                    as PSI
+FROM [$(vDataPath)risk_feature_psi.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
+
+// ---------------------------------------------------------------- score distribution by train decile
+Score_Deciles:
+LOAD
+    decile                 as [Score Decile],
+    train_share            as [Train Share],
+    test_share             as [Test Share]
+FROM [$(vDataPath)risk_score_deciles.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);
+
+// ---------------------------------------------------------------- scorecard against Lending Club benchmarks
+Model_Compare:
+LOAD
+    model                  as Model,
+    loans                  as [Model Loans],
+    default_rate           as [Model Default Rate],
+    auc                    as [Model AUC],
+    gini                   as [Model Gini],
+    ks                     as [Model KS]
+FROM [$(vDataPath)risk_models.csv]
+(txt, utf8, embedded labels, delimiter is ',', msq);

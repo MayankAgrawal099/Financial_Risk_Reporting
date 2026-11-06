@@ -1,56 +1,42 @@
-# Qlik Sense: finance dashboard sheet (build guide)
+# Qlik Sense dashboards
 
-Sheet name: **Finance - P&L and Budget vs Actual**. Data: the synthetic ledger of Kestrel Credit Ltd, 2023 to 2025, in USD.
-Favourable variance is positive everywhere (metric M30), so green always means better than budget.
-The Lending Club data is a different, unrelated module and is not used on this sheet.
+Two separate Qlik Sense apps. Keep them separate: the finance data (a synthetic ledger, 2023-2025) and the risk data (Lending Club loans, 2013-2015) are different datasets and are not reconciled.
 
-## 1. Get the data in
+| App | Sheet | Load script | Measures | CSV files (dashboards/qlik/data) | Made by |
+|---|---|---|---|---|---|
+| DA04 Finance | P&L and budget vs actual | `finance_load_script.qvs` | `finance_measures.md` | `bva_lines.csv`, `bva_accounts.csv`, `variance_drivers.csv` | `src/export_for_qlik.py` (needs the database) |
+| DA04 Risk | Scorecard bands and stability | `risk_load_script.qvs` | `risk_measures.md` | `risk_years.csv`, `risk_bands.csv`, `risk_feature_psi.csv`, `risk_score_deciles.csv`, `risk_models.csv` | `src/export_risk_for_qlik.py` (reads the scorecard outputs) |
 
-1. Make the CSVs (already committed in `dashboards/qlik/data/`; re-make them after any data change):
-   `python src\export_for_qlik.py --dsn postgresql://postgres:YOUR_PASSWORD@localhost:5432/fin_risk`
-2. In Qlik Sense create a new app named `DA04 Finance`.
-3. Upload `bva_lines.csv`, `bva_accounts.csv` and `variance_drivers.csv`
-   (Qlik Cloud: Add data > Data files; Desktop: put them in a folder and create a Folder data connection `DA04_Data`).
-4. Data load editor: paste `finance_load_script.qvs`, set `vDataPath` to your connection, click Load data.
-5. Data model viewer: you should see `Calendar` in the middle linked to `BvA_Lines`, `BvA_Accounts` and `Drivers` by `Period` only.
-   No synthetic key tables (`$Syn`) should appear. If one does, send me a screenshot.
+Screenshots of both sheets are in `docs/Screenshots/` (`qlik_finance_sheet_2025.png`, `qlik_risk_sheet.png`).
 
-## 2. Master items
+## Rebuild the apps
 
-- Dimensions: `Year`, `Quarter`, `Month` (sort by Month, numerically), `P&L Line` (sort by `Line Order`), `Cost Center`, `Driver Account`.
-- Measures: all rows of `finance_measures.md`. Paste the expression exactly, set Number formatting to Custom and use the format pattern.
+1. Make the CSV files (the finance ones are already committed, so this is only needed after a data change):
+   ```
+   python src/export_for_qlik.py --dsn postgresql://postgres:PASSWORD@localhost:5432/fin_risk
+   python src/export_risk_for_qlik.py
+   ```
+2. In Qlik Sense create an app, upload the CSV files of that app as Data files, paste the load script into the Data load editor, and click Load data. The first line of each script sets `vDataPath` (`lib://DataFiles/` for Qlik Cloud, or your own folder connection).
+3. Create the master measures from the measures file (name, expression, format pattern), then build the sheet.
 
-## 3. Layout (top to bottom)
+## Data models
 
-| Row | Object | Dimension | Measures | Notes |
-|---|---|---|---|---|
-| Filters | Filter panes | Year, Quarter, Month | none | Save a bookmark "FY2025" with Year = 2025 |
-| 1 | 5 KPI objects | none | Total Revenue; Net Income; Net Income Variance %; Net Profit Margin; Cost-to-Income Ratio | Colour the variance KPI green when 0 or more, red below 0 |
-| 2 left | Pivot or straight table: the P&L | P&L Line | Actual, Budget, Variance, Variance % | Sort by Line Order. Totals off. Colour Variance and Variance % text: green if >= 0, red if < 0 |
-| 2 right | Combo chart: net income by month | Month | bars: Net Income; line: Net Income Budget | Month axis sorted ascending |
-| 3 left | Waterfall chart: budget to actual net income | measure items | see `finance_measures.md`, section Waterfall | Last item shown as subtotal |
-| 3 right | Bar chart: operating expense variance by cost centre | Cost Center | Opex Variance by Cost Centre | Sort by value; same green/red colouring |
-| 4 | Stacked bar: what drove the variance | Driver Account | Volume Effect, Rate Effect, Other Effect | Add a text note: volume effect = volume vs budget at budget rate; rate effect = the rest |
+- Finance: `Calendar` (one row per month) links to `BvA_Lines`, `BvA_Accounts` and `Drivers` through `Period`. Fields in the fact tables are renamed so no other field is shared.
+- Risk: `Risk_Years` and `Risk_Bands` link through `Issue Year`. `Feature_PSI`, `Score_Deciles` and `Model_Compare` stand alone.
+- Neither model has synthetic keys (checked in `tests/test_qlik_kit.py` and `tests/test_qlik_risk_kit.py`).
 
-Colour expression for conditional colouring (Colors and legend > By expression): `If(Sum(Variance) >= 0, RGB(45,164,78), RGB(209,36,47))`.
-For the bar chart use `[Account Variance]`, and for the drivers chart colour by measure.
+## Conventions
 
-Footer text: "Source: synthetic ledger, Kestrel Credit Ltd, 2023-2025. Variance: favourable is positive. Definitions in docs/metric_dictionary.md."
+- Favourable variance is positive (metric M30): green always means better than budget.
+- Risk KPIs are fixed to the test year (`{1<Data={'test'}>}`), so they never change when a filter is clicked.
+- PSI colours: under 0.10 green, 0.10 to 0.25 amber, over 0.25 red (metric M56).
+- Definitions of every metric are in `docs/metric_dictionary.md`.
 
-## 4. Checks before you screenshot
+## Numbers to check after loading
 
-With Year = 2025 selected (no other selections), the sheet should show:
-
-| Item | Value |
-|---|---|
-| Net Income (actual) | 1,962,349 |
-| Net Income Budget | 3,580,855 |
-| Net Income Variance | -1,618,506 (-45.2%) |
-| Provision for Credit Losses variance | -1,636,914 |
-| Waterfall steps (variance) | Interest Income -324,082; Fee Income +21,588; Interest Expense +23,333; Provision -1,636,914; Operating Expenses -241,935; Income Tax +539,502 |
-
-Also check: select Year = 2023 and Net Income shows 1,487,978 against budget 1,472,198. If any number is different, the load or a measure is wrong.
-
-## 5. If the waterfall will not take measure items
-
-Use a bar chart with the dimension `P&L Line`, measure `Variance`, and a filter `[P&L Line]` on the six lines. The bridge is the same, without the start and end bars.
+| Sheet | Selection | Value |
+|---|---|---|
+| Finance | Year = 2025 | Net income 1,962,349 against budget 3,580,855 (-45.2%); provision variance -1,636,914 |
+| Finance | Year = 2023 | Net income 1,487,978 against budget 1,472,198 |
+| Risk | none | Test Gini 0.350, AUC 0.675, KS 0.256, score PSI 0.003, calibration gap +1.9% |
+| Risk | Data = test | Band table equals the `test` rows of `docs/scorecard_bands.csv` |

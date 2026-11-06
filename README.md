@@ -111,8 +111,12 @@ python src/scorecard_stability.py
 python src/record_test_results.py
 
 # 4h. Export the finance views to CSV for Qlik Sense (dashboards/qlik/data/) and write dashboards/qlik/finance_measures.md.
-#     Build steps for the finance sheet: dashboards/qlik/finance_sheet_guide.md (load script: finance_load_script.qvs)
+#     Setup for both Qlik apps: dashboards/qlik/README.md
 python src/export_for_qlik.py --dsn postgresql://postgres:YOUR_PASSWORD@localhost:5432/fin_risk
+
+# 4i. Export the scorecard results to CSV for the Qlik risk sheet (reads the scorecard outputs, no database needed).
+#     Writes dashboards/qlik/data/risk_*.csv and dashboards/qlik/risk_measures.md
+python src/export_risk_for_qlik.py
 
 # 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
 #    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
@@ -162,6 +166,7 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [ ] Scorecard documentation
 - [x] Qlik Sense kit for the finance sheet (CSV export, load script, measures, build guide)
 - [ ] Qlik Sense finance sheet built and screenshotted
-- [ ] Qlik Sense risk sheet (scorecard)
+- [x] Qlik Sense kit for the risk sheet (CSV export, load script, measures)
+- [ ] Qlik Sense risk sheet built and screenshotted
 - [ ] Power Automate board pack
 - [ ] Documentation, tests and final presentation
