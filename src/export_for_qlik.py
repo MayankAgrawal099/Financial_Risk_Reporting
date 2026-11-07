@@ -4,6 +4,7 @@ Qlik reads these three files (dashboards/qlik/data/):
   bva_lines.csv          fin.v_bva_summary        P&L lines by month: actual, budget, variance      (M30, M31)
   bva_accounts.csv       fin.v_bva_account_month  actual, budget, variance by month, account, cost centre
   variance_drivers.csv   fin.v_variance_drivers   monthly volume, rate and other effects             (M32, M33)
+  balance_sheet.csv      fin.v_balance_sheet_monthly  month-end balance sheet and ratios (board report only)  (M20-M27)
 
 The measure definitions below are the single source for dashboards/qlik/finance_measures.md; a test checks that every
 field they use exists in dashboards/qlik/finance_load_script.qvs.
@@ -33,9 +34,14 @@ EXPORTS: dict[str, tuple[str, list[str]]] = {
                              ["period", "account_id", "account_name", "volume_driver", "rate_driver", "volume_actual",
                               "volume_budget", "rate_actual", "rate_budget", "actual", "budget", "variance", "volume_effect",
                               "rate_effect", "other_effect"]),
+    "balance_sheet.csv": ("fin.v_balance_sheet_monthly",          # not loaded by Qlik; used by the board report PDF
+                          ["period", "fiscal_year", "quarter", "month_end", "is_opening", "cash", "gross_loans", "allowance",
+                           "net_loans", "fixed_assets", "other_assets", "total_assets", "borrowings", "accrued_expenses",
+                           "taxes_payable", "total_liabilities", "total_equity", "balance_check", "allowance_coverage",
+                           "debt_to_equity", "month_net_income"]),
 }
 ORDER_BY = {"bva_lines.csv": "period, line_order", "bva_accounts.csv": "period, account_id, cost_center_id",
-            "variance_drivers.csv": "period, account_id"}
+            "variance_drivers.csv": "period, account_id", "balance_sheet.csv": "period"}
 
 
 def _ln(name: str) -> str:

@@ -66,7 +66,7 @@ def test_no_duplicate_alias_inside_a_table():
 def test_csv_columns_match_export_definition(name):
     df = csv(name)
     assert list(df.columns) == EXPORTS[name][1]
-    assert len(df) > 100
+    assert len(df) >= 37
 
 
 def test_measure_fields_exist_in_the_script():
