@@ -10,6 +10,28 @@ Every month one flow refreshes the data, checks it, builds the board report as a
 | Flow | Power Automate Desktop flow `Monthly Board Report` | Runs the orchestrator, reads the status file, emails the PDF (or a failure notice) |
 | Schedule | Windows Task Scheduler | Starts the flow on the 1st of each month |
 
+## How it looks
+
+**The flow in Power Automate Desktop.** It runs one Python command, reads the status file, then sends either the board report or a failure notice.
+
+![Power Automate Desktop flow](../docs/screenshots/power_automate_flow_designer.png)
+
+**Success email.** The board report PDF is attached.
+
+![Board report email](../docs/screenshots/power_automate_email_ok.png)
+
+**Failure email.** Sent instead when the run fails (for example a failed data check or a month with no data). No PDF is attached.
+
+![Failure email](../docs/screenshots/power_automate_email_failed.png)
+
+**Monthly schedule.** Windows Task Scheduler starts the flow on the 1st of each month at 08:00.
+
+![Task Scheduler entry](../docs/screenshots/power_automate_task_scheduler.png)
+
+**Run log.** `reports/refresh_log.csv` gets one row per run, with the month, status, PDF name and any error.
+
+![Refresh log](../docs/screenshots/refresh_log_csv.png)
+
 ## Run it by hand
 
 ```

@@ -7,7 +7,15 @@ Two separate Qlik Sense apps. Keep them separate: the finance data (a synthetic 
 | DA04 Finance | P&L and budget vs actual | `finance_load_script.qvs` | `finance_measures.md` | `bva_lines.csv`, `bva_accounts.csv`, `variance_drivers.csv` | `src/export_for_qlik.py` (needs the database) |
 | DA04 Risk | Scorecard bands and stability | `risk_load_script.qvs` | `risk_measures.md` | `risk_years.csv`, `risk_bands.csv`, `risk_feature_psi.csv`, `risk_score_deciles.csv`, `risk_models.csv` | `src/export_risk_for_qlik.py` (reads the scorecard outputs) |
 
-Screenshots of both sheets are in `docs/Screenshots/` (`qlik_finance_sheet_2025.png`, `qlik_risk_sheet.png`).
+## Screenshots
+
+**Finance sheet** (DA04 Finance, FY2025): P&L, budget vs actual and variance drivers.
+
+![Finance sheet in Qlik Sense](../../docs/screenshots/qlik_finance_sheet_2025.png)
+
+**Risk sheet** (DA04 Risk): score bands, default rates and stability on the 2015 test year.
+
+![Risk sheet in Qlik Sense](../../docs/screenshots/qlik_risk_sheet.png)
 
 ## Rebuild the apps
 

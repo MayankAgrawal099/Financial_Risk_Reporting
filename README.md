@@ -84,7 +84,7 @@ financial-risk-reporting/
 |---|---|
 | Everything | Python 3.12 (tested on 3.12 and 3.13) and Git |
 | SQL views, data checks, finance exports | PostgreSQL 16 (tested on 16) with an empty database, for example `fin_risk` |
-| Scorecard rebuild only | The Lending Club file from Kaggle, over 1 GB (see "Data sources") |
+| Scorecard rebuild only | The Lending Club file from Kaggle, over 1 GB (download link under [Data sources](#data-sources), near the end of this README) |
 | Power Pivot | Excel with Power Pivot (Windows) |
 | Dashboards | A Qlik Sense Cloud account |
 | Automation | Power Automate Desktop (Windows) and a Gmail account with an App Password |
@@ -132,7 +132,7 @@ Run from the repository root. Steps 1 to 4 need the Kaggle file; steps 5 onward 
 # 1. Synthetic ledgers (writes data/synthetic/*.csv, seed 42; identical output every run)
 python src/generate_ledgers.py
 
-# 2. Lending Club sample. Download "All Lending Club loan data" from Kaggle and put
+# 2. Lending Club sample. Download "All Lending Club loan data" from Kaggle (link under "Data sources" below) and put
 #    accepted_2007_to_2018q4.csv (or the .csv.gz) in data/raw/. Do NOT open it in Excel:
 #    Excel cuts it at 1,048,575 rows and rewrites the dates.
 python src/prepare_lending_club.py --input data/raw/accepted_2007_to_2018q4.csv
