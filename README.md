@@ -27,7 +27,7 @@ What this means in practice:
 | 4 | Python credit scorecard (WoE, logistic regression, risk bands) | `src/clean_lending_club.py`, `src/woe_binning.py`, `src/scorecard_model.py`, `src/scorecard_stability.py` |
 | 5 | Interactive dashboards in Qlik Sense | `dashboards/qlik/` (finance app and risk app) |
 | 6 | Power Automate refresh and monthly PDF board report by email | `automation/`, `src/run_monthly_refresh.py`, `src/build_board_report.py` |
-| 7 | Every metric defined | `docs/metric_dictionary.md` (M01 to M56) |
+| 7 | Every metric defined | `docs/metric_dictionary.md` |
 
 ## Headline results
 
@@ -43,26 +43,9 @@ For context, Lending Club's own grade (`sub_grade`) gives AUC 0.683 on the same 
 
 ## How it fits together
 
-```
- FINANCE MODULE (synthetic)                     CREDIT RISK MODULE (real loans)
- generate_ledgers.py  ->  data/synthetic/*.csv  prepare_lending_club.py  ->  data/processed/
-          |                                              |
-          v                                              v
- PostgreSQL schema fin  (SQL views: P&L,        clean -> WoE bins -> logistic regression
- balance sheet, budget vs actual, drivers)      -> score bands -> stability (PSI)
-          |                                              |
-          +--------------- export to CSV extracts -------+
-                     dashboards/qlik/data/*.csv
-                  |                              |
-                  v                              v
-        Qlik Sense dashboards         board report PDF (build_board_report.py)
-        (finance app, risk app)                  |
-                                                 v
-                    Power Automate flow: run refresh, read status, email PDF
-                    (Task Scheduler starts it on the 1st of each month)
-```
+![System architecture](docs/architecture/architecture.png)
 
-The Qlik dashboards and the PDF read the same CSV extracts, so their numbers agree. The automation diagram is in `docs/architecture/power_automate_flow.png`.
+The two modules (blue: synthetic finance data, green: real loan data) never feed each other. They meet only in the reporting extracts (amber), which the Qlik Sense dashboards and the board report PDF both read, so their numbers agree. Excel and Power Pivot read the synthetic ledger CSVs directly. The monthly automation re-runs the whole chain and emails the result. Diagram of the automation alone: [`docs/architecture/power_automate_flow.png`](docs/architecture/power_automate_flow.png).
 
 ## Repository structure
 
@@ -73,7 +56,7 @@ financial-risk-reporting/
 │   ├── processed/    # trimmed and scored loan data (git-ignored)
 │   └── synthetic/    # generated ledgers (7 CSVs, committed)
 ├── docs/
-│   ├── architecture/             # diagrams
+│   ├── architecture/             # architecture.png (whole system), power_automate_flow.png
 │   ├── screenshots/              # evidence screenshots
 │   ├── data_dictionary.md        # every table and column, real vs synthetic
 │   ├── metric_dictionary.md      # every metric, formula, reference values
@@ -100,8 +83,8 @@ financial-risk-reporting/
 | Needed for | Tool |
 |---|---|
 | Everything | Python 3.12 (tested on 3.12 and 3.13) and Git |
-| SQL views, data checks, finance exports | PostgreSQL 16 (tested on 18) with an empty database, for example `fin_risk` |
-| Scorecard rebuild only | The Lending Club file from Kaggle, about 1.5 GB (see "Data sources") |
+| SQL views, data checks, finance exports | PostgreSQL 16 (tested on 16) with an empty database, for example `fin_risk` |
+| Scorecard rebuild only | The Lending Club file from Kaggle, over 1 GB (see "Data sources") |
 | Power Pivot | Excel with Power Pivot (Windows) |
 | Dashboards | A Qlik Sense Cloud account |
 | Automation | Power Automate Desktop (Windows) and a Gmail account with an App Password |
@@ -139,7 +122,7 @@ python -m pytest -q                              # database tests are skipped wi
 python src/run_monthly_refresh.py --skip-db      # builds reports/board_report_2025-12.pdf
 ```
 
-A clean clone gives `172 passed, 19 skipped` (the skips are the PostgreSQL tests) and `STATUS=WARN`, because the data checks need the database. The PDF includes the credit risk page when the `risk_*.csv` extracts are in `dashboards/qlik/data/`.
+A clean install currently gives `172 passed, 19 skipped` (the skips are the PostgreSQL tests) and `STATUS=WARN`, because the data checks need the database. The PDF includes the credit risk page when the `risk_*.csv` extracts are in `dashboards/qlik/data/`.
 
 ## Full build from scratch
 
@@ -249,5 +232,6 @@ The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it the
 - [x] Board report PDF (summary, commentary, P&L, budget vs actual, balance sheet, risk summary, notes) and monthly refresh runner
 - [x] Power Automate flow built, tested and screenshotted
 - [x] README with setup instructions
-- [ ] Final architecture diagram, finalised test results and metric dictionary
+- [x] Architecture diagram (`docs/architecture/architecture.png`)
+- [ ] Data and API documentation, finalised test results and metric dictionary
 - [ ] Demo recording, presentation and individual reflection
