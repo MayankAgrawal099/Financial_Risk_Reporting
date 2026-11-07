@@ -1,6 +1,10 @@
 # Monthly refresh and board report automation
 
-Every month one flow refreshes the data, checks it, builds the board report as a PDF and emails it. Picture: `docs/architecture/power_automate_flow.png`.
+Every month one flow refreshes the data, checks it, builds the board report as a PDF and emails it.
+
+![Automation flow diagram](../docs/architecture/power_automate_flow.png)
+
+The diagram shows the Power Automate Desktop steps (top) and the Python job they run (bottom). Screenshots of the real flow are further down.
 
 | Piece | File | What it does |
 |---|---|---|
