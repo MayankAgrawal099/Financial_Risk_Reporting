@@ -3,7 +3,7 @@
 Same content as the SCORECARD ACCURACY block at the end of `test_results.txt`.
 
 ```text
-Recorded 2026-11-06 by src/record_test_results.py
+Recorded 2026-11-07 by src/record_test_results.py
 
 Data: Lending Club 36-month loans. Train issue years 2013, 2014, test 2015 (time-based split).
 Model: logistic regression on WoE features (14 features), score 600 points at 50:1 odds, 20 points to double the odds, higher = safer.
