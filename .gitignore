@@ -36,3 +36,4 @@ reports/board_report_*.pdf
 reports/latest_report.json
 reports/refresh_log.csv
 reports/outbox/
+reports/pytest_results.xml

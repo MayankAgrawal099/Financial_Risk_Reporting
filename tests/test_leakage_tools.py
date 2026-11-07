@@ -1,3 +1,4 @@
+"""Tests for the leakage audit and check tools: columns known only after the loan outcome are caught."""
 import numpy as np
 import pandas as pd
 import pytest

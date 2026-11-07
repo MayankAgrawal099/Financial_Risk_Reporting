@@ -163,9 +163,10 @@ python src/export_risk_for_qlik.py      # scorecard results (no database needed)
 # 9. Monthly refresh and board report (the command the Power Automate flow runs)
 python src/run_monthly_refresh.py --lending-club
 
-# 10. Tests, then record the results (pytest overwrites reports/test_results.txt, so record afterwards)
-python -m pytest > reports/test_results.txt
-python src/record_test_results.py       # appends scorecard accuracy numbers
+# 10. Final results. Set FIN_PG_DSN first so nothing is skipped. pytest overwrites reports/test_results.txt, so record afterwards.
+python -m pytest -v --junitxml=reports/pytest_results.xml > reports/test_results.txt
+python src/run_data_checks.py           # all 32 checks (SQL and loan checks need the database and step 5)
+python src/record_test_results.py       # writes reports/test_results_summary.md and scorecard_accuracy.md
 ```
 
 Sample design: 36-month loans issued 2013 to 2015 with a final outcome, 60,000 per year. Loans issued in 2016 are excluded because many are still open at the end of the file, which would bias their default rate (see `docs/lending_club_profile.json`).
@@ -188,7 +189,7 @@ To add a short management comment to a month's report, copy `automation/commenta
 python -m pytest -q
 ```
 
-The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it they are skipped. With the database connected the full suite runs with none skipped. Results are in `reports/test_results.txt`.
+The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it they are skipped. With the database connected the full suite runs with none skipped. The final results are in [`reports/test_results_summary.md`](reports/test_results_summary.md): pytest results per test file, all 32 data checks and the scorecard metrics. It says "not final" if anything failed or was skipped. Raw pytest output: `reports/test_results.txt`.
 
 ## Documentation
 
@@ -233,5 +234,6 @@ The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it the
 - [x] Power Automate flow built, tested and screenshotted
 - [x] README with setup instructions
 - [x] Architecture diagram (`docs/architecture/architecture.png`)
-- [ ] Data and API documentation, finalised test results and metric dictionary
+- [x] Test results finalised (`reports/test_results_summary.md`)
+- [ ] Data and API documentation and final metric dictionary
 - [ ] Demo recording, presentation and individual reflection
