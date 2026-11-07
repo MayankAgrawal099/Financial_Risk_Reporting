@@ -118,6 +118,10 @@ python src/export_for_qlik.py --dsn postgresql://postgres:YOUR_PASSWORD@localhos
 #     Writes dashboards/qlik/data/risk_*.csv and dashboards/qlik/risk_measures.md
 python src/export_risk_for_qlik.py
 
+# 4j. Monthly refresh and board report (the command the Power Automate flow runs). Writes reports/board_report_YYYY-MM.pdf
+#     and reports/latest_report.json; details in automation/README.md
+python src/run_monthly_refresh.py --skip-db
+
 # 5. Data checks: balance sheet balances, P&L matches the ledger, variances add up.
 #    Writes reports/data_checks.md and reports/data_checks.csv (add --dsn or set FIN_PG_DSN for the SQL checks)
 python src/run_data_checks.py
@@ -168,5 +172,6 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [ ] Qlik Sense finance sheet built and screenshotted
 - [x] Qlik Sense kit for the risk sheet (CSV export, load script, measures)
 - [ ] Qlik Sense risk sheet built and screenshotted
-- [ ] Power Automate board pack
+- [x] Board report PDF builder and monthly refresh runner (tested)
+- [ ] Power Automate flow built, tested and screenshotted
 - [ ] Documentation, tests and final presentation

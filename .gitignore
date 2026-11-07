@@ -30,3 +30,9 @@ dashboards/qlik/finance_sheet_mockup.png
 dashboards/qlik/finance_step_by_step.md
 dashboards/qlik/risk_step_by_step.md
 dashboards/qlik/risk_sheet_mockup.png
+
+#reports
+reports/board_report_*.pdf
+reports/latest_report.json
+reports/refresh_log.csv
+reports/outbox/

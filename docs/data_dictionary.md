@@ -325,3 +325,25 @@ Stability outputs: `src/scorecard_stability.py` writes `docs/psi_features.csv` (
 Qlik exports: `src/export_for_qlik.py` writes `dashboards/qlik/data/bva_lines.csv` (from `fin.v_bva_summary`), `bva_accounts.csv` (from `fin.v_bva_account_month`) and `variance_drivers.csv` (from `fin.v_variance_drivers`). Column meanings are the same as in those views. The Qlik load script renames fields so that only `Period` is shared between tables.
 
 Qlik risk exports: `src/export_risk_for_qlik.py` writes `dashboards/qlik/data/risk_years.csv` (one row per issue year, from `docs/psi_by_year.csv`), `risk_bands.csv` (issue year by risk band: loans, defaults, sum of predicted PD and of scores, from `data/processed/lc_scored.csv`), `risk_feature_psi.csv` (PSI per feature and period in long form), `risk_score_deciles.csv` and `risk_models.csv` (scorecard and benchmark AUC / Gini / KS from `docs/scorecard_metrics.csv`).
+
+## 4. Reporting extracts and automation outputs (SYNTHETIC finance data, REAL Lending Club results)
+
+`dashboards/qlik/data/balance_sheet.csv` (37 rows: opening position plus 36 month-ends, from `fin.v_balance_sheet_monthly`). Used by the board report PDF only; Qlik does not load it.
+
+| Column | Meaning |
+|---|---|
+| period, fiscal_year, quarter, month_end, is_opening | Month key (YYYY-MM), calendar attributes, and whether the row is the opening balance |
+| cash, gross_loans, allowance, net_loans, fixed_assets, other_assets, total_assets | Assets in USD (net loans = gross loans minus allowance) |
+| borrowings, accrued_expenses, taxes_payable, total_liabilities, total_equity | Liabilities and equity in USD |
+| balance_check | Total assets minus liabilities minus equity (must be 0) |
+| allowance_coverage, debt_to_equity | Ratios (M25, M27) |
+| month_net_income | Net income of the month in USD (M11) |
+
+Board report outputs (`reports/`, not committed):
+
+| File | Contents |
+|---|---|
+| `board_report_YYYY-MM.pdf` | The monthly board report |
+| `latest_report.json` | Status for the flow: `status` (OK, WARN, FAILED), `month`, `month_label`, `pdf_path`, `pdf_name`, `subject`, `body`, `headlines`, `checks`, `warnings`, `steps`, `error` |
+| `refresh_log.csv` | One row per run: time, month, status, duration, PDF name, message |
+| `outbox/*.eml` | Email written by `send_report_email.py --dry-run` |
