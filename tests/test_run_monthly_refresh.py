@@ -21,6 +21,7 @@ def test_skip_db_run_builds_pdf_and_warns(data_dir, tmp_path):
     out = tmp_path / "reports"
     info = run_refresh(dsn=None, data_dir=data_dir, out_dir=out)
     assert info["status"] == "WARN" and info["month"] == "2025-12" and info["error"] == ""
+    assert isinstance(info["management_comment"], bool)
     assert (out / "board_report_2025-12.pdf").exists()
     saved = json.loads((out / "latest_report.json").read_text())
     assert saved["pdf_name"] == "board_report_2025-12.pdf" and "board report - December 2025" in saved["subject"]

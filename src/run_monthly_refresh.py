@@ -83,7 +83,7 @@ def run_refresh(month: str | None = None, dsn: str | None = None, skip_db: bool 
                 send_email: bool = False, dry_run_email: bool = False, checks_runner=run_checks) -> dict:
     steps, warnings = [], []
     info = {"status": "OK", "month": month, "month_label": "", "pdf_path": "", "pdf_name": "", "subject": "", "body": "",
-            "headlines": [], "checks": None, "warnings": warnings, "steps": steps, "error": "",
+            "headlines": [], "management_comment": False, "checks": None, "warnings": warnings, "steps": steps, "error": "",
             "generated_at": datetime.now().isoformat(timespec="seconds")}
 
     def step(name, fn):
@@ -118,7 +118,7 @@ def run_refresh(month: str | None = None, dsn: str | None = None, skip_db: bool 
         info["month"], info["month_label"] = month, month_label(month)
         pdf = out_dir / f"board_report_{month}.pdf"
         _, facts = step("build_pdf", lambda: (build_report(month, data_dir, pdf, out_dir / "data_checks.csv" if use_db else None)))
-        info.update(pdf_path=str(pdf), pdf_name=pdf.name, headlines=headlines(facts))
+        info.update(pdf_path=str(pdf), pdf_name=pdf.name, headlines=headlines(facts), management_comment=facts.get("has_comment", False))
         info["subject"] = f"{COMPANY} board report - {info['month_label']}"
         chk = (f"Data checks at the last refresh: {checks['passed']} passed, {checks['failed']} failed.\n" if checks
                else "Data checks were not run for this report.\n")

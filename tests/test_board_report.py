@@ -6,7 +6,7 @@ import pytest
 from pypdf import PdfReader
 
 from build_board_report import (DATA_DIR, board_facts, build_report, check_summary, headlines, latest_month, line_table, load_extracts,
-                                metric_definitions, month_label, signed, usd)
+                                metric_definitions, month_label, signed, usd, commentary, management_comment)
 from export_for_qlik import WATERFALL_LINES
 from export_risk_for_qlik import export as risk_export
 from test_scorecard_stability import build
@@ -108,22 +108,22 @@ def test_metric_definitions_and_check_summary(tmp_path):
 
 
 # ------------------------------------------------------------------ the PDF
-def test_pdf_without_risk_has_five_pages(finance, tmp_path):
+def test_pdf_without_risk_has_six_pages(finance, tmp_path):
     p, f = build_report("2025-12", finance, tmp_path / "r.pdf", generated="01 Jan 2026 09:00")
     r = PdfReader(p)
-    assert len(r.pages) == 5 and f["pages"] == 5
+    assert len(r.pages) == 6 and f["pages"] == 6
     assert r.metadata.title == "Kestrel Credit Ltd board report December 2025"
     t = text(p)
-    for s in ("Summary", "Profit and loss", "Variance drivers", "Balance sheet", "Notes and definitions", "Page 5 of 5",
+    for s in ("Summary", "Commentary", "Profit and loss", "Variance drivers", "Balance sheet", "Notes and definitions", "Page 6 of 6",
               "1,962,349", "3,580,855", "Provision for Credit Losses", "129,229,642", "Difference 0.00"):
         assert s in t, s
     assert "Credit risk: scorecard" not in t
 
 
-def test_pdf_with_risk_has_six_pages(with_risk, tmp_path):
+def test_pdf_with_risk_has_seven_pages(with_risk, tmp_path):
     p, f = build_report("2025-12", with_risk, tmp_path / "r6.pdf")
     t = text(p)
-    assert len(PdfReader(p).pages) == 6 and "Credit risk: scorecard" in t and "Page 6 of 6" in t
+    assert len(PdfReader(p).pages) == 7 and "Credit risk: scorecard" in t and "Page 7 of 7" in t
     assert "Gini" in t and "Population Stability Index" in t and "not reconciled" in t
 
 
@@ -138,3 +138,45 @@ def test_data_checks_line_on_the_notes_page(finance, tmp_path):
     pd.DataFrame({"status": ["PASS"] * 31 + ["FAIL"]}).to_csv(c, index=False)
     p, _ = build_report("2025-12", finance, tmp_path / "c.pdf", checks_csv=c)
     assert "31 of 32 passed, 1 failed" in text(p)
+
+
+# ------------------------------------------------------------------ commentary
+def test_commentary_states_the_numbers_and_stays_short(ex):
+    c = commentary(board_facts(ex, "2025-12"))
+    says = " ".join(c["says"])
+    for s in ("-$1,618,506", "-45.2%", "Provision for Credit Losses", "-$1,661,256", "+$24,342", "$129,229,642", "3.67x"):
+        assert s in says, s
+    assert "costs and credit losses, not from lower revenue" in says
+    assert len(c["says"]) <= 6 and 1 <= len(c["watch"]) <= 4
+    assert any("largest unfavourable item" in w for w in c["watch"])
+    assert any("Data checks were not run" in w for w in c["watch"])          # no check results passed in
+
+
+def test_commentary_for_a_favourable_month_has_nothing_to_escalate(ex):
+    f = board_facts(ex, "2023-12")
+    f["checks"] = {"passed": 32, "failed": 0, "skipped": 0, "total": 32}
+    f["bs"]["prev"] = f["bs"]["cur"]
+    c = commentary(f)
+    assert f["ni_ytd"]["variance"] > 0 and "favourable" in " ".join(c["says"])
+    assert all("largest unfavourable" not in w for w in c["watch"])
+
+
+def test_management_comment_is_read_cleaned_and_capped(tmp_path):
+    assert management_comment("2025-12", tmp_path) is None
+    (tmp_path / "2025-12.md").write_text("# Heading\n<!-- note -->\nCredit losses were high.\n\nReview in Q1.\n", encoding="utf-8")
+    assert management_comment("2025-12", tmp_path) == "Credit losses were high. Review in Q1."
+    (tmp_path / "2025-11.md").write_text("word " * 400, encoding="utf-8")
+    long = management_comment("2025-11", tmp_path)
+    assert len(long) <= 705 and long.endswith("...")
+    (tmp_path / "2025-10.md").write_text("# only a heading\n", encoding="utf-8")
+    assert management_comment("2025-10", tmp_path) is None
+
+
+def test_management_comment_appears_on_the_commentary_page_only_when_present(finance, tmp_path):
+    c = tmp_path / "c"
+    c.mkdir()
+    (c / "2025-12.md").write_text("Example comment: provisions are being reviewed.", encoding="utf-8")
+    p, f = build_report("2025-12", finance, tmp_path / "with.pdf", commentary_dir=c)
+    assert f["has_comment"] and "Management comment" in text(p) and "provisions are being reviewed" in text(p)
+    p, f = build_report("2025-12", finance, tmp_path / "without.pdf", commentary_dir=tmp_path / "none")
+    assert not f["has_comment"] and "Management comment" not in text(p) and "What the numbers say" in text(p)

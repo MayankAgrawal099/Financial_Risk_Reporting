@@ -5,7 +5,7 @@ Every month one flow refreshes the data, checks it, builds the board report as a
 | Piece | File | What it does |
 |---|---|---|
 | Orchestrator | `src/run_monthly_refresh.py` | Reloads the database, runs the 32 data checks, exports the extracts, builds the PDF, writes `reports/latest_report.json` and `reports/refresh_log.csv` |
-| Report | `src/build_board_report.py` | Builds `reports/board_report_YYYY-MM.pdf` (5 pages, or 6 with the credit risk page) from the same CSV extracts that feed the Qlik dashboards |
+| Report | `src/build_board_report.py` | Builds `reports/board_report_YYYY-MM.pdf` (6 pages, or 7 with the credit risk page) from the same CSV extracts that feed the Qlik dashboards |
 | Email (fallback) | `src/send_report_email.py` | Sends the PDF by SMTP from Python, or writes an `.eml` file with `--dry-run` |
 | Flow | Power Automate Desktop flow `Monthly Board Report` | Runs the orchestrator, reads the status file, emails the PDF (or a failure notice) |
 | Schedule | Windows Task Scheduler | Starts the flow on the 1st of each month |
@@ -25,17 +25,23 @@ Set `FIN_PG_DSN` once (the connection string) and the `--dsn` option is not need
 ## What the board report contains
 
 1. Summary: month and year-to-date net income against budget, revenue, total assets, debt-to-equity, and written headlines built from the numbers
-2. Profit and loss: every line, month and year to date, actual, budget, variance (favourable positive)
-3. Variance drivers: budget to actual net income waterfall, volume and rate effects
-4. Balance sheet: month-end position against the prior month, check that assets equal liabilities plus equity, trend charts
-5. Credit risk (when the scorecard outputs exist): Gini, AUC, KS, score PSI, default rate by band, actual vs predicted
-6. Notes and definitions: sources, sign convention, data check result, metric definitions from `docs/metric_dictionary.md`
+2. Commentary: an optional management comment you write (shown first), then "What the numbers say" and "Watch next month", both written automatically from the figures (what drove the variance, rate versus volume, scorecard calibration, items to escalate)
+3. Profit and loss: every line, month and year to date, actual, budget, variance (favourable positive)
+4. Variance drivers: budget to actual net income waterfall, volume and rate effects
+5. Balance sheet: month-end position against the prior month, check that assets equal liabilities plus equity, trend charts
+6. Credit risk (when the scorecard outputs exist): Gini, AUC, KS, score PSI, default rate by band, actual vs predicted
+7. Notes and definitions: sources, sign convention, data check result, metric definitions from `docs/metric_dictionary.md`
+
+## Adding a management comment (optional, 2 minutes a month)
+
+Before the monthly run, copy `automation/commentary/_template.md` to `automation/commentary/YYYY-MM.md` (for example `2025-12.md`) and write 2 to 4 plain sentences: what drove the month and what is being done. The next run puts it at the top of the Commentary page, and `latest_report.json` shows `management_comment: true`. With no file, the page shows only the automatic commentary. The automatic text states only what the numbers show; causes (why credit losses were high) are for your comment.
 
 ## Status file for the flow: `reports/latest_report.json`
 
 | Field | Meaning |
 |---|---|
 | `status` | `OK`, `WARN` (built, but something was skipped, for example data checks not run) or `FAILED` (nothing to send) |
+| `management_comment` | `true` when `automation/commentary/YYYY-MM.md` was found and shown on the Commentary page |
 | `month`, `month_label` | The report month, for example `2025-12` and `December 2025` |
 | `pdf_path`, `pdf_name` | The PDF to attach (empty when `FAILED`) |
 | `subject`, `body` | Ready-made email subject and plain-text body (a failure notice when `FAILED`) |

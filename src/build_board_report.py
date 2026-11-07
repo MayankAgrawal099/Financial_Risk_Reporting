@@ -1,7 +1,8 @@
 """Build the monthly board report as a PDF from the reporting extracts (the same CSV files the Qlik dashboards read).
 
-Pages: 1 Summary, 2 P&L budget vs actual, 3 Variance drivers, 4 Balance sheet, 5 Credit risk (scorecard; only if the
-risk extracts exist), 6 Notes and definitions. Every number comes from the extracts, so the PDF and the dashboards agree.
+Pages: 1 Summary, 2 Commentary, 3 P&L budget vs actual, 4 Variance drivers, 5 Balance sheet, 6 Credit risk (scorecard;
+only if the risk extracts exist), then Notes and definitions. The commentary is written from the numbers; an optional
+management comment (automation/commentary/YYYY-MM.md) is shown above it when the file exists. Every number comes from the extracts, so the PDF and the dashboards agree.
 
 Run:  python src/build_board_report.py                (latest month in the data)
       python src/build_board_report.py --month 2025-12
@@ -28,6 +29,8 @@ from export_for_qlik import WATERFALL_LINES
 ROOT = Path(__file__).resolve().parents[1]
 DATA_DIR = ROOT / "dashboards" / "qlik" / "data"
 COMPANY = "Kestrel Credit Ltd"
+COMMENTARY_DIR = ROOT / "automation" / "commentary"
+COMMENT_MAX = 700          # characters of management comment shown on the page
 
 GREEN, RED, AMBER, BLUE, GREY, INK, MUTE, LIGHT, BG, CARD = (
     "#2da44e", "#d1242f", "#bf8700", "#1f6feb", "#9aa5b1", "#1f2328", "#57606a", "#e6e9ed", "#ffffff", "#f6f8fa")
@@ -165,6 +168,83 @@ def headlines(f: dict) -> list[str]:
     return out
 
 
+def management_comment(month: str, folder: Path = COMMENTARY_DIR) -> str | None:
+    """Text of automation/commentary/<month>.md (headings and comment lines starting # or <!-- removed), or None."""
+    path = Path(folder) / f"{month}.md"
+    if not path.exists():
+        return None
+    lines = [ln.strip() for ln in path.read_text(encoding="utf-8-sig").splitlines()]
+    text = " ".join(ln for ln in lines if ln and not ln.startswith(("#", "<!--")))
+    text = re.sub(r"\s+", " ", re.sub(r"<!--.*?-->", "", text)).strip()
+    if not text:
+        return None
+    if len(text) > COMMENT_MAX:
+        text = text[:COMMENT_MAX].rsplit(" ", 1)[0].rstrip(",;:") + " ..."
+    return text
+
+
+def commentary(f: dict) -> dict[str, list[str]]:
+    """Short interpretation of the numbers. Only states what the numbers show: no causes outside the data."""
+    ni, ytd, rev, b, t = f["ni"], f["ni_ytd"], f["rev_ytd"], f["bs"], f["table"]
+    says: list[str] = []
+    contrib = t[t.line_name.isin(WATERFALL_LINES)]
+    n_bad = int((contrib.y_variance < 0).sum())
+    says.append(f"Year to date, net income is {signed(ytd['variance'])} ({pct(ytd['pct'], True)}) against budget, {fav(ytd['variance'])}. "
+                f"Of the {len(contrib)} lines that build net income, {n_bad} are unfavourable and {len(contrib) - n_bad} favourable.")
+    key, kv = f["worst"] if ytd["variance"] < 0 else f["best"]
+    if ytd["variance"] and kv * ytd["variance"] > 0:
+        share = kv / ytd["variance"]
+        says.append(f"{key} ({signed(kv)}) is {share:.0%} of the year-to-date net income variance; "
+                    f"all other lines together net to {signed(ytd['variance'] - kv)}.")
+    if ytd["variance"] < 0 and abs(rev["pct"]) < 0.02:
+        says.append(f"Revenue is within 2% of budget ({pct(rev['pct'], True)}), so the net income gap comes from costs and credit losses, "
+                    f"not from lower revenue.")
+    elif rev["pct"]:
+        says.append(f"Revenue is {signed(rev['variance'])} ({pct(rev['pct'], True)}) against budget year to date.")
+    if "driver" in f:
+        d = f["driver"]
+        main = "rate" if abs(d["rate_effect"]) >= abs(d["volume_effect"]) else "volume"
+        says.append(f"For {d['account']} the variance is mainly a {main} effect: {signed(d['rate_effect'])} from rate and "
+                    f"{signed(d['volume_effect'])} from volume.")
+    says.append(f"Total assets moved {signed(b['assets_change'])} in the month to {usd(b['total_assets'])}; debt-to-equity is "
+                f"{b['de']:.2f}x and the balance sheet balances.")
+    if "risk" in f:
+        r = f["risk"]
+        gap = r["actual"] - r["predicted"]
+        if abs(gap) < 0.01:
+            cal = f"Actual and predicted default rates agree within one point ({pct(r['actual'])} vs {pct(r['predicted'])})."
+        else:
+            way, eff = ("under-predicts", "too low") if gap > 0 else ("over-predicts", "too high")
+            cal = (f"The model {way} the {r['year']} default rate ({pct(r['actual'])} actual vs {pct(r['predicted'])} predicted); "
+                   f"losses estimated from the predicted rate would be {eff}.")
+        says.append(f"Credit scorecard: it separates good from bad borrowers (Gini {r['gini']:.3f}; default rate "
+                    f"{pct(r['rate_a'])} in band A against {pct(r['rate_e'])} in band E). {cal}")
+    says = says[:6]
+
+    watch: list[str] = []
+    if ytd["variance"] < 0 and f["worst"][1] < 0:
+        watch.append(f"{f['worst'][0]} ({signed(f['worst'][1])} year to date) is the largest unfavourable item: check whether the "
+                     f"budget assumption or the underlying trend needs to change.")
+    if "risk" in f:
+        r = f["risk"]
+        gap = r["actual"] - r["predicted"]
+        if abs(gap) >= 0.01:
+            watch.append(f"Scorecard calibration gap of {gap:+.1%}: recalibrate the predicted default rate before it is used for provisioning.")
+        if r["psi"] >= 0.10:
+            watch.append(f"Score PSI is {r['psi']:.3f} ({r['psi_status']}): the borrower population has shifted; review the model.")
+    chk = f.get("checks")
+    if chk is None:
+        watch.append("Data checks were not run for this report: re-run the refresh with the database before relying on the figures.")
+    elif chk["failed"]:
+        watch.append(f"{chk['failed']} data check(s) failed at the last refresh: investigate before circulating this report.")
+    prev_de = float(b["prev"].debt_to_equity)
+    if abs(b["de"] - prev_de) >= 0.01:
+        watch.append(f"Debt-to-equity moved from {prev_de:.2f}x to {b['de']:.2f}x in the month: keep an eye on borrowing against equity.")
+    if not watch:
+        watch.append("No items need escalation this month: results are within budget and the checks passed.")
+    return {"says": says, "watch": watch[:4]}
+
+
 def metric_definitions(path: Path, names: list[str]) -> list[tuple[str, str, str]]:
     out = {}
     if path.exists():
@@ -278,6 +358,48 @@ def page_summary(doc: Doc, f: dict):
         for k, part in enumerate(wrapped):
             fig.text(0.07, yy - k * 0.026, part, fontsize=10, color=INK, va="top")
         yy -= 0.026 * len(wrapped) + 0.03
+    doc.save(fig)
+
+
+STYLES = [dict(width=128, size=10.5, line=0.025, gap=0.02), dict(width=140, size=9.5, line=0.022, gap=0.012)]   # normal, compact
+
+
+def _bullets(fig, x, y, items, width, size, line, gap) -> float:
+    """Draw bullet paragraphs from y downwards; return the y after the last one."""
+    for item in items:
+        parts = textwrap.wrap(item, width)
+        fig.text(x, y, "•", fontsize=size + 1, color=BLUE, va="top")
+        for k, part in enumerate(parts):
+            fig.text(x + 0.013, y - k * line, part, fontsize=size, color=INK, va="top")
+        y -= line * len(parts) + gap
+    return y
+
+
+def _bullet_height(items, width, size, line, gap) -> float:
+    return sum(line * len(textwrap.wrap(i, width)) + gap for i in items)
+
+
+def page_commentary(doc: Doc, f: dict, comment: str | None):
+    fig = doc.page("Commentary", f"What the numbers say and what to watch. Written from the figures in this report. {f['label']}.")
+    c = commentary(f)
+    head, gap, avail = 0.05, 0.016, 0.865 - 0.07
+    for st in STYLES:                                   # use the compact style only if the text does not fit
+        cw = textwrap.wrap(comment, st["width"] - 8) if comment else []
+        heights = ([head + st["line"] * len(cw) + 0.02] if comment else []) + \
+                  [head + _bullet_height(c[k], **st) + 0.004 for k in ("says", "watch")]
+        if sum(heights) + gap * (len(heights) - 1) <= avail:
+            break
+    blocks = ([("Management comment", "Added by the finance team for this month", cw)] if comment else []) + \
+             [("What the numbers say", None, c["says"]), ("Watch next month", None, c["watch"])]
+    top = 0.865
+    for (title, sub, items), h in zip(blocks, heights):
+        card(fig, 0.04, top - h, 0.92, h, title, sub)
+        if title == "Management comment":
+            for k, part in enumerate(items):
+                fig.text(0.058, top - head - 0.012 - k * st["line"], part, fontsize=st["size"], color=INK, va="top", style="italic")
+        else:
+            _bullets(fig, 0.058, top - head - 0.012, items, **st)
+        top -= h + gap
     doc.save(fig)
 
 
@@ -485,13 +607,15 @@ def page_notes(doc: Doc, f: dict, dictionary: Path, checks: dict | None):
 # ------------------------------------------------------------------ main
 def build_report(month: str | None = None, data_dir: Path = DATA_DIR, out_path: Path | None = None,
                  checks_csv: Path | None = None, dictionary: Path = ROOT / "docs" / "metric_dictionary.md",
-                 generated: str | None = None) -> tuple[Path, dict]:
+                 generated: str | None = None, commentary_dir: Path = COMMENTARY_DIR) -> tuple[Path, dict]:
     ex = load_extracts(data_dir)
     month = month or latest_month(ex)
     f = board_facts(ex, month)
     out_path = Path(out_path or ROOT / "reports" / f"board_report_{month}.pdf")
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    total = 6 if "risk" in f else 5
+    total = 7 if "risk" in f else 6
+    comment = management_comment(month, commentary_dir)
+    f["has_comment"] = comment is not None
     generated = generated or datetime.now().strftime("%d %b %Y %H:%M")
     checks = check_summary(checks_csv)
     f["checks"], f["pages"], f["pdf"] = checks, total, str(out_path)
@@ -499,6 +623,7 @@ def build_report(month: str | None = None, data_dir: Path = DATA_DIR, out_path: 
                                       "Subject": "Monthly board report", "Keywords": f"board report, {month}"}) as pdf:
         doc = Doc(pdf, f["label"], total, generated)
         page_summary(doc, f)
+        page_commentary(doc, f, comment)
         page_pl(doc, f, ex)
         page_drivers(doc, f, ex)
         page_balance(doc, f, ex)
@@ -513,9 +638,10 @@ def main() -> None:
     ap.add_argument("--month", help="YYYY-MM (default: latest month in the data)")
     ap.add_argument("--data-dir", type=Path, default=DATA_DIR)
     ap.add_argument("--out", type=Path)
+    ap.add_argument("--commentary-dir", type=Path, default=COMMENTARY_DIR)
     ap.add_argument("--checks-csv", type=Path, default=ROOT / "reports" / "data_checks.csv")
     a = ap.parse_args()
-    path, f = build_report(a.month, a.data_dir, a.out, a.checks_csv)
+    path, f = build_report(a.month, a.data_dir, a.out, a.checks_csv, commentary_dir=a.commentary_dir)
     print(f"Board report for {f['label']}: {path} ({f['pages']} pages)")
 
 

@@ -172,6 +172,6 @@ default rate (see `docs/lending_club_profile.json`). Train = 2013-2014, test = 2
 - [ ] Qlik Sense finance sheet built and screenshotted
 - [x] Qlik Sense kit for the risk sheet (CSV export, load script, measures)
 - [ ] Qlik Sense risk sheet built and screenshotted
-- [x] Board report PDF builder and monthly refresh runner (tested)
+- [x] Board report PDF (summary, commentary, P&L, budget vs actual, balance sheet, risk summary, notes) and monthly refresh runner (tested)
 - [ ] Power Automate flow built, tested and screenshotted
 - [ ] Documentation, tests and final presentation

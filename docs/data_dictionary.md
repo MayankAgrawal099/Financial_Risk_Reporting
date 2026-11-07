@@ -344,6 +344,6 @@ Board report outputs (`reports/`, not committed):
 | File | Contents |
 |---|---|
 | `board_report_YYYY-MM.pdf` | The monthly board report |
-| `latest_report.json` | Status for the flow: `status` (OK, WARN, FAILED), `month`, `month_label`, `pdf_path`, `pdf_name`, `subject`, `body`, `headlines`, `checks`, `warnings`, `steps`, `error` |
+| `latest_report.json` | Status for the flow: `status` (OK, WARN, FAILED), `management_comment` (true when a comment file was used), `month`, `month_label`, `pdf_path`, `pdf_name`, `subject`, `body`, `headlines`, `checks`, `warnings`, `steps`, `error` |
 | `refresh_log.csv` | One row per run: time, month, status, duration, PDF name, message |
 | `outbox/*.eml` | Email written by `send_report_email.py --dry-run` |
