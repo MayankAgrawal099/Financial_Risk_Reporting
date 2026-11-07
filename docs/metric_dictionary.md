@@ -4,8 +4,9 @@ Every metric used in the SQL views, the Qlik Sense dashboards and the monthly bo
 finance teams can trust and reproduce the numbers. Each metric has an ID (M01, M02, ...) that the SQL view
 and dashboard labels refer to.
 
-**Status:** *Defined* = built and checked against the data. *Draft* = definition agreed, to be confirmed when the
-metric is built. Updated as each metric is built; finalised on 1 Nov 2026.
+**Status:** every metric is *Defined*: built and checked against the data. Section 8 shows where each one is built and
+shown (SQL view, Python reference, Power Pivot measure, Qlik measure, board report), and a test checks that the names
+in that table exist. Finalised on 8 Nov 2026.
 
 ## Conventions
 
@@ -20,6 +21,10 @@ metric is built. Updated as each metric is built; finalised on 1 Nov 2026.
 | Averages | Average loan book = mean of the monthly `avg_loan_book` (opening and closing book averaged within each month). |
 | Equity | The ledger has no closing entries. Equity = share capital + opening retained earnings + cumulative net income. |
 | Zero denominators | A ratio with a zero denominator is shown as blank, never as 0. |
+| Year to date (YTD) | From January of the fiscal year up to and including the report month. The board report shows month and YTD side by side. |
+| Loan default flag | Lending Club loans only: `Charged Off` = 1 (default), `Fully Paid` = 0. Loans still open are excluded from the sample. |
+| Train and test | Scorecard train = loans issued 2013-2014, test = loans issued 2015. Headline scorecard numbers always describe the test year. |
+| Synthetic and real | M01-M41 are computed on the synthetic ledger. M42 and M50-M60 are computed on real Lending Club loans. The two are never combined. |
 
 Reference implementation: `src/finance_metrics.py`. SQL and dashboard results must match it (see section 6).
 SQL: M01-M16 are implemented in `sql/02_pl_views.sql` (`fin.v_pl_monthly`, `fin.v_pl_quarterly`, `fin.v_pl_annual`) and M20-M28 in `sql/03_balance_sheet_views.sql` (`fin.v_balance_sheet_monthly`, `fin.v_balance_sheet_year_end`).
@@ -98,12 +103,12 @@ says "each unit earned or cost more or less than planned" (price for income line
 | ID | Metric | Definition | Formula | Source | Status |
 |---|---|---|---|---|---|
 | M40 | Charge-off Rate (monthly) | Share of the opening loan book written off in the month. | `writeoffs` / `opening_loan_book` | `fact_drivers` | Defined |
-| M41 | Charge-off Rate (annualised) | Simple annualisation. | M40 x 12 | `fact_drivers` | Defined |
+| M41 | Charge-off Rate (annualised) | Write-offs over a period as an annual rate of the average opening loan book. For one month it equals M40 x 12. | Write-offs in the period x (12 / n) / average opening loan book | `fact_drivers` | Defined |
 | M42 | Loan Default Rate (Lending Club) | Share of finished loans that were charged off, in any group (year, grade, score band). | Charged Off / (Fully Paid + Charged Off) | `lending_club_sample` | Defined |
 
-M40 comes from the synthetic ledger and M42 from the real Lending Club sample. The two are not reconciled.
+M40 and M41 come from the synthetic ledger (reference implementation `finance_metrics.charge_off_rates`, reference values in section 6; not shown on a dashboard). M42 comes from the real Lending Club sample. The two are not reconciled.
 
-## 5. Credit scorecard metrics (to be confirmed when built, 28-29 Oct)
+## 5. Credit scorecard metrics (real Lending Club loans)
 
 | ID | Metric | Definition | Formula | Status |
 |---|---|---|---|---|
@@ -114,8 +119,13 @@ M40 comes from the synthetic ledger and M42 from the real Lending Club sample. T
 | M54 | KS statistic | Largest gap between the cumulative bad and good distributions across score. | max abs(cumulative % defaults - cumulative % non-defaults) | Defined |
 | M55 | Default Rate by Score Band | Observed default rate in each risk band. | M42 per band. Five bands A (safest) to E, cut at the 20th, 40th, 60th and 80th percentile of the train scores and applied unchanged to the test loans; should rise steadily from A to E | Defined |
 | M56 | Population Stability Index (PSI) | How much the score distribution (or a feature's bin mix) moved between train and a later period. | Sum over bins of (share later - share train) x ln(share later / share train). Score bins are the 10 train score deciles (also reported on the 5 risk bands); feature bins are the WoE bins fitted on train, including Missing. Shares are floored at 0.0001. Under 0.10 stable, 0.10-0.25 moderate shift, over 0.25 large shift. | Defined |
+| M57 | Scorecard Score | Points given to a loan; higher is safer. The score of a loan is the sum of the points of its bins (`docs/scorecard_points.csv`). | Score = Offset - Factor x ln(PD / (1 - PD)), where Factor = 20 / ln 2 and Offset = 600 - Factor x ln 50. This gives 600 points at odds of 50 to 1 (non-default to default), and every 20 points doubles the odds. | Defined |
+| M58 | Predicted PD | The model's probability that a loan defaults. A group's value is the average over its loans. | Logistic regression output on the WoE features; group value = sum of PD / number of loans | Defined |
+| M59 | Calibration Gap | Whether the model predicts the right level of defaults. Positive means the model under-predicts. | M42 - M58 over the same loans (shown in percentage points). Test year: 14.83% - 12.97% = +1.9 points | Defined |
+| M60 | Lift | How much riskier or safer a band is than the average loan. Below 1 is safer than average. | Band default rate (M42) / default rate of all loans in the same data set | Defined |
 
 Train = loans issued 2013-2014. Test = loans issued 2015. `grade`, `sub_grade` and `int_rate` are not used as inputs.
+They are scored on their own as benchmarks (AUC of `sub_grade`, `int_rate` and FICO alone, on the same loans), shown next to M52-M54 in `docs/scorecard_metrics.csv`.
 
 ## 6. Reference values (check the SQL views and dashboards against these)
 
@@ -138,6 +148,52 @@ section and the data disagree. USD, whole dollars.
 | FY2024 | 45.4% | 14.6% | 15.7% | 9.8% | 107,259,535 | 80,500,000 | 25,691,322 | 3.13x | 9.8% |
 | FY2025 | 43.2% | 9.6% | 15.8% | 9.8% | 132,329,507 | 101,500,000 | 27,653,672 | 3.67x | 7.4% |
 
+**Portfolio charge-offs (synthetic ledger)**
+
+| Year | Charge-off rate, average month (M40) | Charge-off rate, annualised (M41) |
+|---|---|---|
+| FY2023 | 0.15% | 1.8% |
+| FY2024 | 0.15% | 1.8% |
+| FY2025 | 0.19% | 2.3% |
+
+## 7. Scorecard reference values (real Lending Club loans, test year 2015)
+
+These come from the scorecard run (`src/scorecard_model.py`, `src/scorecard_stability.py`). A test compares them with
+`docs/scorecard_metrics.csv` and `docs/psi_by_year.csv` whenever those files exist (that is, after the scorecard has been run).
+
+| Metric | Value |
+|---|---|
+| AUC (M52) | 0.675 |
+| Gini (M53) | 0.350 |
+| KS (M54) | 0.256 |
+| Score PSI, test vs train (M56) | 0.003 |
+
+| Issue year | Default rate (M42) | Predicted PD (M58) | Calibration gap (M59) |
+|---|---|---|---|
+| 2013 (train) | 12.16% | 12.67% | -0.51 points |
+| 2014 (train) | 13.76% | 13.25% | +0.51 points |
+| 2015 (test) | 14.83% | 12.97% | +1.86 points |
+
+## 8. Where each metric is built and shown
+
+Names in backticks are checked by a test: SQL views must exist in `sql/`, Python functions in `src/`, Power Pivot measures
+in `docs/dax_measures.md`, and Qlik measures in the measure lists in `src/export_for_qlik.py` and `src/export_risk_for_qlik.py`.
+
+| Metrics | SQL views | Python reference | Power Pivot measures | Qlik measures | Board report |
+|---|---|---|---|---|---|
+| M01-M13 Profit and loss | `fin.v_pl_monthly`, `fin.v_pl_quarterly`, `fin.v_pl_annual` | `finance_metrics.pl_by_period` | `Total Revenue`, `Net Income`, `Net Profit Margin`, `Cost-to-Income Ratio` | `Total Revenue`, `Net Interest Income`, `Provision for Credit Losses`, `Operating Expenses`, `Net Income`, `Net Profit Margin`, `Cost-to-Income Ratio` | Summary, Profit and loss |
+| M14-M16 Yield, cost of funds, NIM | `fin.v_pl_annual` | `finance_metrics.annual_summary` | none (annual ratios, see the workbook Summary sheet) | none | none |
+| M20-M28 Balance sheet and capital | `fin.v_balance_sheet_monthly`, `fin.v_balance_sheet_year_end` | `finance_metrics.balance_sheet` | `Total Assets`, `Total Equity`, `Allowance Coverage`, `Debt to Equity`, `Return on Equity` | none (not loaded into Qlik) | Summary, Balance sheet |
+| M30-M31 Variance | `fin.v_bva_summary`, `fin.v_bva_account_month` | `finance_metrics.bva_account_month` | none | `Variance`, `Variance %`, `Net Income Variance`, `Net Income Variance %`, `Opex Variance by Cost Centre` | Summary, Profit and loss |
+| M32-M33 Volume and rate effects | `fin.v_variance_drivers`, `fin.v_variance_drivers_annual` | `finance_metrics.volume_rate_effects`, `finance_metrics.variance_drivers` | none | `Volume Effect`, `Rate Effect` | Variance drivers |
+| M40-M41 Charge-off rate | none | `finance_metrics.charge_off_rates` | none | none | none (reference values only) |
+| M42 Loan default rate | none | `scorecard_model.band_table` | none | `Default Rate`, `Year Default Rate` | Credit risk |
+| M50-M51 WoE and IV | none | `woe_binning.woe_iv`, `woe_binning.iv_summary` | none | none | none (see `docs/woe_iv_report.md`) |
+| M52-M54 AUC, Gini, KS | none | `scorecard_model.auc`, `scorecard_model.gini`, `scorecard_model.ks_statistic` | none | `Test AUC`, `Test Gini`, `Test KS`, `Model AUC`, `Model Gini`, `Year AUC`, `Year Gini`, `Year KS` | Credit risk |
+| M55, M60 Bands and lift | none | `scorecard_model.band_table` | none | `Lift`, `Share of Loans` | Credit risk |
+| M56 PSI | none | `scorecard_stability.score_psi`, `scorecard_stability.feature_psi` | none | `Test Score PSI`, `Year Score PSI`, `Feature PSI (test)` | Credit risk |
+| M57-M59 Score, predicted PD, calibration | none | `scorecard_model.score_from_logit` | none | `Average Score`, `Predicted PD`, `Calibration Gap` | Credit risk |
+
 ## Change log
 
 | Date | Change |
@@ -149,3 +205,4 @@ section and the data disagree. USD, whole dollars.
 | 4 Nov 2026 | Scorecard metrics M50 (WoE) and M51 (IV) implemented in `src/woe_binning.py` and set to Defined. |
 | 4 Nov 2026 | Scorecard metrics M52 (AUC), M53 (Gini), M54 (KS) and M55 (default rate by band) implemented in `src/scorecard_model.py` and set to Defined. Score scaling: 600 points at 50:1 odds, 20 points to double the odds. |
 | 4 Nov 2026 | Scorecard metric M56 (PSI) implemented in `src/scorecard_stability.py` and set to Defined: score PSI on train deciles and risk bands, feature PSI on the fitted WoE bins, by issue year. |
+| 8 Nov 2026 | Final review. M40-M41 (charge-off rate) implemented in `src/finance_metrics.py` with reference values. Added M57 (score), M58 (predicted PD), M59 (calibration gap) and M60 (lift), which the Qlik risk sheet and board report already used. Added conventions for YTD, the default flag, train and test, and synthetic versus real. Added scorecard reference values (section 7) and the implementation index (section 8). Header and section 5 title updated. |

@@ -1,12 +1,12 @@
 # Test results summary
 
-**Result: final.** All 196 tests passed and all 32 data checks passed, with nothing skipped.
+**Result: final.** All 202 tests passed and all 32 data checks passed, with nothing skipped.
 
 Recorded 2026-11-08 by `src/record_test_results.py` on Python 3.12.10 (Windows). Raw pytest output: `reports/test_results.txt`. Data check detail: `reports/data_checks.md`. Accuracy numbers as plain text: `reports/scorecard_accuracy.md`.
 
 ## 1. Automated tests (pytest)
 
-**196 passed, 0 failed, 0 skipped** in 72 seconds, across 20 test files.
+**202 passed, 0 failed, 0 skipped** in 71 seconds, across 20 test files.
 
 | Test file | What it checks | Passed | Failed | Skipped |
 |---|---|---|---|---|
@@ -17,7 +17,7 @@ Recorded 2026-11-08 by `src/record_test_results.py` on Python 3.12.10 (Windows).
 | `test_excel_workbook.py` | The Excel workbook: tables, P&L and balance sheet formulas, DAX measure list and reference check | 2 | 0 | 0 |
 | `test_leakage_tools.py` | The leakage audit and check tools: columns known only after the loan outcome are caught | 6 | 0 | 0 |
 | `test_ledgers.py` | Integrity checks for the synthetic ledgers (run: pytest) | 10 | 0 | 0 |
-| `test_metric_definitions.py` | The metric dictionary must agree with the data: identities hold and reference values match | 9 | 0 | 0 |
+| `test_metric_definitions.py` | The metric dictionary must agree with the data: identities hold and reference values match | 15 | 0 | 0 |
 | `test_prepare_lending_club.py` | The Lending Club prep script, using a small mock file in the real format | 9 | 0 | 0 |
 | `test_qlik_kit.py` | The Qlik Sense finance kit: load script, measures and the exported CSV files | 18 | 0 | 0 |
 | `test_qlik_risk_kit.py` | The Qlik Sense risk kit: export, load script and measures (mock scorecard run, no Qlik needed) | 12 | 0 | 0 |

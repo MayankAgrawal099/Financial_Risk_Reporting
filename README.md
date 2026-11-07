@@ -235,5 +235,6 @@ The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it the
 - [x] README with setup instructions
 - [x] Architecture diagram (`docs/architecture/architecture.png`)
 - [x] Test results finalised (`reports/test_results_summary.md`)
-- [ ] Data and API documentation and final metric dictionary
+- [x] Metric dictionary finalised (`docs/metric_dictionary.md`, M01 to M60 with an implementation index)
+- [ ] Data and API documentation
 - [ ] Demo recording, presentation and individual reflection

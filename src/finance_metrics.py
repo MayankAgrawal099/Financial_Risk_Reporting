@@ -104,6 +104,27 @@ def reference_rows(tables: dict[str, pd.DataFrame]) -> tuple[list[str], list[str
     return a, b
 
 
+# ---------------------------------------------------------------- portfolio charge-offs (M40, M41)
+def charge_off_rates(tables: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """M40 monthly and M41 annualised charge-off rate, by fiscal year (Actual scenario).
+
+    M40 = write-offs / opening loan book, per month. M41 = write-offs in the year x (12 / n) / average opening
+    loan book (n = months in the year), so for one month it equals M40 x 12.
+    """
+    d = tables["fact_drivers"].query("scenario == 'Actual'").copy()
+    d["fy"] = d["period"].str[:4].astype(int)
+    d["m40"] = d["writeoffs"] / d["opening_loan_book"]
+    g = d.groupby("fy")
+    out = pd.DataFrame({"avg_monthly": g["m40"].mean(),
+                        "annualised": g["writeoffs"].sum() * (12 / g.size()) / g["opening_loan_book"].mean()})
+    return out
+
+
+def charge_off_reference_rows(tables: dict[str, pd.DataFrame]) -> list[str]:
+    """Markdown table rows for the charge-off reference values in docs/metric_dictionary.md."""
+    return [f"| FY{y} | {r.avg_monthly * 100:.2f}% | {r.annualised * 100:.1f}% |" for y, r in charge_off_rates(tables).iterrows()]
+
+
 # ---------------------------------------------------------------- budget vs actual (M30-M33)
 DRIVER_LINES = {   # account_id: (label, volume column, sign: +1 revenue / -1 cost)
     4000: ("Interest Income", "avg_loan_book", 1),
