@@ -66,7 +66,6 @@ Financial_Risk_Reporting/
 ├── excel/            # Power Pivot workbook
 ├── src/              # data preparation, scorecard, exports, board report, refresh runner
 ├── models/           # fitted scorecard artefacts (JSON)
-├── notebooks/        # exploration
 ├── dashboards/qlik/  # Qlik Sense load scripts, measure lists, CSV extracts, setup README
 ├── automation/       # Power Automate flow guide, monthly commentary files
 ├── reports/          # test_results.txt, scorecard_accuracy.md, data checks, generated board reports

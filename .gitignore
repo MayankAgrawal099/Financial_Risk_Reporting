@@ -22,6 +22,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Notebooks
+notebooks/
+
 # Logs
 *.log
 
