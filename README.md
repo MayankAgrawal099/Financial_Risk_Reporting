@@ -50,7 +50,7 @@ The two modules (blue: synthetic finance data, green: real loan data) never feed
 ## Repository structure
 
 ```
-financial-risk-reporting/
+Financial_Risk_Reporting/
 ├── data/
 │   ├── raw/          # original downloads (git-ignored, too large)
 │   ├── processed/    # trimmed and scored loan data (git-ignored)
@@ -122,7 +122,7 @@ python -m pytest -q                              # database tests are skipped wi
 python src/run_monthly_refresh.py --skip-db      # builds reports/board_report_2025-12.pdf
 ```
 
-A clean install currently gives `172 passed, 19 skipped` (the skips are the PostgreSQL tests) and `STATUS=WARN`, because the data checks need the database. The PDF includes the credit risk page when the `risk_*.csv` extracts are in `dashboards/qlik/data/`.
+A clean install currently gives `190 passed, 19 skipped` (the skips are the PostgreSQL and scorecard-output tests) and `STATUS=WARN`, because the data checks need the database. The warning about risk extracts is expected on a fresh clone: the report then uses the extracts committed in `dashboards/qlik/data/`. The PDF includes the credit risk page when the `risk_*.csv` extracts are in `dashboards/qlik/data/`.
 
 ## Full build from scratch
 
@@ -189,7 +189,7 @@ To add a short management comment to a month's report, copy `automation/commenta
 python -m pytest -q
 ```
 
-The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it they are skipped. With the database connected the full suite runs with none skipped. The final results are in [`reports/test_results_summary.md`](reports/test_results_summary.md): pytest results per test file, all 32 data checks and the scorecard metrics. It says "not final" if anything failed or was skipped. Raw pytest output: `reports/test_results.txt`.
+The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it they are skipped. With the database connected the full suite runs with none skipped. The final results are in [`reports/test_results_summary.md`](reports/test_results_summary.md): pytest results per test file, all 32 data checks and the scorecard metrics. It says "not final" if anything failed or was skipped. Raw pytest output: `reports/test_results.txt`. Before a hand-in, `python src/check_repo.py` checks links and letter case, stray or secret files, and the commit history.
 
 ## Documentation
 
@@ -217,24 +217,3 @@ The SQL view and refresh tests run only when `FIN_PG_DSN` is set; without it the
 | `STATUS=WARN` after a refresh | Something was skipped (for example `--skip-db`). Read the `warnings` list in `reports/latest_report.json` |
 | `STATUS=FAILED ... data checks failed` | A check found a mismatch. Open `reports/data_checks.md`; nothing is emailed until it passes |
 | Lending Club file looks truncated | It was opened and saved in Excel. Download it again and do not open it there |
-
-## Progress
-
-- [x] Repository and folder structure
-- [x] Data preparation (Lending Club sample, leakage audit, synthetic ledgers)
-- [x] Data dictionary and metric dictionary
-- [x] Load data into SQL (schemas `fin` and `risk`)
-- [x] P&L, balance sheet and budget vs actual views in SQL, with variance drivers
-- [x] Excel workbook for Power Pivot (`excel/DA04_PowerPivot_Model.xlsx`, DAX in `docs/dax_measures.md`)
-- [x] Data checks (ledger, SQL views, Lending Club) with report in `reports/data_checks.md`
-- [x] Scorecard: data split, WoE and IV, logistic regression, score bands, stability (PSI)
-- [x] Scorecard accuracy numbers recorded in `reports/test_results.txt`
-- [x] Qlik Sense finance dashboard and risk dashboard
-- [x] Board report PDF (summary, commentary, P&L, budget vs actual, balance sheet, risk summary, notes) and monthly refresh runner
-- [x] Power Automate flow built, tested and screenshotted
-- [x] README with setup instructions
-- [x] Architecture diagram (`docs/architecture/architecture.png`)
-- [x] Test results finalised (`reports/test_results_summary.md`)
-- [x] Metric dictionary finalised (`docs/metric_dictionary.md`, M01 to M60 with an implementation index)
-- [ ] Data and API documentation
-- [ ] Demo recording, presentation and individual reflection

@@ -1,16 +1,17 @@
 # Test results summary
 
-**Result: final.** All 202 tests passed and all 32 data checks passed, with nothing skipped.
+**Result: final.** All 209 tests passed and all 32 data checks passed, with nothing skipped.
 
 Recorded 2026-11-08 by `src/record_test_results.py` on Python 3.12.10 (Windows). Raw pytest output: `reports/test_results.txt`. Data check detail: `reports/data_checks.md`. Accuracy numbers as plain text: `reports/scorecard_accuracy.md`.
 
 ## 1. Automated tests (pytest)
 
-**202 passed, 0 failed, 0 skipped** in 71 seconds, across 20 test files.
+**209 passed, 0 failed, 0 skipped** in 72 seconds, across 21 test files.
 
 | Test file | What it checks | Passed | Failed | Skipped |
 |---|---|---|---|---|
 | `test_board_report.py` | The board report PDF: numbers tie to the extracts, pages are present, risk page is optional | 16 | 0 | 0 |
+| `test_check_repo.py` | The final repository check (src/check_repo.py) | 7 | 0 | 0 |
 | `test_clean_lending_club.py` | The scorecard cleaning and the time-based split, on a small dirty mock sample | 13 | 0 | 0 |
 | `test_data_checks.py` | Runs the data checks in src/run_data_checks.py as tests | 5 | 0 | 0 |
 | `test_data_dictionary.py` | The data dictionary must document exactly the columns that exist | 3 | 0 | 0 |

@@ -113,7 +113,7 @@ def run_refresh(month: str | None = None, dsn: str | None = None, skip_db: bool 
                 raise RuntimeError(f"{checks['failed']} data check(s) failed: {', '.join(checks['failed_ids'])}. The report was not built.")
             step("export_finance_extracts", lambda: export_extracts(dsn, data_dir))
         if step("export_risk_extracts", lambda: export_risk(data_dir)) is None:
-            warnings.append("Scorecard outputs not found: the credit risk page is only included when the risk extracts exist.")
+            warnings.append("Risk extracts were not rebuilt because the scorecard outputs (data/processed) are not on this machine; the committed extracts in dashboards/qlik/data are used.")
         month = month or latest_month(load_extracts(data_dir))
         info["month"], info["month_label"] = month, month_label(month)
         pdf = out_dir / f"board_report_{month}.pdf"

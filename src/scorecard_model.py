@@ -6,7 +6,7 @@ Output: models/scorecard_model.json                coefficients, scaling, band c
         docs/scorecard_points.csv                  points for every bin of every feature in the model
         docs/scorecard_metrics.csv                 AUC, Gini, KS on train and test, plus benchmarks
         docs/scorecard_bands.csv                   default rate per risk band (train and test)
-        docs/scorecard_report.md                   readable report; charts go to docs/Screenshots/
+        docs/scorecard_report.md                   readable report; charts go to docs/screenshots/
         data/processed/lc_scored.csv               every loan with score, PD and band (git-ignored)
 
 Method
@@ -42,7 +42,7 @@ from clean_lending_club import TARGET
 from woe_binning import _labels, correlated_pairs, transform_all
 
 ROOT = Path(__file__).resolve().parents[1]
-FIG_DIR = "Screenshots"      # charts are written to docs/<FIG_DIR>/ ; change here if you rename the folder
+FIG_DIR = "screenshots"      # charts are written to docs/<FIG_DIR>/ ; change here if you rename the folder
 BASE_SCORE, BASE_ODDS, PDO = 600, 50, 20
 P_VALUE_MAX, CORR_MAX, N_BANDS = 0.05, 0.70, 5
 BAND_NAMES = ["A", "B", "C", "D", "E"]          # A = lowest risk

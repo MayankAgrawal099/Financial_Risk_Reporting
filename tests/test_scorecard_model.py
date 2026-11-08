@@ -201,8 +201,8 @@ def test_outputs_are_written(result):
     t = result["tmp"]
     for f in ("models/scorecard_model.json", "docs/scorecard_points.csv", "docs/scorecard_metrics.csv",
               "docs/scorecard_bands.csv", "docs/scorecard_report.md", "data/lc_scored.csv",
-              "docs/Screenshots/scorecard_roc.png", "docs/Screenshots/scorecard_ks.png",
-              "docs/Screenshots/scorecard_bands.png", "docs/Screenshots/scorecard_distribution.png"):
+              "docs/screenshots/scorecard_roc.png", "docs/screenshots/scorecard_ks.png",
+              "docs/screenshots/scorecard_bands.png", "docs/screenshots/scorecard_distribution.png"):
         assert (t / f).exists(), f
     text = (t / "docs/scorecard_report.md").read_text(encoding="utf-8")
     for h in ("Model quality", "Calibration across time", "Risk bands", "Scaling"):

@@ -15,8 +15,8 @@ Written by `src/scorecard_model.py`. Logistic regression on weight-of-evidence f
 AUC is the chance a random defaulter is ranked riskier than a random non-defaulter (0.5 = no skill). Gini = 2 x AUC - 1. KS is the largest gap between the cumulative shares of defaults and non-defaults.
 The benchmark rows show how Lending Club's own sub-grade, which uses extra information we deliberately leave out, ranks the same loans.
 
-![ROC curve](Screenshots/scorecard_roc.png)
-![KS chart](Screenshots/scorecard_ks.png)
+![ROC curve](screenshots/scorecard_roc.png)
+![KS chart](screenshots/scorecard_ks.png)
 
 ## 2. Calibration across time
 
@@ -55,8 +55,8 @@ Default rate rises steadily from A to E: **yes**.
 
 Default rate rises steadily from A to E: **yes**.
 
-![Default rate by band](Screenshots/scorecard_bands.png)
-![Score distribution](Screenshots/scorecard_distribution.png)
+![Default rate by band](screenshots/scorecard_bands.png)
+![Score distribution](screenshots/scorecard_distribution.png)
 
 ## 4. Model features and coefficients
 
